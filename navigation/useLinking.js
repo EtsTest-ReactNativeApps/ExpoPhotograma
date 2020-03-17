@@ -10,7 +10,7 @@ export default function(containerRef) {
         screens: {
           Home: 'home',
           Links: 'links',
-          Login: 'login',
+          SignIn: 'signIn',
           SignUp: 'signUp',
           MyProfile: 'myProfile',
           Chat: 'chat',

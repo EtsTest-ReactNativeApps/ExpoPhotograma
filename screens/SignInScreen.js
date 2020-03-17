@@ -1,6 +1,18 @@
 import * as React from 'react';
-import { StyleSheet, StatusBar, TextInput, View, TouchableOpacity, Image, LayoutAnimation} from 'react-native';
+import {
+    StyleSheet,
+    StatusBar,
+    TextInput,
+    View,
+    TouchableOpacity,
+    Image,
+    LayoutAnimation,
+    ScrollView
+} from 'react-native';
 import { MonoText } from '../components/StyledText';
+import InputFormNormalText from "../components/InputFormNormalText";
+import InputFormSecureText from "../components/InputFormSecureText";
+import ButtonSignIn from "../components/ButtonSignIn";
 
 export default class SignInScreen extends React.Component{
     static navigationOptions = {
@@ -20,7 +32,6 @@ export default class SignInScreen extends React.Component{
     render() {
         return (
             <View style={styles.container} contentContainerStyle={styles.contentContainer}>
-                <StatusBar barStyle="light-content"/>
                 <Image
                     source={require("../assets/images/filmsNobackOne.png")}
                     style={{ position: "absolute", top: -160, right: -225 }}
@@ -28,27 +39,12 @@ export default class SignInScreen extends React.Component{
                 <MonoText style={styles.greeting}>{` Hello again \nWelcome back`}</MonoText>
 
                 <View style={styles.form}>
-                    <View>
-                        <MonoText style={styles.inputTitle}>Email Address</MonoText>
-                        <TextInput
-                            style={styles.input}
-                            autoCapitalize="none"
-                        />
-                    </View>
+                    <InputFormNormalText name="Email"/>
 
-                    <View style={{ marginTop: 32 }}>
-                        <MonoText style={styles.inputTitle}>Password</MonoText>
-                        <TextInput
-                            style={styles.input}
-                            secureTextEntry
-                            autoCapitalize="none"
-                        />
-                    </View>
+                    <InputFormSecureText name="Password"/>
                 </View>
 
-                <TouchableOpacity style={styles.button} onPress={() => alert("Yes")}>
-                    <MonoText style={{ color: "#FFF", fontWeight: "500" }}>Sign in</MonoText>
-                </TouchableOpacity>
+                <ButtonSignIn text="Sign In" onPress={() => alert("Yes")}/>
 
                 <TouchableOpacity
                     style={{ alignSelf: "center", marginTop: 32 }}
@@ -82,25 +78,5 @@ const styles = StyleSheet.create({
     form: {
         marginBottom: 48,
         marginHorizontal: 30
-    },
-    inputTitle: {
-        color: "#8A8F9E",
-        fontSize: 10,
-        textTransform: "uppercase"
-    },
-    input: {
-        borderBottomColor: "#8A8F9E",
-        borderBottomWidth: StyleSheet.hairlineWidth,
-        height: 40,
-        fontSize: 15,
-        color: "#161F3D"
-    },
-    button: {
-        marginHorizontal: 30,
-        backgroundColor: "#323441",
-        borderRadius: 4,
-        height: 52,
-        alignItems: "center",
-        justifyContent: "center"
     }
 });

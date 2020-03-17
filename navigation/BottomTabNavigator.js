@@ -53,7 +53,7 @@ export default function BottomTabNavigator({ navigation, route }) {
 
 
       <BottomTab.Screen
-        name="Sign In"
+        name="SignIn"
         component={SignInScreen}
         options={{
           title: 'Sign In',
@@ -70,12 +70,12 @@ function getHeaderTitle(route) {
 
   switch (routeName) {
     case 'Home':
-      return 'How to get started';
+      return 'Home';
     case 'Links':
       return 'Links to learn more';
     case 'MyProfile':
           return 'Edit my profile';
-    case 'Sign In':
+    case 'SignIn':
           return 'Sign In';
     case 'SignUp':
           return 'Sign Up';

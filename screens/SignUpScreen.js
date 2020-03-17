@@ -2,6 +2,9 @@ import * as React from 'react';
 import { StyleSheet, StatusBar, TextInput, View, TouchableOpacity, Image, ScrollView} from 'react-native';
 import { MonoText } from '../components/StyledText';
 import {Ionicons} from "@expo/vector-icons";
+import InputFormNormalText from "../components/InputFormNormalText";
+import InputFormSecureText from "../components/InputFormSecureText";
+import ButtonSignIn from "../components/ButtonSignIn";
 
 export default class SignUpScreen extends React.Component{
     static navigationOptions = {
@@ -36,54 +39,22 @@ export default class SignUpScreen extends React.Component{
                     </TouchableOpacity>
                 </View>
 
-                <MonoText style={styles.greeting}>{`Register\nPhotograma`}</MonoText>
+                <MonoText style={styles.greeting}>{`Sign Up\nPhotograma`}</MonoText>
 
                 <View style={styles.form}>
-                    <View>
-                        <MonoText style={styles.inputTitle}>Email Address</MonoText>
-                        <TextInput
-                            style={styles.input}
-                            autoCapitalize="none"
-                        />
-                    </View>
+                    <InputFormNormalText name="Email"/>
 
-                    <View style={{ marginTop: 32 }}>
-                        <MonoText style={styles.inputTitle}>Password</MonoText>
-                        <TextInput
-                            style={styles.input}
-                            secureTextEntry
-                            autoCapitalize="none"
-                        />
-                    </View>
+                    <InputFormSecureText name="Password"/>
 
-                    <View style={{ marginTop: 32 }}>
-                        <MonoText style={styles.inputTitle}>Username</MonoText>
-                        <TextInput
-                            style={styles.input}
-                            autoCapitalize="none"
-                        />
-                    </View>
+                    <InputFormNormalText name="Username"/>
 
-                    <View style={{ marginTop: 32 }}>
-                        <MonoText style={styles.inputTitle}>Name</MonoText>
-                        <TextInput
-                            style={styles.input}
-                            autoCapitalize="none"
-                        />
-                    </View>
+                    <InputFormNormalText name="Name"/>
 
-                    <View style={{ marginTop: 32 }}>
-                        <MonoText style={styles.inputTitle}>Phone</MonoText>
-                        <TextInput
-                            style={styles.input}
-                            autoCapitalize="none"
-                        />
-                    </View>
+                    <InputFormNormalText name="Phone"/>
                 </View>
 
-                <TouchableOpacity style={styles.button} onPress={() => alert("Yes")}>
-                    <MonoText style={{ color: "#FFF", fontWeight: "500" }}>Sign up</MonoText>
-                </TouchableOpacity>
+
+                <ButtonSignIn text="Sign Up" onPress={() => alert("Yes")}/>
 
                 <TouchableOpacity
                     style={{ alignSelf: "center", marginTop: 32 }}
@@ -115,22 +86,9 @@ const styles = StyleSheet.create({
         textAlign: "center",
         color: "#323441"
     },
-
-    inputTitle: {
-        color: "#8A8F9E",
-        fontSize: 10,
-        textTransform: "uppercase"
-    },
     form: {
         marginTop: 50,
         marginHorizontal: 30
-    },
-    input: {
-        borderBottomColor: "#8A8F9E",
-        borderBottomWidth: StyleSheet.hairlineWidth,
-        height: 40,
-        fontSize: 15,
-        color: "#161F3D"
     },
     button: {
         marginHorizontal: 30,
