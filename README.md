@@ -28,9 +28,9 @@ $ adb devices
  ```clone or download the repository```
 ```sh
 $ cd ExpoPhotograma
-$ cd Photograma
-$ yarn install
-$ react-native run-android
+$ yarn start
 ```
-
+  ```sh
+Install EXPO application from GooglePlay or IOS Store(or open the Simulator) and scan the QR code.
+```
 **In art we trust!**
