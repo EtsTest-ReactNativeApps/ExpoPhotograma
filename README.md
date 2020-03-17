@@ -27,7 +27,7 @@ $ adb devices
 
  ```clone or download the repository```
 ```sh
-$ cd Thesis-MobileApp
+$ cd ExpoPhotograma
 $ cd Photograma
 $ yarn install
 $ react-native run-android
