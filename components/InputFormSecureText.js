@@ -1,38 +1,18 @@
 import React from "react";
 import {MonoText} from "./StyledText";
-import {StyleSheet, TextInput, View} from "react-native";
+import { TextInput, View} from "react-native";
+import { styles } from './globalStyle'
 
-
-export default class InputFormSecureText extends React.Component{
-    constructor(props){
-        super(props)
-    }
-
-    render() {
-        return (
+export const InputFormSecureText = ({ name, value, ...rest}) => (
             <View style={{ marginTop: 32 }}>
-                <MonoText style={styles.inputTitle}>{this.props.name}</MonoText>
+                <MonoText style={styles.inputTitle}>{ name }</MonoText>
                 <TextInput
-                    style={styles.input}
-                    autoCapitalize="none"
+                    {...rest}
+                    style= {styles.input}
+                    autoCapitalize= "none"
                     secureTextEntry
+                    name= { name }
+                    value= { value }
                 />
             </View>
-        )}
-}
-
-const styles = StyleSheet.create({
-
-    inputTitle: {
-        color: "#8A8F9E",
-        fontSize: 10,
-        textTransform: "uppercase"
-    },
-    input: {
-        borderBottomColor: "#8A8F9E",
-        borderBottomWidth: StyleSheet.hairlineWidth,
-        height: 40,
-        fontSize: 15,
-        color: "#161F3D"
-    }
-});
+        );

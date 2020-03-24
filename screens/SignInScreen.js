@@ -1,18 +1,10 @@
 import * as React from 'react';
-import {
-    StyleSheet,
-    StatusBar,
-    TextInput,
-    View,
-    TouchableOpacity,
-    Image,
-    LayoutAnimation,
-    ScrollView
-} from 'react-native';
+import { View, TouchableOpacity, Image } from 'react-native';
 import { MonoText } from '../components/StyledText';
-import InputFormNormalText from "../components/InputFormNormalText";
-import InputFormSecureText from "../components/InputFormSecureText";
-import ButtonSignIn from "../components/ButtonSignIn";
+import { InputFormNormalText } from "../components/InputFormNormalText";
+import { InputFormSecureText } from "../components/InputFormSecureText";
+import { ButtonSignIn } from "../components/ButtonSignIn";
+import { styles }  from './styles'
 
 export default class SignInScreen extends React.Component{
     static navigationOptions = {
@@ -31,14 +23,14 @@ export default class SignInScreen extends React.Component{
 
     render() {
         return (
-            <View style={styles.container} contentContainerStyle={styles.contentContainer}>
+            <View style={styles.container_SignIn} contentContainerStyle={styles.contentContainer_SignIn}>
                 <Image
                     source={require("../assets/images/filmsNobackOne.png")}
                     style={{ position: "absolute", top: -160, right: -225 }}
                 />
-                <MonoText style={styles.greeting}>{` Hello again \nWelcome back`}</MonoText>
+                <MonoText style={styles.greeting_SignIn}>{` Hello again \nWelcome back`}</MonoText>
 
-                <View style={styles.form}>
+                <View style={styles.form_SignIn}>
                     <InputFormNormalText name="Email"/>
 
                     <InputFormSecureText name="Password"/>
@@ -57,26 +49,3 @@ export default class SignInScreen extends React.Component{
         );
     }
 }
-
-
-
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        backgroundColor: '#fafafa',
-    },
-    contentContainer: {
-        paddingTop: 15,
-    },
-    greeting: {
-        marginTop: 250,
-        marginBottom:50,
-        fontSize: 18,
-        fontWeight: "400",
-        textAlign: "center"
-    },
-    form: {
-        marginBottom: 48,
-        marginHorizontal: 30
-    }
-});
