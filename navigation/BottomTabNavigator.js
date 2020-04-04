@@ -3,11 +3,26 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import TabBarIcon from '../components/TabBarIcon';
 import HomeScreen from '../screens/HomeScreen';
 import LinksScreen from '../screens/LinksScreen';
-import SignInScreen from '../screens/SignInScreen';
+import { SignInScreen }  from '../screens/SignInScreen';
+import {createStackNavigator} from "@react-navigation/stack";
 import SignUpScreen from "../screens/SignUpScreen";
+import {useSelector} from "react-redux";
+
+
+
+const AuthStack = createStackNavigator();
+function AuthStackScreen() {
+    return (
+        <AuthStack.Navigator>
+            <AuthStack.Screen name="SignIn" component={ SignInScreen } />
+            <AuthStack.Screen name="SignUp" component={ SignUpScreen } />
+        </AuthStack.Navigator>
+    );
+}
 
 
 const BottomTab = createBottomTabNavigator();
+
 const INITIAL_ROUTE_NAME = 'Home';
 
 export default function BottomTabNavigator({ navigation, route }) {
@@ -16,6 +31,7 @@ export default function BottomTabNavigator({ navigation, route }) {
   // https://reactnavigation.org/docs/en/screen-options-resolution.html
   navigation.setOptions({ headerTitle: getHeaderTitle(route) });
 
+  const isLoggedIn = useSelector(state => state.user.loggedIn);
   return (
     <BottomTab.Navigator initialRouteName={INITIAL_ROUTE_NAME}>
       <BottomTab.Screen
@@ -36,7 +52,7 @@ export default function BottomTabNavigator({ navigation, route }) {
         />
       <BottomTab.Screen
         name="Search"
-        component={LinksScreen}
+        component={HomeScreen}
         options={{
             title: 'Search',
             tabBarIcon: ({ focused }) => <TabBarIcon focused={focused} name="ios-search" />,
@@ -50,16 +66,23 @@ export default function BottomTabNavigator({ navigation, route }) {
             tabBarIcon: ({ focused }) => <TabBarIcon focused={focused} name="ios-chatbubbles" />,
         }}
         />
-
-
-      <BottomTab.Screen
-        name="Sign In"
-        component={SignInScreen}
-        options={{
-          title: 'Sign In',
-          tabBarIcon: ({ focused }) => <TabBarIcon focused={focused} name="md-person" />,
-        }}
-      />
+        {!isLoggedIn ?
+          <BottomTab.Screen
+            name="SignIn"
+            component={SignInScreen}
+            options={{
+              title: 'Sign In',
+              tabBarIcon: ({ focused }) => <TabBarIcon focused={focused} name="md-person" />,
+            }}
+          /> :
+            <BottomTab.Screen
+                name="MyProfile"
+                component={LinksScreen}
+                options={{
+                    title: 'My Profile',
+                    tabBarIcon: ({ focused }) => <TabBarIcon focused={focused} name="md-person" />,
+                }}
+            />}
     </BottomTab.Navigator>
   );
 }
@@ -70,12 +93,12 @@ function getHeaderTitle(route) {
 
   switch (routeName) {
     case 'Home':
-      return 'How to get started';
+      return 'Home';
     case 'Links':
       return 'Links to learn more';
     case 'MyProfile':
           return 'Edit my profile';
-    case 'Sign In':
+    case 'SignIn':
           return 'Sign In';
     case 'SignUp':
           return 'Sign Up';

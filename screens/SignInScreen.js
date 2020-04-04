@@ -1,55 +1,65 @@
 import * as React from 'react';
-import { StyleSheet, StatusBar, TextInput, View, TouchableOpacity, Image, LayoutAnimation} from 'react-native';
+import {View, TouchableOpacity, Image, ScrollView} from 'react-native';
 import { MonoText } from '../components/StyledText';
+import { InputFormNormalText } from "../components/InputFormNormalText";
+import { ButtonSignIn } from "../components/ButtonSignIn";
+import { styles }  from './styles'
+import { Formik } from "formik";
+import { Fragment } from "react";
+import { validationSchema } from "../validations/validation.signIn";
+import { ErrorMessage } from "../components/ErrorMessages";
+import { useDispatch, useSelector } from "react-redux";
+import { UserActions } from "../redux/user";
 
-export default class SignInScreen extends React.Component{
-    static navigationOptions = {
-        header: null
-    };
+export const SignInScreen = ({navigation})  => {
+    const dispatch = useDispatch();
+    const isLoggedIn = useSelector(state => state.user.loggedIn);
+    const error = useSelector(state => state.user.error);
 
-    state = {
-        email: "",
-        password: "",
-        errorMessage: null
-    };
+    const onLogin = React.useCallback(
+        values => {
+            const {email, password} = values;
+            dispatch(UserActions.login(email, password));
+        },
+        [dispatch],
+        navigation.navigate('Root', { screen: 'Home' })
+    );
 
-    handleLogin = () => {
-        const { email, password } = this.state;
-    };
-
-    render() {
-        return (
-            <View style={styles.container} contentContainerStyle={styles.contentContainer}>
-                <StatusBar barStyle="light-content"/>
-                <Image
-                    source={require("../assets/images/filmsNobackOne.png")}
-                    style={{ position: "absolute", top: -160, right: -225 }}
-                />
-                <MonoText style={styles.greeting}>{` Hello again \nWelcome back`}</MonoText>
-
-                <View style={styles.form}>
-                    <View>
-                        <MonoText style={styles.inputTitle}>Email Address</MonoText>
-                        <TextInput
-                            style={styles.input}
-                            autoCapitalize="none"
+    return !isLoggedIn ? (
+            <View style={styles.container} contentContainerStyle={styles.contentContainer_SignIn}>
+                <Formik initialValues={{email: '', password: ''}}
+                        onSubmit={ onLogin }
+                        validationSchema={validationSchema}>
+                    {({ handleChange, values, handleSubmit, errors, touched, handleBlur}) => (
+                    <Fragment>
+                        <Image
+                            source={require("../assets/images/filmsNobackOne.png")}
+                            style={{ position: "absolute", top: -160, right: -225 }}
                         />
-                    </View>
+                        <MonoText style={styles.greeting_SignIn}>{` Hello again \nWelcome back`}</MonoText>
 
-                    <View style={{ marginTop: 32 }}>
-                        <MonoText style={styles.inputTitle}>Password</MonoText>
-                        <TextInput
-                            style={styles.input}
-                            secureTextEntry
-                            autoCapitalize="none"
-                        />
-                    </View>
-                </View>
+                        <View style={styles.form_SignIn}>
+                            <InputFormNormalText name="email"
+                                                 value={values.email}
+                                                 onChangeText={handleChange('email')}
+                                                 onBlur={handleBlur('email')}/>
+                            <ErrorMessage errorValue={touched.email && errors.email} />
+                            <InputFormNormalText name="password"
+                                                 secureTextEntry
+                                                 value={values.password}
+                                                 onChangeText={handleChange('password')}
+                                                 onBlur={handleBlur('password')}/>
+                            <ErrorMessage errorValue={touched.password && errors.password} />
+                        </View>
 
-                <TouchableOpacity style={styles.button} onPress={() => alert("Yes")}>
-                    <MonoText style={{ color: "#FFF", fontWeight: "500" }}>Sign in</MonoText>
-                </TouchableOpacity>
-
+                        <ButtonSignIn text="Sign In"
+                                      onPress={handleSubmit}
+                                      style={styles.button}
+                                      />
+                    </Fragment>
+               )
+              }
+            </Formik>
                 <TouchableOpacity
                     style={{ alignSelf: "center", marginTop: 32 }}
                     onPress={() => this.props.navigation.navigate("SignUp")}>
@@ -58,49 +68,7 @@ export default class SignInScreen extends React.Component{
                     </MonoText>
                 </TouchableOpacity>
             </View>
-        );
-    }
-}
-
-
-
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        backgroundColor: '#fafafa',
-    },
-    contentContainer: {
-        paddingTop: 15,
-    },
-    greeting: {
-        marginTop: 250,
-        marginBottom:50,
-        fontSize: 18,
-        fontWeight: "400",
-        textAlign: "center"
-    },
-    form: {
-        marginBottom: 48,
-        marginHorizontal: 30
-    },
-    inputTitle: {
-        color: "#8A8F9E",
-        fontSize: 10,
-        textTransform: "uppercase"
-    },
-    input: {
-        borderBottomColor: "#8A8F9E",
-        borderBottomWidth: StyleSheet.hairlineWidth,
-        height: 40,
-        fontSize: 15,
-        color: "#161F3D"
-    },
-    button: {
-        marginHorizontal: 30,
-        backgroundColor: "#323441",
-        borderRadius: 4,
-        height: 52,
-        alignItems: "center",
-        justifyContent: "center"
-    }
-});
+    ) : <View>
+        <MonoText>You are now logged in</MonoText>
+    </View>
+};

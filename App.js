@@ -5,12 +5,26 @@ import * as Font from 'expo-font';
 import { Ionicons } from '@expo/vector-icons';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-
 import BottomTabNavigator from './navigation/BottomTabNavigator';
 import useLinking from './navigation/useLinking';
+
+import axios from 'axios';
+
 import SignUpScreen from "./screens/SignUpScreen";
 
+
+import { Provider } from 'react-redux';
+import {store} from "./config/store.config";
+
+
+//AXIOS HEADERS
+axios.defaults.baseURL = 'http://localhost:3000/api';
+axios.defaults.withCredentials = true;
+axios.defaults.headers.common['Content-Type'] = 'application/json';
+axios.defaults.headers.common.Accept = 'application/json';
+
 const Stack = createStackNavigator();
+
 
 export default function App(props) {
   const [isLoadingComplete, setLoadingComplete] = React.useState(false);
@@ -48,15 +62,17 @@ export default function App(props) {
     return null;
   } else {
     return (
-      <View style={styles.container}>
-        {Platform.OS === 'ios' && <StatusBar barStyle="default" />}
-        <NavigationContainer ref={containerRef} initialState={initialNavigationState}>
-          <Stack.Navigator>
-            <Stack.Screen name="Root" component={BottomTabNavigator} />
-            <Stack.Screen name="SignUp" component={SignUpScreen}  options={{ title: 'Sign up' }}/>
-          </Stack.Navigator>
-        </NavigationContainer>
-      </View>
+        <Provider store={store}>
+          <View style={styles.container}>
+            {Platform.OS === 'ios' && <StatusBar barStyle="default" />}
+            <NavigationContainer ref={containerRef} initialState={initialNavigationState}>
+              <Stack.Navigator>
+                <Stack.Screen name="Root" component={BottomTabNavigator} />
+                <Stack.Screen name="SignUp" component={SignUpScreen}  options={{ title: 'Sign up' }}/>
+              </Stack.Navigator>
+            </NavigationContainer>
+        </View>
+        </Provider>
     );
   }
 }
