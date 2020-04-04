@@ -5,29 +5,30 @@ export const styles = StyleSheet.create({
         flex: 1,
         backgroundColor: '#fafafa',
     },
-    contentContainer: {
+    contentContainer_SignUp: {
         paddingTop: 15,
         paddingBottom: 100,
     },
-    greeting: {
+    greeting_SignUp: {
         marginTop: 320,
         fontSize: 18,
         fontWeight: "500",
         textAlign: "center",
         color: "#323441"
     },
-    form: {
-        marginTop: 50,
+    form_SignUp: {
+        marginTop: 30,
+        marginBottom: 40,
         marginHorizontal: 30
     },
     button: {
         marginHorizontal: 30,
         backgroundColor: "#323441",
         borderRadius: 4,
-        marginTop: 50,
+        marginTop: 40,
         height: 52,
         alignItems: "center",
-        justifyContent: "center"
+        justifyContent: "center",
     },
     errorMessage: {
         height: 72,
@@ -51,7 +52,7 @@ export const styles = StyleSheet.create({
         alignItems: "center",
         justifyContent: "center"
     },
-    avatar: {
+    avatar_SignUp: {
         width: 100,
         height: 100,
         backgroundColor: "#E1E2E6",
@@ -60,16 +61,12 @@ export const styles = StyleSheet.create({
         justifyContent: "center",
         alignItems: "center"
     },
-    container_SignIn: {
-        flex: 1,
-        backgroundColor: '#fafafa',
-    },
     contentContainer_SignIn: {
         paddingTop: 15,
     },
     greeting_SignIn: {
         marginTop: 250,
-        marginBottom:50,
+        marginBottom:20,
         fontSize: 18,
         fontWeight: "400",
         textAlign: "center"

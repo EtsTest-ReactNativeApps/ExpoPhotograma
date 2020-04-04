@@ -1,24 +1,27 @@
 import * as React from 'react';
 import { StatusBar, TextInput, View, TouchableOpacity, Image, ScrollView} from 'react-native';
 import { MonoText } from '../components/StyledText';
-import {Ionicons} from "@expo/vector-icons";
+import { Ionicons } from "@expo/vector-icons";
 import { InputFormNormalText } from "../components/InputFormNormalText";
 import { ButtonSignIn }from "../components/ButtonSignIn";
 
 import { Formik } from "formik";
-import {Fragment} from "react";
-import { styles }  from './styles'
+import { Fragment } from "react";
+import { styles }  from './styles';
+
 
 export default class SignUpScreen extends React.Component{
     handleSubmit = values => {
         if (values.email.length > 0 && values.password.length > 0) {
-            this.props.navigation.navigate("SignIn")
+            setTimeout(() => {
+                this.props.navigation.navigate('Home')
+            }, 3000)
         }
     };
 
     render() {
         return (
-            <ScrollView style={styles.container} contentContainerStyle={styles.contentContainer}>
+            <ScrollView style={styles.container} contentContainerStyle={styles.contentContainer_SignUp}>
 
                 <Formik initialValues={{email: '', password: '', username: '', name: '', phone: ''}}
                         onSubmit={values => {this.handleSubmit(values)}}>
@@ -32,7 +35,7 @@ export default class SignUpScreen extends React.Component{
                             />
 
                             <View style={{ position: "absolute", alignItems: "center", width: "100%" }}>
-                                <TouchableOpacity style={styles.avatar}>
+                                <TouchableOpacity style={styles.avatar_SignUp}>
                                     <Ionicons name="ios-add"
                                         size={40}
                                         color="#FFF"
@@ -40,9 +43,9 @@ export default class SignUpScreen extends React.Component{
                                 </TouchableOpacity>
                             </View>
 
-                            <MonoText style={styles.greeting}>{`Sign Up\nPhotograma`}</MonoText>
+                            <MonoText style={styles.greeting_SignUp}>{`Sign Up\nPhotograma`}</MonoText>
 
-                            <View style={styles.form}>
+                            <View style={styles.form_SignUp}>
                                 <InputFormNormalText name="email"
                                                      value={values.email}
                                                      onChangeText={handleChange('email')}/>
@@ -65,8 +68,8 @@ export default class SignUpScreen extends React.Component{
                                                      onChangeText={handleChange('phone')}/>
                             </View>
 
-
-                            <ButtonSignIn text="Sign Up" onPress={handleSubmit}/>
+                            <ButtonSignIn text="Sign Up"
+                                          onPress={handleSubmit}/>
 
                         </Fragment>
                 )
@@ -74,7 +77,7 @@ export default class SignUpScreen extends React.Component{
             </Formik>
             <TouchableOpacity
                 style={{ alignSelf: "center", marginTop: 32 }}
-                onPress={() => this.props.navigation.navigate("Login")}>
+                onPress={() => this.props.navigation.navigate("SignIn")}>
                 <MonoText style={{ color: "#414959", fontSize: 13 }}>
                    Have an account?  <MonoText style={{ fontWeight: "500", color: "#323441" }}>Sign in</MonoText>
                 </MonoText>
