@@ -10,6 +10,7 @@ import { validationSchema } from "../validations/validation.signIn";
 import { ErrorMessage } from "../components/ErrorMessages";
 import { useDispatch, useSelector } from "react-redux";
 import { UserActions } from "../redux/user";
+import Colors from "../constants/Colors";
 
 export const SignInScreen = ({navigation})  => {
     const dispatch = useDispatch();
@@ -34,9 +35,9 @@ export const SignInScreen = ({navigation})  => {
                     <Fragment>
                         <Image
                             source={require("../assets/images/filmsNobackOne.png")}
-                            style={{ position: "absolute", top: -160, right: -225 }}
+                            style={{ position: "absolute", top: -150, right: -225 }}
                         />
-                        <MonoText style={styles.greeting_SignIn}>{` Hello again \nWelcome back`}</MonoText>
+                        <MonoText style={styles.greeting_SignIn}>{`\nWelcome back!`}</MonoText>
 
                         <View style={styles.form_SignIn}>
                             <InputFormNormalText name="email"
@@ -62,9 +63,9 @@ export const SignInScreen = ({navigation})  => {
             </Formik>
                 <TouchableOpacity
                     style={{ alignSelf: "center", marginTop: 32 }}
-                    onPress={() => this.props.navigation.navigate("SignUp")}>
-                    <MonoText style={{ color: "#414959", fontSize: 13 }}>
-                        New to Photograma?  <MonoText style={{ fontWeight: "500", color: "#323441" }}>Sign up</MonoText>
+                    onPress={() => navigation.navigate("SignUp")}>
+                    <MonoText style={{ color: Colors.LIGHT_GREY, fontSize: 13 }}>
+                        New to Photograma?  <MonoText style={{ fontWeight: "500", color: Colors.LIGHT_GREY }}>Sign up</MonoText>
                     </MonoText>
                 </TouchableOpacity>
             </View>

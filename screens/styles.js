@@ -1,9 +1,10 @@
 import {StyleSheet} from "react-native";
+import Colors from "../constants/Colors";
 
 export const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#fafafa',
+        backgroundColor: Colors.SEMI_BLACK
     },
     contentContainer_SignUp: {
         paddingTop: 15,
@@ -14,7 +15,7 @@ export const styles = StyleSheet.create({
         fontSize: 18,
         fontWeight: "500",
         textAlign: "center",
-        color: "#323441"
+        color: Colors.WHITE
     },
     form_SignUp: {
         marginTop: 30,
@@ -23,9 +24,9 @@ export const styles = StyleSheet.create({
     },
     button: {
         marginHorizontal: 30,
-        backgroundColor: "#323441",
+        backgroundColor: Colors.WHITE,
         borderRadius: 4,
-        marginTop: 40,
+        marginTop: 30,
         height: 52,
         alignItems: "center",
         justifyContent: "center",
@@ -37,7 +38,7 @@ export const styles = StyleSheet.create({
         marginHorizontal: 30
     },
     error: {
-        color: "#323441",
+        color: Colors.WHITE,
         fontSize: 13,
         fontWeight: "600",
         textAlign: "center"
@@ -66,10 +67,11 @@ export const styles = StyleSheet.create({
     },
     greeting_SignIn: {
         marginTop: 250,
-        marginBottom:20,
-        fontSize: 18,
-        fontWeight: "400",
-        textAlign: "center"
+        marginBottom:10,
+        fontSize: 24,
+        fontWeight: 'bold',
+        textAlign: "center",
+        color: Colors.LIGHT_GREY
     },
     form_SignIn: {
         marginBottom: 48,

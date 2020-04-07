@@ -15,6 +15,8 @@ import SignUpScreen from "./screens/SignUpScreen";
 
 import { Provider } from 'react-redux';
 import {store} from "./config/store.config";
+import {SignInScreen} from "./screens/SignInScreen";
+import {AnimatedSignInScreen} from "./screens/SignIn/AnimatedSignIn";
 
 
 //AXIOS HEADERS
@@ -24,6 +26,17 @@ axios.defaults.headers.common['Content-Type'] = 'application/json';
 axios.defaults.headers.common.Accept = 'application/json';
 
 const Stack = createStackNavigator();
+
+
+const AuthStack = createStackNavigator();
+function AuthStackScreen() {
+  return (
+      <AuthStack.Navigator>
+        <AuthStack.Screen name="SignIn" component={ SignInScreen } />
+        <AuthStack.Screen name="AnimatedSignInScreen" component={ AnimatedSignInScreen } />
+      </AuthStack.Navigator>
+  );
+}
 
 
 export default function App(props) {
@@ -68,7 +81,7 @@ export default function App(props) {
             <NavigationContainer ref={containerRef} initialState={initialNavigationState}>
               <Stack.Navigator>
                 <Stack.Screen name="Root" component={BottomTabNavigator} />
-                <Stack.Screen name="SignUp" component={SignUpScreen}  options={{ title: 'Sign up' }}/>
+                <Stack.Screen name="SignUp" component={ SignUpScreen }  options={{ title: 'Sign up' }}/>
               </Stack.Navigator>
             </NavigationContainer>
         </View>

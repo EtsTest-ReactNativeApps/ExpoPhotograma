@@ -1,23 +1,24 @@
 import {StyleSheet} from "react-native";
+import Colors from "../constants/Colors";
 
 export const styles = StyleSheet.create({
 
     inputTitle: {
-        color: "#8A8F9E",
+        color: Colors.LIGHT_GREY,
         fontSize: 10,
         textTransform: "uppercase"
     },
     input: {
-        borderBottomColor: "#8A8F9E",
+        borderBottomColor: Colors.LIGHT_GREY,
         borderBottomWidth: StyleSheet.hairlineWidth,
         height: 40,
         fontSize: 15,
-        color: "#161F3D"
+        color: Colors.LIGHT_GREY
     },
     button: {
         marginHorizontal: 30,
         backgroundColor: "#323441",
-        borderRadius: 4,
+        borderRadius: 35,
         height: 52,
         alignItems: "center",
         justifyContent: "center"
