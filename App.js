@@ -10,12 +10,12 @@ import useLinking from './navigation/useLinking';
 
 import axios from 'axios';
 
-import SignUpScreen from "./screens/SignUpScreen";
+import SignUpScreen from "./screens/SignUp/SignUpScreen";
 
 
 import { Provider } from 'react-redux';
 import {store} from "./config/store.config";
-import {SignInScreen} from "./screens/SignInScreen";
+import {SignInScreen} from "./screens/SignIn/SignInScreen";
 import {AnimatedSignInScreen} from "./screens/SignIn/AnimatedSignIn";
 
 
@@ -26,18 +26,6 @@ axios.defaults.headers.common['Content-Type'] = 'application/json';
 axios.defaults.headers.common.Accept = 'application/json';
 
 const Stack = createStackNavigator();
-
-
-const AuthStack = createStackNavigator();
-function AuthStackScreen() {
-  return (
-      <AuthStack.Navigator>
-        <AuthStack.Screen name="SignIn" component={ SignInScreen } />
-        <AuthStack.Screen name="AnimatedSignInScreen" component={ AnimatedSignInScreen } />
-      </AuthStack.Navigator>
-  );
-}
-
 
 export default function App(props) {
   const [isLoadingComplete, setLoadingComplete] = React.useState(false);

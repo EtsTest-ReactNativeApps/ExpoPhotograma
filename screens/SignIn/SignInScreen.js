@@ -1,16 +1,16 @@
 import * as React from 'react';
 import {View, TouchableOpacity, Image, ScrollView} from 'react-native';
-import { MonoText } from '../components/StyledText';
-import { InputFormNormalText } from "../components/InputFormNormalText";
-import { ButtonSignIn } from "../components/ButtonSignIn";
-import { styles }  from './styles'
-import { Formik } from "formik";
+import { MonoText } from '../../components/StyledText';
+import { InputFormNormalText } from "../../components/InputFormNormalText";
+import { ButtonSignIn } from "../../components/ButtonSignIn";
+import { styles }  from '../styles'
+import { Formik } from "formik/dist/index";
 import { Fragment } from "react";
-import { validationSchema } from "../validations/validation.signIn";
-import { ErrorMessage } from "../components/ErrorMessages";
+import { validationSchema } from "../../validations/validation.signIn";
+import { ErrorMessage } from "../../components/ErrorMessages";
 import { useDispatch, useSelector } from "react-redux";
-import { UserActions } from "../redux/user";
-import Colors from "../constants/Colors";
+import { UserActions } from "../../redux/user";
+import Colors from "../../constants/Colors";
 
 export const SignInScreen = ({navigation})  => {
     const dispatch = useDispatch();
@@ -34,7 +34,7 @@ export const SignInScreen = ({navigation})  => {
                     {({ handleChange, values, handleSubmit, errors, touched, handleBlur}) => (
                     <Fragment>
                         <Image
-                            source={require("../assets/images/filmsNobackOne.png")}
+                            source={require("../../assets/images/filmsNobackOne.png")}
                             style={{ position: "absolute", top: -150, right: -225 }}
                         />
                         <MonoText style={styles.greeting_SignIn}>{`\nWelcome back!`}</MonoText>
