@@ -18,6 +18,13 @@ export default function(containerRef) {
           Settings: 'settings',
         },
       },
+      Auth: {
+        path: 'auth',
+        screens:{
+          SignIn: 'signIn',
+          SignUp: 'signUpAnimated'
+        }
+      }
     },
   });
 }

@@ -1,52 +1,43 @@
 import * as React from 'react';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
 import TabBarIcon from '../components/TabBarIcon';
 import HomeScreen from '../screens/HomeScreen';
 import LinksScreen from '../screens/LinksScreen';
-import { SignInScreen }  from '../screens/SignInScreen';
-import {createStackNavigator} from "@react-navigation/stack";
-import SignUpScreen from "../screens/SignUpScreen";
-import {useSelector} from "react-redux";
+import { useSelector } from "react-redux";
+import Colors from "../constants/Colors";
+import { SignUp } from "../screens/SignUp/SignUp";
+import {ChatScreen} from "../screens/Chat/ChatScreen";
+import {ProfileStackScreen} from "./ProfileNavigator";
 
+const BottomTab = createMaterialBottomTabNavigator();
 
-
-const AuthStack = createStackNavigator();
-function AuthStackScreen() {
-    return (
-        <AuthStack.Navigator>
-            <AuthStack.Screen name="SignIn" component={ SignInScreen } />
-            <AuthStack.Screen name="SignUp" component={ SignUpScreen } />
-        </AuthStack.Navigator>
-    );
-}
-
-
-const BottomTab = createBottomTabNavigator();
-
-const INITIAL_ROUTE_NAME = 'Home';
+const INITIAL_ROUTE_NAME = 'MyProfile';
 
 export default function BottomTabNavigator({ navigation, route }) {
   // Set the header title on the parent stack navigator depending on the
   // currently active tab. Learn more in the documentation:
   // https://reactnavigation.org/docs/en/screen-options-resolution.html
-  navigation.setOptions({ headerTitle: getHeaderTitle(route) });
+  navigation.setOptions({ headerTitle: getHeaderTitle(route),
+      headerStyle: {
+          backgroundColor: Colors.BLUE_GREY} });
 
   const isLoggedIn = useSelector(state => state.user.loggedIn);
   return (
-    <BottomTab.Navigator initialRouteName={INITIAL_ROUTE_NAME}>
+    <BottomTab.Navigator initialRouteName={INITIAL_ROUTE_NAME}
+                         barStyle={{ backgroundColor: Colors.BLUE_GREY }}>
       <BottomTab.Screen
         name="Home"
-        component={HomeScreen}
+        component={ LinksScreen }
         options={{
-          title: 'Get Started',
-          tabBarIcon: ({ focused }) => <TabBarIcon focused={focused} name="md-code-working" />,
+            tabBarLabel: 'FEED',
+            tabBarIcon: ({ focused }) => <TabBarIcon focused={focused} name="md-code-working" />,
         }}
       />
       <BottomTab.Screen
-        name="Favorites"
-        component={LinksScreen}
+        name="AnimatedSignInScreen"
+        component={ LinksScreen }
         options={{
-            title: 'Favorites',
+            tabBarLabel: 'FAVORITES',
             tabBarIcon: ({ focused }) => <TabBarIcon focused={focused} name="ios-star-outline" />,
         }}
         />
@@ -54,35 +45,27 @@ export default function BottomTabNavigator({ navigation, route }) {
         name="Search"
         component={HomeScreen}
         options={{
-            title: 'Search',
+            tabBarLabel: 'SEARCH',
             tabBarIcon: ({ focused }) => <TabBarIcon focused={focused} name="ios-search" />,
         }}
         />
         <BottomTab.Screen
         name="Chat"
-        component={LinksScreen}
+        component={ChatScreen}
         options={{
-            title: 'Chat',
+            tabBarLabel: 'CHAT',
             tabBarIcon: ({ focused }) => <TabBarIcon focused={focused} name="ios-chatbubbles" />,
         }}
         />
-        {!isLoggedIn ?
-          <BottomTab.Screen
-            name="SignIn"
-            component={SignInScreen}
-            options={{
-              title: 'Sign In',
-              tabBarIcon: ({ focused }) => <TabBarIcon focused={focused} name="md-person" />,
-            }}
-          /> :
-            <BottomTab.Screen
-                name="MyProfile"
-                component={LinksScreen}
-                options={{
-                    title: 'My Profile',
-                    tabBarIcon: ({ focused }) => <TabBarIcon focused={focused} name="md-person" />,
-                }}
-            />}
+
+        <BottomTab.Screen
+        name="MyProfile"
+        component={ProfileStackScreen}
+        options={{
+            tabBarLabel: 'PROFILE',
+            tabBarIcon: ({ focused }) => <TabBarIcon focused={focused} name="md-person" />,
+        }}
+        />
     </BottomTab.Navigator>
   );
 }
@@ -93,14 +76,14 @@ function getHeaderTitle(route) {
 
   switch (routeName) {
     case 'Home':
-      return 'Home';
+      return 'FEED';
     case 'Links':
       return 'Links to learn more';
     case 'MyProfile':
-          return 'Edit my profile';
+          return 'MY PROFILE';
     case 'SignIn':
-          return 'Sign In';
+          return 'SIGN IN';
     case 'SignUp':
-          return 'Sign Up';
+          return 'SIGN UP';
   }
 }
