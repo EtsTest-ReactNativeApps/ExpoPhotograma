@@ -5,6 +5,7 @@ const FACEBOOK = '#2E71DC';
 const BLUE_GREY = '#323441';
 const LIGHT_GREY = '#8A8F9E';
 const SEMI_BLACK = '#0d0d0d';
+const SEMY_GREY = '#4F566D';
 
 export default {
   tintColor,
@@ -14,6 +15,7 @@ export default {
   LIGHT_GREY,
   BLACK,
   SEMI_BLACK,
+  SEMY_GREY,
   tabIconDefault: '#ccc',
   tabIconSelected: tintColor,
   tabBar: '#fefefe',

@@ -1,6 +1,6 @@
 import * as React from "react";
-import SignUpScreen from "./SignUpScreen";
+import OldSignUpScreen from "./oldSignUpScreen";
 
-export const SignUp = () => {
-    return <SignUpScreen/>
+export const SignUp = ({navigation}) => {
+    return <OldSignUpScreen navigation={navigation}/>
 };

@@ -6517,6 +6517,11 @@ react-native-screens@2.0.0-alpha.12:
   dependencies:
     debounce "^1.2.0"
 
+react-native-shared-element@^0.6.1:
+  version "0.6.1"
+  resolved "https://registry.yarnpkg.com/react-native-shared-element/-/react-native-shared-element-0.6.1.tgz#fc81d43eb6c8af5c087a174161f34e007039fa25"
+  integrity sha512-hQebSp3sGBFGFblFy1uBN/XRZUb7gTQm37KSiC3KxmqtaFZm2T+984yvA9N04DyopFCVGQkrj1I2MXafNIpP8Q==
+
 react-native-svg@^12.0.3:
   version "12.0.3"
   resolved "https://registry.yarnpkg.com/react-native-svg/-/react-native-svg-12.0.3.tgz#5dcc0e73efca50c8cfff098b20404551fad4aa5e"
@@ -6588,6 +6593,18 @@ react-native-webview@^9.0.2:
     scheduler "0.15.0"
     stacktrace-parser "^0.1.3"
     whatwg-fetch "^3.0.0"
+
+react-navigation-hooks@^1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/react-navigation-hooks/-/react-navigation-hooks-1.1.0.tgz#337c41a50ebc7b9030bb9d9333cd4fd6e1f86b68"
+  integrity sha512-ZY/aiYJ88KXaOo8iOa4171O/0x6ztGhUPd2OYzdaJhLT/tP64zi5HB/RZFImuKhaBTODXjoSpFaOTA5xpePG4g==
+
+react-navigation-shared-element@^2.3.0:
+  version "2.3.0"
+  resolved "https://registry.yarnpkg.com/react-navigation-shared-element/-/react-navigation-shared-element-2.3.0.tgz#d64a150cb7300c064233af210875cfa82506cd60"
+  integrity sha512-fbZnipN8FjaA1sGhhaK1izGsG/GYEHCf7B7cT5lDO75MdFHmOlM7CNkuSq36RBP3I7s8P6pao0xyNI+15//k4w==
+  dependencies:
+    hoist-non-react-statics "^3.3.2"
 
 react-navigation@^4.3.3:
   version "4.3.3"

@@ -5,7 +5,7 @@ import { MonoText } from "../../components/StyledText";
 
 import Animated, { Easing } from 'react-native-reanimated'
 import { TapGestureHandler, State } from "react-native-gesture-handler";
-import { InputFormNormalText } from "../../components/InputFormNormalText";
+import SignInForm from "./SignInForm";
 
 
 const { width, height } = Dimensions.get('window');
@@ -163,17 +163,9 @@ export default class SignIn extends React.Component {
                             </Animated.View>
                         </TapGestureHandler>
                         <View style={styles.form_SignIn}>
-                            <InputFormNormalText name="email"
-                                                 value="email"/>
-
-                            <InputFormNormalText name="password"
-                                                 value="test"
-                                                 secureTextEntry/>
-                            <Animated.View
-                                style={{ ...styles.button, backgroundColor: Colors.LIGHT_GREY, marginTop: 30}}>
-                                <MonoText style={{fontSize: 20, fontWeight: 'bold', color: Colors.WHITE }}>SIGN IN</MonoText>
-                            </Animated.View>
+                            <SignInForm/>
                         </View>
+
                     </Animated.View>
                 </View>
             </View>
@@ -195,7 +187,7 @@ const styles = StyleSheet.create({
         marginTop: -160
     },
     buttonView: {
-        height: height / 3.5,
+        height: height / 1.5,
         justifyContent: 'center'
     },
     button:{

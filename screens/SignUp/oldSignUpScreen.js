@@ -10,7 +10,7 @@ import { Fragment } from "react";
 import { styles }  from '../styles';
 
 
-export default class SignUpScreen extends React.Component{
+export default class OldSignUpScreen extends React.Component{
     handleSubmit = values => {
         if (values.email.length > 0 && values.password.length > 0) {
             setTimeout(() => {

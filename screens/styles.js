@@ -76,5 +76,14 @@ export const styles = StyleSheet.create({
     form_SignIn: {
         marginBottom: 48,
         marginHorizontal: 30
+    },
+    buttonSignIn:{
+        backgroundColor: Colors.BLUE_GREY,
+        height: 50,
+        marginHorizontal: 20,
+        marginVertical: 10,
+        borderRadius: 35,
+        alignItems: 'center',
+        justifyContent: 'center',
     }
 });
