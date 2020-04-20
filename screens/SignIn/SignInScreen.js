@@ -45,10 +45,10 @@ class SignInScreen extends React.Component {
             );
         }
 
-        return <SignIn/>
+        return <SignIn navigation={this.props.navigation}/>
     };
 }
 
-export const AnimatedSignInScreen = () => {
-    return( <SignInScreen/> )
+export const AnimatedSignInScreen = ({ navigation }) => {
+    return( <SignInScreen navigation={navigation} /> )
 };

@@ -22,7 +22,7 @@ export default function(containerRef) {
         path: 'auth',
         screens:{
           SignIn: 'signIn',
-          SignUp: 'signUpAnimated'
+          SignUp: 'signUp'
         }
       }
     },

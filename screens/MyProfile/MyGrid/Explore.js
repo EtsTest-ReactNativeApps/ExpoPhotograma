@@ -22,54 +22,6 @@ const listings = [
         picture: require("/Users/nicoletaungur/ExpoPhotograma/assets/images/black_interesting.png"),
         rating: 4.93,
         ratingCount: 861
-    },
-    {
-        id: "tiny-home",
-        title: "Tiny Home",
-        subtitle: "Entire Flat · 1 Bed",
-        picture: require("/Users/nicoletaungur/ExpoPhotograma/assets/images/black_interesting1.png"),
-        rating: 4.93,
-        ratingCount: 861
-    },
-    {
-        id: "cook-house",
-        title: "Cook House",
-        subtitle: "Entire Flat · 1 Bed",
-        picture: require("/Users/nicoletaungur/ExpoPhotograma/assets/images/black_interesting.png"),
-        rating: 4.93,
-        ratingCount: 861
-    },
-    {
-        id: "tiny-home",
-        title: "Tiny Home",
-        subtitle: "Entire Flat · 1 Bed",
-        picture: require("/Users/nicoletaungur/ExpoPhotograma/assets/images/black_interesting1.png"),
-        rating: 4.93,
-        ratingCount: 861
-    },
-    {
-        id: "cook-house",
-        title: "Cook House",
-        subtitle: "Entire Flat · 1 Bed",
-        picture: require("/Users/nicoletaungur/ExpoPhotograma/assets/images/black_interesting.png"),
-        rating: 4.93,
-        ratingCount: 861
-    },
-    {
-        id: "tiny-home",
-        title: "Tiny Home",
-        subtitle: "Entire Flat · 1 Bed",
-        picture: require("/Users/nicoletaungur/ExpoPhotograma/assets/images/black_interesting1.png"),
-        rating: 4.93,
-        ratingCount: 861
-    },
-    {
-        id: "cook-house",
-        title: "Cook House",
-        subtitle: "Entire Flat · 1 Bed",
-        picture: require("/Users/nicoletaungur/ExpoPhotograma/assets/images/black_interesting.png"),
-        rating: 4.93,
-        ratingCount: 861
     }
 ];
 

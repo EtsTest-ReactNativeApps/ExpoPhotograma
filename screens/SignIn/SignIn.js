@@ -1,12 +1,12 @@
 import * as React from 'react';
-import { View, StyleSheet, Dimensions, Image } from "react-native";
+import { View, Dimensions, Image, StyleSheet, ScrollView, TouchableWithoutFeedback } from "react-native";
 import Colors from "../../constants/Colors";
 import { MonoText } from "../../components/StyledText";
 
 import Animated, { Easing } from 'react-native-reanimated'
 import { TapGestureHandler, State } from "react-native-gesture-handler";
+import {styles} from './styles'
 import SignInForm from "./SignInForm";
-
 
 const { width, height } = Dimensions.get('window');
 const {
@@ -59,15 +59,18 @@ export default class SignIn extends React.Component {
     constructor(props){
         super(props);
         this.buttonOpacity =  new Value(1);
+        this.registered= false;
 
         this.onStateChange = event([{
-            nativeEvent:({ state }) => block([cond(eq(state, State.END), set(this.buttonOpacity, runTiming(new Clock(), 1, 0))
-            )])
+
+            nativeEvent:({ state }) => block([cond(eq(state, State.END), set(this.buttonOpacity, runTiming(new Clock(), 1, 0)),
+                )])
             }
+
         ]);
 
         this.onCloseState = event([{
-            nativeEvent:({ state }) => block([cond(eq(state, State.END), set(this.buttonOpacity, runTiming(new Clock(), 0, 1))
+            nativeEvent:({ state }) => block([cond(eq(state, State.END), set(this.buttonOpacity, runTiming(new Clock(), 0, 1)),
             )])
         }
         ]);
@@ -81,13 +84,19 @@ export default class SignIn extends React.Component {
 
         this.bgY = interpolate(this.buttonOpacity, {
             inputRange: [0, 1],
-            outputRange: [-height / 3, 0],
+            outputRange: [-height / 2.7, 0],
             extrapolate: Extrapolate.CLAMP
         });
 
         this.textInputZindex = interpolate(this.buttonOpacity, {
             inputRange: [0, 1],
             outputRange: [1, -1],
+            extrapolate: Extrapolate.CLAMP
+        });
+
+        this.textInputZindex2 = interpolate(this.buttonOpacity, {
+            inputRange: [1, 2],
+            outputRange: [2, -2],
             extrapolate: Extrapolate.CLAMP
         });
 
@@ -145,76 +154,44 @@ export default class SignIn extends React.Component {
                         <MonoText style={{fontSize: 20, fontWeight: 'bold', color: Colors.WHITE}}>SIGN IN WITH FACEBOOK</MonoText>
                     </Animated.View>
 
-                    <Animated.View style={{
-                        zIndex: this.textInputZindex,
-                        opacity: this.textInputOpacity,
-                        transform: [{translateY: this.textInputY}],
-                        height: height / 3,
-                        ...StyleSheet.absoluteFill,
-                        top: null,
-                        justifyContent: 'center'
-                    }}>
+                    <TouchableWithoutFeedback onPress={() => this.props.navigation.push("SignUpScreen") }>
+                    <Animated.View
+                        style={{ ...styles.signUp_btn,
+                            opacity: this.buttonOpacity,
+                            transform: [{ translateY: this.buttonY }]
+                        }}>
 
-                        <TapGestureHandler onHandlerStateChange={this.onCloseState}>
-                            <Animated.View style={styles.closeButton}>
-                                <Animated.Text style={{fontSize: 15, transform: [{rotate: concat(this.rotateCross, 'deg')}]}}>
-                                    X
-                                </Animated.Text>
-                            </Animated.View>
-                        </TapGestureHandler>
-                        <View style={styles.form_SignIn}>
-                            <SignInForm/>
-                        </View>
+                            <MonoText style={{fontSize: 14, fontWeight: 'bold', color: Colors.WHITE }}>New to photograma? Sign Up</MonoText>
 
                     </Animated.View>
+                    </TouchableWithoutFeedback>
+
+
+                    <Animated.View style={{
+                    zIndex: this.textInputZindex,
+                    opacity: this.textInputOpacity,
+                    transform: [{translateY: this.textInputY}],
+                    height: height / 2.7,
+                    ...StyleSheet.absoluteFill,
+                    top: null,
+                    justifyContent: 'center'
+                }}>
+
+                    <TapGestureHandler onHandlerStateChange={this.onCloseState}>
+                        <Animated.View style={styles.closeButton}>
+                            <Animated.Text style={{fontSize: 15, transform: [{rotate: concat(this.rotateCross, 'deg')}]}}>
+                                X
+                            </Animated.Text>
+                        </Animated.View>
+                    </TapGestureHandler>
+                    <View style={styles.form_SignIn}>
+                        <SignInForm/>
+                    </View>
+                </Animated.View>
+
                 </View>
             </View>
         )
     };
 }
 
-
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        backgroundColor: Colors.BLUE_GREY,
-        justifyContent: 'flex-end'
-    },
-    imgBack:{
-        flex:1,
-        height: null,
-        width: null,
-        marginTop: -160
-    },
-    buttonView: {
-        height: height / 1.5,
-        justifyContent: 'center'
-    },
-    button:{
-        backgroundColor: Colors.BLUE_GREY,
-        height: 50,
-        marginHorizontal: 20,
-        marginVertical: 10,
-        borderRadius: 35,
-        alignItems: 'center',
-        justifyContent: 'center',
-    },
-    closeButton:{
-        height: 40,
-        width: 40,
-        backgroundColor: Colors.LIGHT_GREY,
-        borderRadius: 20,
-        alignItems: 'center',
-        justifyContent: 'center',
-        position: 'absolute',
-        top: -20,
-        left: width / 2 - 20,
-        shadowOffset: {width: 2, height: 2},
-        shadowColor: Colors.BLACK,
-        shadowOpacity: 0.2
-    },
-    form_SignIn:{
-        marginBottom: 30,
-        marginHorizontal: 30
-    }
-});

@@ -5,7 +5,7 @@ import HomeScreen from '../screens/HomeScreen';
 import LinksScreen from '../screens/LinksScreen';
 import { useSelector } from "react-redux";
 import Colors from "../constants/Colors";
-import { SignUp } from "../screens/SignUp/SignUp";
+import { SignUpScreen1 } from "../screens/SignUp/SignUpScreen";
 import {ChatScreen} from "../screens/Chat/ChatScreen";
 import {ProfileStackScreen} from "./ProfileNavigator";
 
@@ -83,7 +83,7 @@ function getHeaderTitle(route) {
           return 'MY PROFILE';
     case 'SignIn':
           return 'SIGN IN';
-    case 'SignUp':
+    case 'SignUpScreen1':
           return 'SIGN UP';
   }
 }
