@@ -20,7 +20,7 @@ export const styles = StyleSheet.create({
         justifyContent: 'center'
     },
     button:{
-        backgroundColor: Colors.BLUE_GREY,
+        backgroundColor: Colors.BEJ,
         height: 50,
         marginHorizontal: 20,
         marginVertical: 10,
@@ -38,7 +38,7 @@ export const styles = StyleSheet.create({
     closeButton:{
         height: 40,
         width: 40,
-        backgroundColor: Colors.LIGHT_GREY,
+        backgroundColor: Colors.BEJ,
         borderRadius: 20,
         alignItems: 'center',
         justifyContent: 'center',

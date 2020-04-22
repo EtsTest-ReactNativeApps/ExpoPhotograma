@@ -4,16 +4,18 @@ import {styles} from "../styles";
 
 import {Formik} from "formik";
 import { Fragment } from "react";
+import { View } from "react-native";
+
 import {validationSchema} from "../../validations/validation.signIn";
 
 import {InputFormNormalText} from "../../components/InputFormNormalText";
 import {ErrorMessage} from "../../components/ErrorMessages";
 import {ButtonSignIn} from "../../components/ButtonSignIn";
 
+
 import {useDispatch, useSelector} from "react-redux";
 import {UserActions} from "../../redux/user";
-
-import Animated from "react-native-reanimated";
+import { LinearGradient } from 'expo-linear-gradient';
 
 
 // ----FOR REDUX-SAGA-----
@@ -50,13 +52,16 @@ const SignInForm = () => {
                                                  onBlur={handleBlur('password')}/>
                             <ErrorMessage errorValue={touched.password && errors.password} />
 
-                        <Animated.View
-                            style={{ ...styles.buttonSignIn, backgroundColor: Colors.LIGHT_GREY, marginTop: 10}}>
+                        <View>
+                            <LinearGradient
+                                colors={[Colors.LIGHT_GREY,Colors.FIRST_RED, Colors.SECOND_RED]}
+                                style={{ ...styles.buttonSignIn, marginTop: 10}}>
                             <ButtonSignIn text="SIGN IN"
                                           onPress={ handleSubmit }
                                           style={{fontSize: 20, fontWeight: 'bold', color: Colors.WHITE }}
                             />
-                        </Animated.View>
+                            </LinearGradient>
+                        </View>
                     </Fragment>
                 )}
             </Formik>

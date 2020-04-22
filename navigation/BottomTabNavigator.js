@@ -8,6 +8,7 @@ import Colors from "../constants/Colors";
 import { SignUpScreen1 } from "../screens/SignUp/SignUpScreen";
 import {ChatScreen} from "../screens/Chat/ChatScreen";
 import {ProfileStackScreen} from "./ProfileNavigator";
+import ImagePickerExample, {MyImagePicker} from "../screens/MyProfile/ImagesUpload/ImageUpload";
 
 const BottomTab = createMaterialBottomTabNavigator();
 
@@ -43,7 +44,7 @@ export default function BottomTabNavigator({ navigation, route }) {
         />
       <BottomTab.Screen
         name="Search"
-        component={HomeScreen}
+        component={MyImagePicker}
         options={{
             tabBarLabel: 'SEARCH',
             tabBarIcon: ({ focused }) => <TabBarIcon focused={focused} name="ios-search" />,

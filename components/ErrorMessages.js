@@ -12,7 +12,7 @@ export const ErrorMessage = ({ errorValue }) => (
 
 const styles = StyleSheet.create({
     errorText: {
-        color: Colors.tintColor
+        color: Colors.MY_RED
 }
 });
 

@@ -21,11 +21,7 @@ const INITIAL_STATE = {
     loggedIn: false,
     registered: false,
 
-    name: null,
-    username: null,
-    phone: null,
-
-    tokenType: '',
+    tokenType: 'Bearer',
     client: null,
     accessToken: null,
     uid: null,

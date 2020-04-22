@@ -7,6 +7,7 @@ import Animated, { Easing } from 'react-native-reanimated'
 import { TapGestureHandler, State } from "react-native-gesture-handler";
 import {styles} from './styles'
 import SignInForm from "./SignInForm";
+import {LinearGradient} from "expo-linear-gradient";
 
 const { width, height } = Dimensions.get('window');
 const {
@@ -137,11 +138,18 @@ export default class SignIn extends React.Component {
                     <TapGestureHandler
                         onHandlerStateChange={this.onStateChange}>
                         <Animated.View
-                            style={{ ...styles.button,
+                            style={{
                                 opacity: this.buttonOpacity,
                                 transform: [{ translateY: this.buttonY }]
                             }}>
-                                <MonoText style={{fontSize: 20, fontWeight: 'bold', color: Colors.WHITE }}>SIGN IN</MonoText>
+                            <View>
+                                <LinearGradient
+                                    style={{ ...styles.button}}
+                                    colors={[Colors.LIGHT_GREY,Colors.FIRST_RED, Colors.SECOND_RED]}>
+                                    <MonoText style={{fontSize: 20, fontWeight: 'bold', color: Colors.BLUE_GREY }}>SIGN IN</MonoText>
+                                </LinearGradient>
+
+                            </View>
                         </Animated.View>
                     </TapGestureHandler>
 

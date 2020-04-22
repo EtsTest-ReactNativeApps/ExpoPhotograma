@@ -20,34 +20,6 @@ const {
 export default class SignUp extends React.Component {
     constructor(props) {
         super(props);
-        this.buttonOpacity = new Value(1);
-
-        this.buttonOpacity = new Value(1);
-
-        this.bgY = interpolate(this.buttonOpacity, {
-            inputRange: [0, 1],
-            outputRange: [-height / 2.7, 0],
-            extrapolate: Extrapolate.CLAMP
-        });
-
-        this.textInputZindex = interpolate(this.buttonOpacity, {
-            inputRange: [0, 1],
-            outputRange: [1, -1],
-            extrapolate: Extrapolate.CLAMP
-        });
-
-
-        this.textInputY = interpolate(this.buttonOpacity, {
-            inputRange: [0, 1],
-            outputRange: [0, 100],
-            extrapolate: Extrapolate.CLAMP
-        });
-
-        this.textInputOpacity = interpolate(this.buttonOpacity, {
-            inputRange: [0, 1],
-            outputRange: [1, 0],
-            extrapolate: Extrapolate.CLAMP
-        });
     }
 
     render(){
@@ -62,7 +34,7 @@ export default class SignUp extends React.Component {
                                 flex:1,
                                 height: null,
                                 width: null,
-                                marginTop: -150,
+                                marginTop: -150
                             }}
                            source={require('../../assets/images/black_interesting3.png')}/>
                     </View>
@@ -70,7 +42,6 @@ export default class SignUp extends React.Component {
                     <View style={{
                         height: height / 2.7,
                         backgroundColor: Colors.BLUE_GREY,
-
                     }}>
                         <TapGestureHandler onHandlerStateChange={() => this.props.navigation.navigate("SignIn")}>
                             <Animated.View style={styles.closeButton}>

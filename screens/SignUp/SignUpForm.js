@@ -13,7 +13,8 @@ import {ButtonSignIn} from "../../components/ButtonSignIn";
 import {useDispatch, useSelector} from "react-redux";
 import {UserActions} from "../../redux/user";
 
-import Animated from "react-native-reanimated";
+import {View} from "react-native";
+import {LinearGradient} from "expo-linear-gradient";
 
 
 // ----FOR REDUX-SAGA-----
@@ -66,13 +67,16 @@ const SignUpForm = () => {
                                          onBlur={handleBlur('phone')}/>
                     <ErrorMessage errorValue={touched.password && errors.password} />
 
-                    <Animated.View
-                        style={{ ...styles.buttonSignIn, backgroundColor: Colors.LIGHT_GREY, marginTop: 10}}>
+                    <View>
+                        <LinearGradient
+                            style={{ ...styles.buttonSignIn, marginTop: 10}}
+                            colors={[Colors.LIGHT_GREY,Colors.FIRST_RED, Colors.SECOND_RED]}>
                         <ButtonSignIn text="SIGN UP"
                                       onPress={ handleSubmit }
                                       style={{fontSize: 20, fontWeight: 'bold', color: Colors.WHITE }}
                         />
-                    </Animated.View>
+                    </LinearGradient>
+                    </View>
                 </Fragment>
             )}
         </Formik>

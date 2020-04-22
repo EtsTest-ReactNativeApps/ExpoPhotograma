@@ -9,17 +9,17 @@ export function* login({ email, password }) {
         const response = yield call(axios.post, '/v1/auth/sign_in.json',
             { email, password });
         if (response.status === 200) {
-
             const uid = response.headers['uid'];
             const client = response.headers['client'];
             const accessToken = response.headers['access-token'];
             const expiry = response.headers['expiry'];
+            console.log(response.data);
             yield put(UserActions.loginSuccess({ ...response.data,
                 loggedIn: true,
                 uid: uid,
                 client: client,
                 accessToken: accessToken,
-                expiry: expiry
+                expiry: expiry,
             }));
         }
         yield put(UserActions.loginLoading(false));
