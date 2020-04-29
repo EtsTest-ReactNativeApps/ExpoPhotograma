@@ -1,25 +1,62 @@
 import React from "react";
-import { View, Text, StyleSheet, Image, TouchableWithoutFeedback } from "react-native";
+import { View, Text, StyleSheet, Image, TouchableWithoutFeedback, TouchableOpacity } from "react-native";
 import {MonoText} from "../../components/StyledText";
 import Colors from "../../constants/Colors";
 import {useSelector} from "react-redux";
-import {} from "react-native";
+import { Ionicons } from '@expo/vector-icons';
+import * as ImagePicker from "expo-image-picker";
 
 
 export default function MyAvatar() {
-    const avatar = useSelector(state => state.user.data.avatar);
+    const avatar = useSelector(state => state.user.avatar);
     const name = useSelector(state => state.user.data.name);
     const followers = useSelector(state => state.user.data.followers_count);
     const followees = useSelector(state => state.user.data.followees_count);
+    let [selectedImage, setSelectedImage] = React.useState(null);
+
+
+    let openImagePickerAsync = async () => {
+        let permissionResult = await ImagePicker.requestCameraRollPermissionsAsync();
+
+        if (permissionResult.granted === false) {
+            alert('Permission to access camera roll is required!');
+            return;
+        }
+
+        let pickerResult = await ImagePicker.launchImageLibraryAsync();
+        if (pickerResult.cancelled === true) {
+            return;
+        }
+
+        setSelectedImage({ localUri: pickerResult.uri });
+    };
+
 
     return (
             <View style={styles.container}>
                 <View style={{ marginTop: 64, alignItems: "center" }}>
                     <View style={styles.avatarContainer}>
-                        <Image
+                        {avatar != null ? <Image
                             source={{uri: avatar }}
-                            style={styles.avatar}
-                        />
+                            style={styles.avatar}/>
+                            :
+                            <>
+                                {selectedImage != null ?
+                                    <TouchableOpacity style={styles.avatarPlaceholder} onLongPress={openImagePickerAsync}>
+                                        <Image source={{ uri: selectedImage.localUri }}
+                                               style={styles.avatar2}/>
+                                    </TouchableOpacity>
+                                    : <TouchableOpacity style={styles.avatarPlaceholder} onLongPress={openImagePickerAsync}>
+                                        <Image source={require('../../assets/images/avatar.png')}
+                                               style={styles.avatar2}/>
+                                        <Ionicons
+                                            name="ios-add"
+                                            size={40}
+                                            color={Colors.BLACK}
+                                            style={{marginTop: 100, marginLeft: 2}}/>
+                                    </TouchableOpacity>
+                                }</>
+                            }
                     </View>
                     <MonoText style={styles.name}>{name}</MonoText>
                 </View>
@@ -49,14 +86,14 @@ export default function MyAvatar() {
                     <TouchableWithoutFeedback
                         onPress = {() => alert("TODO")}>
                         <View style={styles.statBtn}>
-                        <MonoText style={styles.statTitleBtn}>Followers</MonoText>
+                        <MonoText style={styles.statTitleBtn}>Follow</MonoText>
                     </View>
                     </TouchableWithoutFeedback>
 
                     <TouchableWithoutFeedback
                         onPress = {() => alert("TODO")}>
                         <View style={styles.statBtn}>
-                            <MonoText style={styles.statTitleBtn}>Following</MonoText>
+                            <MonoText style={styles.statTitleBtn}>Message</MonoText>
                         </View>
                     </TouchableWithoutFeedback>
                 </View>
@@ -79,11 +116,30 @@ const styles = StyleSheet.create({
         shadowRadius: 10,
         shadowOpacity: 0.4,
     },
+
     avatar: {
         marginTop: 40,
         width: 180,
         height: 180,
-        borderRadius: 100
+        borderRadius: 100,
+    },
+
+    avatarPlaceholder: {
+        width: 180,
+        height: 180,
+        backgroundColor: "#E1E2E6",
+        borderRadius: 100,
+        marginTop: 48,
+        justifyContent: "center",
+        alignItems: "center"
+    },
+    avatar2: {
+        position: "absolute",
+        marginTop: 40,
+        width: 180,
+        height: 180,
+        borderRadius: 100,
+        backgroundColor:Colors.LIGHT_GREY
     },
     name: {
         marginTop: 30,

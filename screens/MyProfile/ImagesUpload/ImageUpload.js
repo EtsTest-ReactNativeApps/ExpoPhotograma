@@ -1,11 +1,12 @@
 import React from 'react';
 import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import * as ImagePicker from 'expo-image-picker';
-import * as Sharing from 'expo-sharing';
+import {useDispatch} from "react-redux";
+import {UserActions} from "../../../redux/user";
 
-export default function ImgPicker() {
+export const ImgPicker = () =>{
     let [selectedImage, setSelectedImage] = React.useState(null);
-
+    const dispatch = useDispatch();
     let openImagePickerAsync = async () => {
         let permissionResult = await ImagePicker.requestCameraRollPermissionsAsync();
 
@@ -20,22 +21,27 @@ export default function ImgPicker() {
         }
 
         setSelectedImage({ localUri: pickerResult.uri });
+        const { avatar } = { avatar: pickerResult.uri };
+        dispatch(UserActions.update(avatar));
+        alert("img up")
     };
 
-    let openShareDialogAsync = async () => {
-        if (!(await Sharing.isAvailableAsync())) {
-            alert(`Uh oh, sharing isn't available on your platform`);
-            return;
-        }
 
-        Sharing.shareAsync(selectedImage.localUri);
-    };
+
+    const onSubmit = React.useCallback(
+        () => {
+            const { avatar } = { avatar: selectedImage.localUri };
+            dispatch(UserActions.update(avatar));
+        },
+        [dispatch],
+        () => this.props.navigation.navigate("MyProfileScreen")
+    );
 
     if (selectedImage !== null) {
         return (
             <View style={styles.container}>
                 <Image source={{ uri: selectedImage.localUri }} style={styles.thumbnail} />
-                <TouchableOpacity onPress={openShareDialogAsync} style={styles.button}>
+                <TouchableOpacity onPress={onSubmit} style={styles.button}>
                     <Text style={styles.buttonText}>Share this photo</Text>
                 </TouchableOpacity>
             </View>
@@ -53,7 +59,7 @@ export default function ImgPicker() {
             </TouchableOpacity>
         </View>
     );
-}
+};
 
 const styles = StyleSheet.create({
     container: {

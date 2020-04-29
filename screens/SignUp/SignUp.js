@@ -40,7 +40,7 @@ export default class SignUp extends React.Component {
                     </View>
 
                     <View style={{
-                        height: height / 2.7,
+                        height: height / 2,
                         backgroundColor: Colors.BLUE_GREY,
                     }}>
                         <TapGestureHandler onHandlerStateChange={() => this.props.navigation.navigate("SignIn")}>
