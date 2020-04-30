@@ -31,6 +31,7 @@ const INITIAL_STATE = {
     name:null,
     username:null,
     phone:null,
+    id:null,
 
     tokenType: 'Bearer',
     client: null,

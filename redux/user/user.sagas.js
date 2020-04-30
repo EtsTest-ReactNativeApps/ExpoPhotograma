@@ -2,6 +2,7 @@ import { call, put, select } from 'redux-saga/effects';
 import axios from 'axios';
 
 import UserActions from './user.redux';
+import * as fileInput from "redux-form";
 
 
 export function* login({email, password}) {
@@ -17,6 +18,7 @@ export function* login({email, password}) {
             const avatar = response.data.data.avatar.url;
             const name = response.data.data.name;
             const username = response.data.data.username;
+            const id = response.data.data.id;
             const phone = response.data.data.phone;
             console.log(response.data);
 
@@ -65,15 +67,26 @@ const getClient = (state) => state.user.client;
 const getUid = (state) => state.user.uid;
 const getAccessToken = (state) => state.user.accessToken;
 const getExpiry = (state) => state.user.expiry;
+const getId = (state) => state.user.id;
 
 
 
-export function* update({name, username, phone, avatar}) {
+export function* update({name, username, phone, avatar2}) {
 
     let client = yield select(getClient);
     let uid = yield select(getUid);
     let accessToken = yield select(getAccessToken);
     let expiry = yield select(getExpiry);
+    let id = yield select(getId);
+
+
+    const avatar = new FormData();
+    // avatar.append('avatar', );
+    avatar.append("avatar", {
+            uri: name,
+            type: 'image/jpeg',
+            name: name
+        }, name);
 
     const token = 'Bearer';
     axios.defaults.headers.common['expiry'] = expiry;
@@ -84,10 +97,9 @@ export function* update({name, username, phone, avatar}) {
     axios.defaults.headers.common['Content-Type'] = 'multipart/form-data';
 
 
-
     try {
         yield put(UserActions.updateLoading(true));
-        const response = yield call(axios.put, '/v1/users/1', {name, username, phone, avatar});
+        const response = yield call(axios.put, `/v1/users/${id}`, avatar);
         if (response.status === 200) {
             console.log(response.data);
             const avatar = response.data.data.avatar.url;
