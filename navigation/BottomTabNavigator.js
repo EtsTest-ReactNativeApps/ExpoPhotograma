@@ -9,6 +9,7 @@ import { SignUpScreen1 } from "../screens/SignUp/SignUpScreen";
 import {ChatScreen} from "../screens/Chat/ChatScreen";
 import {ProfileStackScreen} from "./ProfileNavigator";
 import ImagePickerExample, {MyImagePicker} from "../screens/MyProfile/ImagesUpload/ImageUpload";
+import FavoritesFeed from "../screens/Favorites/FavoritesFeed";
 
 const BottomTab = createMaterialBottomTabNavigator();
 
@@ -36,7 +37,7 @@ export default function BottomTabNavigator({ navigation, route }) {
       />
       <BottomTab.Screen
         name="AnimatedSignInScreen"
-        component={ LinksScreen }
+        component={ FavoritesFeed }
         options={{
             tabBarLabel: 'FAVORITES',
             tabBarIcon: ({ focused }) => <TabBarIcon focused={focused} name="ios-star-outline" />,

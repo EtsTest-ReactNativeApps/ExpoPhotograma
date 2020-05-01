@@ -1,7 +1,6 @@
 import React from "react";
 import { StyleSheet } from "react-native";
 
-import { SafeAreaView } from "react-native-safe-area-context";
 import {Listing} from "./Listing";
 import Colors from "../../../constants/Colors";
 import {ScrollView} from "react-native";
@@ -42,6 +41,5 @@ const styles = StyleSheet.create({
     container: {
         backgroundColor: Colors.SEMI_BLACK,
         zIndex: -1
-
     }
 });

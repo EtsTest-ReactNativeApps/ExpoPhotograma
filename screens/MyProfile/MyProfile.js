@@ -2,8 +2,10 @@ import React from "react";
 import { View, StyleSheet, ScrollView } from "react-native";
 import Colors from "../../constants/Colors";
 import MyAvatar from "./MyAvatar";
-import {Explore} from "./MyGrid/Explore";
 import { LinearGradient } from "expo-linear-gradient";
+import UserInfo from "./MyGrid/UserInfo";
+import MyProfileFooter from "./MyGrid/MyProfile.Footer";
+import MyFollowers from "./MyFollowers";
 
 
 export default class MyProfile extends React.Component {
@@ -21,12 +23,12 @@ export default class MyProfile extends React.Component {
                         left: 0,
                         right: 0,
                         top: 0,
-                        height: 300,
+                        height: 600,
                     }}
                 />
                 <MyAvatar/>
-                <Explore/>
-
+                <UserInfo/>
+                <MyProfileFooter/>
             </View>
         );
     }

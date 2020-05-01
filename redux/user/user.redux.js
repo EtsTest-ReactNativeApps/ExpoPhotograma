@@ -14,7 +14,12 @@ const { Types, Creators } = createActions({
     updateLoading: ['value'],
     updateSuccess: ['data'],
     updateFailure: ['data'],
-    update: ['name', 'username', 'phone', 'avatar'],
+    update: ['nameUrl'],
+
+    editLoading: ['value'],
+    editSuccess: ['data'],
+    editFailure: ['data'],
+    edit: ['name', 'username', 'phone', 'role_ids'],
 
 });
 
@@ -53,4 +58,8 @@ export const userReducer = createReducer(INITIAL_STATE, {
     [Types.UPDATE_LOADING]: (state, { value }) => ({ ...state, loading: value }),
     [Types.UPDATE_SUCCESS]: (state, { data }) => ({ ...state, ...data }),
     [Types.UPDATE_FAILURE]: (state, { data }) => ({ ...state, error: data }),
+
+    [Types.EDIT_LOADING]: (state, { value }) => ({ ...state, loading: value }),
+    [Types.EDIT_SUCCESS]: (state, { data }) => ({ ...state, ...data }),
+    [Types.EDIT_FAILURE]: (state, { data }) => ({ ...state, error: data }),
 });

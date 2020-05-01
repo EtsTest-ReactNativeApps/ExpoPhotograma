@@ -71,7 +71,7 @@ const getId = (state) => state.user.id;
 
 
 
-export function* update({name, username, phone, avatar2}) {
+export function* update({nameUrl}) {
 
     let client = yield select(getClient);
     let uid = yield select(getUid);
@@ -83,10 +83,10 @@ export function* update({name, username, phone, avatar2}) {
     const avatar = new FormData();
     // avatar.append('avatar', );
     avatar.append("avatar", {
-            uri: name,
+            uri: nameUrl,
             type: 'image/jpeg',
-            name: name
-        }, name);
+            name: nameUrl
+        }, nameUrl);
 
     const token = 'Bearer';
     axios.defaults.headers.common['expiry'] = expiry;
@@ -103,15 +103,41 @@ export function* update({name, username, phone, avatar2}) {
         if (response.status === 200) {
             console.log(response.data);
             const avatar = response.data.data.avatar.url;
-            const name = response.data.data.name;
-            const username = response.data.data.username;
-            const phone = response.data.data.phone;
             yield put(UserActions.updateSuccess({
                 ...response.data.data,
                 avatar: avatar,
-                name: name,
-                phone: phone,
-                username: username,
+            }));
+        }
+        yield put(UserActions.updateLoading(false));
+    } catch (error) {
+        yield put(UserActions.updateFailure('Something went wrong!'));
+    }
+}
+
+
+export function* edit({name, username, phone, role_ids}) {
+
+    let client = yield select(getClient);
+    let uid = yield select(getUid);
+    let accessToken = yield select(getAccessToken);
+    let expiry = yield select(getExpiry);
+    let id = yield select(getId);
+
+
+    const token = 'Bearer';
+    axios.defaults.headers.common['expiry'] = expiry;
+    axios.defaults.headers.common['token-type'] = token;
+    axios.defaults.headers.common['access-token'] = accessToken;
+    axios.defaults.headers.common['uid'] = uid;
+    axios.defaults.headers.common['client'] = client;
+
+    try {
+        yield put(UserActions.updateLoading(true));
+        const response = yield call(axios.put, `/v1/users/${id}`, {name, username, phone, role_ids});
+        if (response.status === 200) {
+            console.log(response.data);
+            yield put(UserActions.updateSuccess({
+                ...response.data.data,
             }));
         }
         yield put(UserActions.updateLoading(false));
