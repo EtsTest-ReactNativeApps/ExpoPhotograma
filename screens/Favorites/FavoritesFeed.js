@@ -1,11 +1,4 @@
-import {StatusBar, StyleSheet, View} from "react-native";
-import Header from "../MyProfile/PhotographerFeed/components/Header";
-import Bookmark from "../MyProfile/PhotographerFeed/components/Bookmark";
-import About from "../MyProfile/PhotographerFeed/components/About";
-import Stats from "../MyProfile/PhotographerFeed/components/Stats";
-import Address from "../MyProfile/PhotographerFeed/components/Address";
-import Amenities from "../MyProfile/PhotographerFeed/components/Amenities";
-import Extras from "../MyProfile/PhotographerFeed/components/Extras";
+import {StyleSheet, View} from "react-native";
 import {colors} from "../MyProfile/PhotographerFeed/styles";
 import React from "react";
 import {Profiles} from "./index";
