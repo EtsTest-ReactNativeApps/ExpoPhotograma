@@ -1,4 +1,4 @@
-// @flow
+// // @flow
 import * as React from "react";
 import {
     SafeAreaView, StyleSheet, View, Dimensions,
@@ -9,6 +9,7 @@ import Animated from "react-native-reanimated";
 
 import type { Profile } from "./Profile";
 import Card from "./Card";
+import Colors from "../../constants/Colors";
 
 function runSpring(clock, value, dest) {
     const state = {
@@ -184,8 +185,7 @@ export default class Profiles extends React.PureComponent<ProfilesProps, Profile
         return (
             <SafeAreaView style={styles.container}>
                 <View style={styles.header}>
-                    <Icon name="user" size={32} color="gray" />
-                    <Icon name="message-circle" size={32} color="gray" />
+
                 </View>
                 <View style={styles.cards}>
                     {
@@ -203,12 +203,7 @@ export default class Profiles extends React.PureComponent<ProfilesProps, Profile
                     </PanGestureHandler>
                 </View>
                 <View style={styles.footer}>
-                    <View style={styles.circle}>
-                        <Icon name="x" size={32} color="#ec5288" />
-                    </View>
-                    <View style={styles.circle}>
-                        <Icon name="heart" size={32} color="#6ee3b4" />
-                    </View>
+
                 </View>
             </SafeAreaView>
         );
@@ -218,7 +213,7 @@ export default class Profiles extends React.PureComponent<ProfilesProps, Profile
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: "#fbfaff",
+        backgroundColor: Colors.DARK,
     },
     header: {
         flexDirection: "row",
@@ -249,3 +244,5 @@ const styles = StyleSheet.create({
         shadowRadius: 2,
     },
 });
+
+

@@ -6,7 +6,7 @@ import { gs, colors } from "../styles";
 const starColors = ["#e3ab53", "#e3ab53", "#e3ab53", "#e3ab53", "#8b6f43"];
 
 const Circle = props => {
-    return <View style={[styles.circle, props.style]} />;
+    return <View style={[styles.circle, props.styles]} />;
 };
 
 export default function Stats() {

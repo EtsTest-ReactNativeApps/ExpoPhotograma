@@ -13,7 +13,7 @@ import {ButtonSignIn} from "../../components/ButtonSignIn";
 import {useDispatch, useSelector} from "react-redux";
 import {UserActions} from "../../redux/user";
 
-import {Image, TouchableOpacity, View} from "react-native";
+import {View} from "react-native";
 import {LinearGradient} from "expo-linear-gradient";
 
 // ----FOR REDUX-SAGA-----

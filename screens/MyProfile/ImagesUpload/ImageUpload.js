@@ -3,6 +3,7 @@ import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import * as ImagePicker from 'expo-image-picker';
 import {useDispatch} from "react-redux";
 import {UserActions} from "../../../redux/user";
+import Colors from "../../../constants/Colors";
 
 export const ImgPicker = () =>{
     let [selectedImage, setSelectedImage] = React.useState(null);
@@ -64,7 +65,7 @@ export const ImgPicker = () =>{
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#fff',
+        backgroundColor: Colors.DARK,
         alignItems: 'center',
         justifyContent: 'center',
     },

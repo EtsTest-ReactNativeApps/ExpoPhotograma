@@ -13,6 +13,7 @@ const LYNCH = 'rgba(108, 122, 137, 1)';
 const FIRST_RED = 'rgba(241, 169, 160, 1)';
 const SECOND_RED = 'rgba(255, 148, 120, 1)';
 const THIRD_RED = 'rgba(231, 76, 60, 1)';
+const DARK = "#222";
 
 export default {
     MY_RED,
@@ -30,6 +31,7 @@ export default {
     BLACK,
     SEMI_BLACK,
     SEMY_GREY,
+    DARK,
   tabIconDefault: '#ccc',
   tabIconSelected: MY_RED,
   tabBar: '#fefefe',

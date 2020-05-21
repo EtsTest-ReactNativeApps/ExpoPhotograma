@@ -2,8 +2,6 @@ import { call, put, select } from 'redux-saga/effects';
 import axios from 'axios';
 
 import UserActions from './user.redux';
-import * as fileInput from "redux-form";
-
 
 export function* login({email, password}) {
     try {

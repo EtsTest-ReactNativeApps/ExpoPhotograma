@@ -1,15 +1,16 @@
 import * as React from 'react';
 import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
 import TabBarIcon from '../components/TabBarIcon';
-import HomeScreen from '../screens/HomeScreen';
 import LinksScreen from '../screens/LinksScreen';
 import { useSelector } from "react-redux";
 import Colors from "../constants/Colors";
-import { SignUpScreen1 } from "../screens/SignUp/SignUpScreen";
 import {ChatScreen} from "../screens/Chat/ChatScreen";
+
 import {ProfileStackScreen} from "./ProfileNavigator";
-import ImagePickerExample, {MyImagePicker} from "../screens/MyProfile/ImagesUpload/ImageUpload";
+import {MyImagePicker} from "../screens/MyProfile/ImagesUpload/ImageUpload";
+
 import FavoritesFeed from "../screens/Favorites/FavoritesFeed";
+import {DashboardStackScreen} from "../screens/Dashboard/DashboardNavigator";
 
 const BottomTab = createMaterialBottomTabNavigator();
 
@@ -28,8 +29,8 @@ export default function BottomTabNavigator({ navigation, route }) {
     <BottomTab.Navigator initialRouteName={INITIAL_ROUTE_NAME}
                          barStyle={{ backgroundColor: Colors.BLUE_GREY }}>
       <BottomTab.Screen
-        name="Home"
-        component={ LinksScreen }
+        name="Dashboard"
+        component={ DashboardStackScreen }
         options={{
             tabBarLabel: 'FEED',
             tabBarIcon: ({ focused }) => <TabBarIcon focused={focused} name="md-code-working" />,
@@ -44,7 +45,7 @@ export default function BottomTabNavigator({ navigation, route }) {
         }}
         />
       <BottomTab.Screen
-        name="Search"
+        name="MyImagePicker"
         component={MyImagePicker}
         options={{
             tabBarLabel: 'SEARCH',

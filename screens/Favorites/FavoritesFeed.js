@@ -2,6 +2,9 @@ import {StyleSheet, View} from "react-native";
 import {colors} from "../MyProfile/PhotographerFeed/styles";
 import React from "react";
 import {Profiles} from "./index";
+import { AppLoading } from "expo";
+import {Asset} from "expo-asset";
+
 import type {Profile} from "./Profile";
 
 const profiles: Profile[] = [
@@ -31,11 +34,43 @@ const profiles: Profile[] = [
     },
 ];
 
+interface AppProps {
+
+}
+
+interface AppState {
+    ready: boolean;
+}
+
+class MyApp extends React.Component<AppProps, AppState> {
+    state = {
+        ready: false,
+    };
+
+    async componentDidMount() {
+        await Promise.all(profiles.map(profile => Asset.loadAsync(profile.profile)));
+        this.setState({ ready: true });
+    }
+
+    render() {
+        const { ready } = this.state;
+        if (!ready) {
+            return (
+                <AppLoading />
+            );
+        }
+        return (
+            <Profiles {...{ profiles }} />
+        );
+    }
+}
+
 
 export default function FavoritesFeed() {
+
     return (
         <View style={styles.container}>
-            <Profiles {...{ profiles }} />
+           <MyApp/>
 
             </View>
     );

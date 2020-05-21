@@ -8,6 +8,8 @@ import { TapGestureHandler, State } from "react-native-gesture-handler";
 import {styles} from './styles'
 import SignInForm from "./SignInForm";
 import {LinearGradient} from "expo-linear-gradient";
+import * as Facebook from "expo-facebook";
+import * as axios from "axios";
 
 const { width, height } = Dimensions.get('window');
 const {
@@ -120,6 +122,34 @@ export default class SignIn extends React.Component {
         });
     }
 
+    async logIn() {
+        try {
+            await Facebook.initializeAsync('265561387961237');
+            const {
+                type,
+                token,
+                expires,
+                permissions,
+                declinedPermissions,
+            } = await Facebook.logInWithReadPermissionsAsync({
+                permissions: ['public_profile'],
+            });
+            if (type === 'success') {
+                // Get the user's name using Facebook's Graph API
+                const response = await axios(`https://graph.facebook.com/me?access_token=${token}`)
+                    .then((data) => {
+                        console.log(data.body);
+                });
+                alert('Logged in!', `Hi ${(await response.json()).name}!`);
+                console.log(response.json());
+            } else {
+                // type === 'cancel'
+            }
+        } catch ({ message }) {
+            alert(`Facebook Login Error: ${message}`);
+        }
+    }
+
     render() {
         return (
             <View style={styles.container}>
@@ -152,15 +182,16 @@ export default class SignIn extends React.Component {
                             </View>
                         </Animated.View>
                     </TapGestureHandler>
-
-                    <Animated.View
-                        style={{ ...styles.button,
-                                backgroundColor: Colors.LIGHT_GREY,
-                                opacity: this.buttonOpacity,
-                                transform: [{ translateY: this.buttonY }]
-                        }}>
-                        <MonoText style={{fontSize: 20, fontWeight: 'bold', color: Colors.WHITE}}>SIGN IN WITH FACEBOOK</MonoText>
-                    </Animated.View>
+                    <TouchableWithoutFeedback onPress={this.logIn.bind(this) }>
+                        <Animated.View
+                            style={{ ...styles.button,
+                                    backgroundColor: Colors.LIGHT_GREY,
+                                    opacity: this.buttonOpacity,
+                                    transform: [{ translateY: this.buttonY }]
+                            }}>
+                            <MonoText style={{fontSize: 20, fontWeight: 'bold', color: Colors.WHITE}}>SIGN IN WITH FACEBOOK</MonoText>
+                        </Animated.View>
+                    </TouchableWithoutFeedback>
 
                     <TouchableWithoutFeedback onPress={() => this.props.navigation.push("SignUpScreen") }>
                     <Animated.View
