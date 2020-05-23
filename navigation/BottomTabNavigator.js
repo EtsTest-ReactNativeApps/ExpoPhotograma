@@ -1,17 +1,20 @@
 import * as React from 'react';
 import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
 import TabBarIcon from '../components/TabBarIcon';
-import HomeScreen from '../screens/HomeScreen';
 import LinksScreen from '../screens/LinksScreen';
 import { useSelector } from "react-redux";
 import Colors from "../constants/Colors";
-import { SignUp } from "../screens/SignUp/SignUp";
-import {ChatScreen} from "../screens/Chat/ChatScreen";
+import {SavedScreen} from "../screens/Saved/SavedScreen";
+
 import {ProfileStackScreen} from "./ProfileNavigator";
+import {MyImagePicker} from "../screens/MyProfile/ImagesUpload/ImageUpload";
+
+import FavoritesFeed from "../screens/Favorites/FavoritesFeed";
+import {DashboardStackScreen} from "../screens/Dashboard/DashboardNavigator";
 
 const BottomTab = createMaterialBottomTabNavigator();
 
-const INITIAL_ROUTE_NAME = 'MyProfile';
+const INITIAL_ROUTE_NAME = 'Dashboard';
 
 export default function BottomTabNavigator({ navigation, route }) {
   // Set the header title on the parent stack navigator depending on the
@@ -26,8 +29,8 @@ export default function BottomTabNavigator({ navigation, route }) {
     <BottomTab.Navigator initialRouteName={INITIAL_ROUTE_NAME}
                          barStyle={{ backgroundColor: Colors.BLUE_GREY }}>
       <BottomTab.Screen
-        name="Home"
-        component={ LinksScreen }
+        name="Dashboard"
+        component={ DashboardStackScreen }
         options={{
             tabBarLabel: 'FEED',
             tabBarIcon: ({ focused }) => <TabBarIcon focused={focused} name="md-code-working" />,
@@ -35,26 +38,26 @@ export default function BottomTabNavigator({ navigation, route }) {
       />
       <BottomTab.Screen
         name="AnimatedSignInScreen"
-        component={ LinksScreen }
+        component={ FavoritesFeed }
         options={{
             tabBarLabel: 'FAVORITES',
             tabBarIcon: ({ focused }) => <TabBarIcon focused={focused} name="ios-star-outline" />,
         }}
         />
       <BottomTab.Screen
-        name="Search"
-        component={HomeScreen}
+        name="MyImagePicker"
+        component={MyImagePicker}
         options={{
             tabBarLabel: 'SEARCH',
             tabBarIcon: ({ focused }) => <TabBarIcon focused={focused} name="ios-search" />,
         }}
         />
         <BottomTab.Screen
-        name="Chat"
-        component={ChatScreen}
+        name="Saved"
+        component={SavedScreen}
         options={{
-            tabBarLabel: 'CHAT',
-            tabBarIcon: ({ focused }) => <TabBarIcon focused={focused} name="ios-chatbubbles" />,
+            tabBarLabel: 'SAVED',
+            tabBarIcon: ({ focused }) => <TabBarIcon focused={focused} name="ios-bookmark" />,
         }}
         />
 
@@ -83,7 +86,7 @@ function getHeaderTitle(route) {
           return 'MY PROFILE';
     case 'SignIn':
           return 'SIGN IN';
-    case 'SignUp':
+    case 'SignUpScreen1':
           return 'SIGN UP';
   }
 }
