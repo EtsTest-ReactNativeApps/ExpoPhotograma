@@ -2,11 +2,13 @@ import React from "react";
 
 import {View, Button, StyleSheet, Image, ImageBackground,
     ScrollView, TouchableOpacity, FlatList, TextInput, Text} from "react-native";
-import Colors from "../../constants/Colors";
-import { Feather } from '@expo/vector-icons';
+import Colors from "../../../constants/Colors";
+import { Feather } from '@expo/vector-icons/build/Icons';
 import {styles} from './home.style';
+import {useDispatch, useSelector} from "react-redux";
+import UserActions from "../../../redux/user";
 
-const Home = ({navigation}) => {
+export default function Home({navigation}) {
     const image = {uri : 'https://images.unsplash.com/photo-1590076082844-9cbfcef747d7?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=700&q=80'}
     const recentImage = {uri : 'https://images.unsplash.com/photo-1502602898657-3e91760cbb34?ixlib=rb-1.2.1&auto=format&fit=crop&w=1352&q=80}'};
 
@@ -53,7 +55,7 @@ const Home = ({navigation}) => {
                     <View style={styles.darkOverlay}/>
                     <View style={styles.searchContainer}>
                         <Text style={styles.userGreet}>PHOTOGRAMA</Text>
-                        <Text style={styles.userText}>Where do you plan to take a shoot?</Text>
+                        <Text style={styles.userText}>Where do you plan to take the next shoot?</Text>
                     </View>
 
                     <View>
@@ -140,5 +142,3 @@ const Home = ({navigation}) => {
     );
 };
 
-
-export default Home;

@@ -2,7 +2,7 @@ import React from "react";
 import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 import { gs, colors } from "../styles";
 
-export default function Extras() {
+export default function Extras({ navigation }) {
     const extras = [
         "Payment at Checkout",
         "No Refunds"

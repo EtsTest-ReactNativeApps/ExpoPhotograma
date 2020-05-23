@@ -10,21 +10,22 @@ import Extras from "./components/Extras";
 import Address from "./components/Address";
 import Photos from "./components/Photos";
 
-export default function PhotographerFeed() {
+
+export default function PhotographerFeed({navigation}) {
+
     return (
         <View style={styles.container}>
             <StatusBar barStyle="light-content" />
 
-            <Header />
+            <Header navigation={navigation}/>
 
             <View>
-                <Bookmark />
-                <About />
-                <Stats />
-                <Photos/>
-                <Address/>
-                <Amenities />
-                <Extras />
+                <About navigation={navigation}/>
+                <Stats navigation={navigation}/>
+                <Photos navigation={navigation}/>
+                <Address navigation={navigation}/>
+                <Amenities navigation={navigation}/>
+                <Extras navigation={navigation}/>
             </View>
         </View>
     );

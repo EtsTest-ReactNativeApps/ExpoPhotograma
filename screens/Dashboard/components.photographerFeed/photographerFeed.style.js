@@ -1,5 +1,5 @@
 import {StyleSheet} from "react-native";
-import Colors from "../../constants/Colors";
+import Colors from "../../../constants/Colors";
 
 export const styles = StyleSheet.create({
     container: {
@@ -7,7 +7,8 @@ export const styles = StyleSheet.create({
         backgroundColor: Colors.DARK,
     },
     image:{
-        height: 380,
+        width: '100%',
+        height: 370,
         justifyContent: 'flex-end'
     },
     tagLine:{
@@ -28,12 +29,25 @@ export const styles = StyleSheet.create({
         width: '100%',
         height: 70,
         marginRight: 8,
-        marginTop: 370,
-        borderBottomRightRadius: 30,
-        borderBottomLeftRadius: 30,
+        marginTop: 400,
         position: 'absolute',
         backgroundColor: Colors.LIGHT_GREY,
         opacity: 0.7
     },
+    makeAppointmentBtn: {
+        position: 'absolute',
+        right: 12,
+        top: 335,
+        backgroundColor: Colors.MY_RED,
+        padding: 20,
+        borderRadius: 40,
+        zIndex: 10,
+        elevation: 5
+    },
+    makeAppointmentText: {
+        color: Colors.WHITE,
+        fontSize: 18,
+        fontWeight: 'bold',
+    }
 
 });

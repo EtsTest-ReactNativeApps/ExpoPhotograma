@@ -1,29 +1,31 @@
 import React from "react";
 import { View, Text, StyleSheet, Image } from "react-native";
 import { gs } from "../styles";
+import {PhotosActions} from "../../../../redux/photos";
+import {useDispatch, useSelector} from "react-redux";
 
-// Please use your own photos here
-const photos = [
-    require("../../../../assets/travel1.jpg"),
-    require("../../../../assets/travel2.jpg"),
-    require("../../../../assets/travel3.jpg"),
-    require("../../../../assets/travel4.jpg"),
-    require("../../../../assets/travel5.jpg"),
-    require("../../../../assets/travel6.jpg"),
-    require("../../../../assets/travel7.jpg"),
-    require("../../../../assets/travel8.jpg"),
-];
 
-export default function Photos() {
+export default function Photos({ navigation }) {
+
+    const dispatch = useDispatch();
+    React.useEffect(() => {
+        dispatch(PhotosActions.photos());
+    }, [dispatch]);
+
+    const images = useSelector(state => state.photos.objects);
+    const photographer = useSelector(state => state.user.photographerInfo);
+    {console.log(photographer)}
     return (
         <View style={[gs.sectionContainer, { marginTop: 8 }]}>
-            <Text style={gs.sectionTitle}>My Photos</Text>
+            <Text style={gs.sectionTitle}>My Style</Text>
 
             <View style={styles.photosContainer}>
-                {photos.map((photo, index) => {
+                {console.log(images)}
+                {images.map((photo, index) => {
+                    {console.log(photo.url)}
                     return (
                         <Image
-                            source={photo}
+                            source={{ uri: photo.url.thumb.url }}
                             key={index}
                             style={[
                                 styles.photo,
@@ -46,8 +48,8 @@ const styles = StyleSheet.create({
         marginTop: 16,
     },
     photo: {
-        width: 108,
-        height: 108,
+        width: 105,
+        height: 105,
         marginBottom: 12,
         borderRadius: 8,
     },

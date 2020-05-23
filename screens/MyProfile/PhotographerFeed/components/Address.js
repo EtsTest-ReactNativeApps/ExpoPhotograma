@@ -3,7 +3,7 @@ import { View, Text, StyleSheet, TouchableOpacity, Image } from "react-native";
 import { Entypo } from "@expo/vector-icons";
 import { gs, colors } from "../styles";
 
-export default function Address() {
+export default function Address({ navigation }) {
     return (
         <View>
             <View style={{ backgroundColor: "#000" }}>
@@ -15,7 +15,7 @@ export default function Address() {
 
                 <View style={{ marginLeft: 8, marginTop: 24 }}>
                     <Text style={gs.sectionTitle}>Address</Text>
-                    <Text style={styles.address}>{`1529 Taylor Street, New York NY\n10011, United States`}</Text>
+                    <Text style={styles.address}>{`Cluj-Napoca\nCalea Turzii`}</Text>
 
                     <View style={{ marginTop: 16 }}>
                         <TouchableOpacity style={styles.checkButton}>

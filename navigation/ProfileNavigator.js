@@ -17,3 +17,4 @@ export const ProfileStackScreen = ({ navigation,}) => {
         </ProfileStack.Navigator>
     )
 };
+

@@ -1,5 +1,5 @@
 import {StyleSheet} from "react-native";
-import Colors from "../../constants/Colors";
+import Colors from "../../../constants/Colors";
 
 export const styles = StyleSheet.create({
     container: {
@@ -101,7 +101,7 @@ export const styles = StyleSheet.create({
     imageTextViewBig:{
         width: '92%',
         height: 75,
-        marginTop: 240,
+        marginTop: 245,
         borderBottomRightRadius: 10,
         borderBottomLeftRadius: 10,
         position: 'absolute',

@@ -3,7 +3,7 @@ import { View, Text, StyleSheet } from "react-native";
 import { Ionicons, FontAwesome5 } from "@expo/vector-icons";
 import { gs, colors } from "../styles";
 
-export default function Amenities() {
+export default function Amenities({ navigation }) {
     return (
         <View style={gs.sectionContainer}>
             <Text style={gs.sectionTitle}>Amenities</Text>

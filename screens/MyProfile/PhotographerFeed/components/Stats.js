@@ -9,22 +9,18 @@ const Circle = props => {
     return <View style={[styles.circle, props.styles]} />;
 };
 
-export default function Stats() {
+export default function Stats({ navigation }) {
     return (
         <View style={styles.container}>
             <View style={styles.weatherContainer}>
-                <Feather name="sun" size={24} color={colors.darkHl} />
+                <Feather name="star" size={24} color={colors.darkHl} />
 
-                <View style={{ marginLeft: 8 }}>
-                    <Text style={styles.title}>22°</Text>
-                    <Text style={styles.subTitle}>Sunny</Text>
-                </View>
             </View>
 
             <View>
                 <Text style={styles.title}>
-                    8.4
-                    <Text style={[styles.subTitle, { paddingLeft: 8 }]}>&nbsp;&nbsp; +6k Votes</Text>
+                    4
+                    <Text style={[styles.subTitle, { paddingLeft: 8 }]}>&nbsp;&nbsp; Rate</Text>
                 </Text>
 
                 <View style={gs.rowCenter}>

@@ -2,9 +2,11 @@ import React from "react";
 import { View, Text, StyleSheet, Image, TouchableOpacity } from "react-native";
 import {MonoText} from "../../components/StyledText";
 import Colors from "../../constants/Colors";
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import { Ionicons } from '@expo/vector-icons';
 import * as ImagePicker from "expo-image-picker";
+import {UserActions} from "../../redux/user";
+import {Asset} from "expo-asset";
 
 
 export default function MyPhotoAvatar() {
@@ -12,7 +14,7 @@ export default function MyPhotoAvatar() {
     const name = useSelector(state => state.user.data.name);
     let [selectedImage, setSelectedImage] = React.useState(null);
 
-
+    const dispatch = useDispatch();
     let openImagePickerAsync = async () => {
         let permissionResult = await ImagePicker.requestCameraRollPermissionsAsync();
 
@@ -27,23 +29,28 @@ export default function MyPhotoAvatar() {
         }
 
         setSelectedImage({ localUri: pickerResult.uri });
+        const { avatar } = { avatar: pickerResult.uri };
+        dispatch(UserActions.update(avatar));
+        Asset.loadAsync(avatar)
     };
-
 
     return (
             <View style={{ marginTop: 64, alignItems: "center" }}>
                 <View style={styles.avatarContainer}>
-                    {avatar != null ? <Image
+                    {avatar != null && !selectedImage?
+                        <TouchableOpacity onPress={openImagePickerAsync}>
+                        <Image
                             source={{uri: avatar }}
                             style={styles.avatar}/>
+                        </TouchableOpacity>
                         :
                         <>
-                            {selectedImage != null ?
-                                <TouchableOpacity style={styles.avatarPlaceholder} onLongPress={openImagePickerAsync}>
+                            { avatar != null && selectedImage != null ?
+                                <TouchableOpacity style={styles.avatarPlaceholder} onPress={openImagePickerAsync}>
                                     <Image source={{ uri: selectedImage.localUri }}
                                            style={styles.avatar2}/>
                                 </TouchableOpacity>
-                                : <TouchableOpacity style={styles.avatarPlaceholder} onLongPress={openImagePickerAsync}>
+                                : <TouchableOpacity style={styles.avatarPlaceholder} onPress={openImagePickerAsync}>
                                     <Image source={require('../../assets/images/avatar.png')}
                                            style={styles.avatar2}/>
                                     <Ionicons

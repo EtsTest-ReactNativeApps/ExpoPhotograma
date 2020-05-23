@@ -1,8 +1,8 @@
 import React from "react";
 import {createStackNavigator} from "@react-navigation/stack";
 import Colors from "../../constants/Colors";
-import Home from "./Home";
-import DashboardFeed2 from "./PhotographerFeedDash";
+import Home from "./homeHeader/Home";
+import DashboardFeed2 from "./components.photographerFeed/PhotographerFeedDash";
 
 
 const DashboardStack = createStackNavigator();

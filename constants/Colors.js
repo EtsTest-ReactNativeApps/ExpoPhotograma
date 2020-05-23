@@ -14,7 +14,7 @@ const FIRST_RED = 'rgba(241, 169, 160, 1)';
 const SECOND_RED = 'rgba(255, 148, 120, 1)';
 const THIRD_RED = 'rgba(231, 76, 60, 1)';
 const DARK = "#222";
-
+const LIGHT = "#333";
 export default {
     MY_RED,
     WHITE,
@@ -32,6 +32,7 @@ export default {
     SEMI_BLACK,
     SEMY_GREY,
     DARK,
+    LIGHT,
   tabIconDefault: '#ccc',
   tabIconSelected: MY_RED,
   tabBar: '#fefefe',

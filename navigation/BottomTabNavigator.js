@@ -4,7 +4,7 @@ import TabBarIcon from '../components/TabBarIcon';
 import LinksScreen from '../screens/LinksScreen';
 import { useSelector } from "react-redux";
 import Colors from "../constants/Colors";
-import {ChatScreen} from "../screens/Chat/ChatScreen";
+import {SavedScreen} from "../screens/Saved/SavedScreen";
 
 import {ProfileStackScreen} from "./ProfileNavigator";
 import {MyImagePicker} from "../screens/MyProfile/ImagesUpload/ImageUpload";
@@ -14,7 +14,7 @@ import {DashboardStackScreen} from "../screens/Dashboard/DashboardNavigator";
 
 const BottomTab = createMaterialBottomTabNavigator();
 
-const INITIAL_ROUTE_NAME = 'MyProfile';
+const INITIAL_ROUTE_NAME = 'Dashboard';
 
 export default function BottomTabNavigator({ navigation, route }) {
   // Set the header title on the parent stack navigator depending on the
@@ -53,11 +53,11 @@ export default function BottomTabNavigator({ navigation, route }) {
         }}
         />
         <BottomTab.Screen
-        name="Chat"
-        component={ChatScreen}
+        name="Saved"
+        component={SavedScreen}
         options={{
-            tabBarLabel: 'CHAT',
-            tabBarIcon: ({ focused }) => <TabBarIcon focused={focused} name="ios-chatbubbles" />,
+            tabBarLabel: 'SAVED',
+            tabBarIcon: ({ focused }) => <TabBarIcon focused={focused} name="ios-bookmark" />,
         }}
         />
 

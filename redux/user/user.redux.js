@@ -21,6 +21,11 @@ const { Types, Creators } = createActions({
     editFailure: ['data'],
     edit: ['name', 'username', 'phone', 'role_ids'],
 
+    infoLoading: ['value'],
+    infoSuccess: ['data'],
+    infoFailure: ['error'],
+    info: []
+
 });
 
 export const UserTypes = Types;
@@ -42,7 +47,11 @@ const INITIAL_STATE = {
     client: null,
     accessToken: null,
     uid: null,
-    expiry: null
+    expiry: null,
+
+    role: null,
+    photographerInfo: [],
+    photographerAddress: [],
 };
 
 export const userReducer = createReducer(INITIAL_STATE, {
@@ -62,4 +71,9 @@ export const userReducer = createReducer(INITIAL_STATE, {
     [Types.EDIT_LOADING]: (state, { value }) => ({ ...state, loading: value }),
     [Types.EDIT_SUCCESS]: (state, { data }) => ({ ...state, ...data }),
     [Types.EDIT_FAILURE]: (state, { data }) => ({ ...state, error: data }),
+
+
+    [Types.INFO_LOADING]: (state, { value }) => ({ ...state, loading: value }),
+    [Types.INFO_SUCCESS]: (state, { data }) => ({ ...state, ...data }),
+    [Types.INFO_FAILURE]: (state, { data }) => ({ ...state, error: data }),
 });

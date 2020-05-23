@@ -12,26 +12,27 @@ const profiles: Profile[] = [
         id: "1",
         name: "Caroline",
         age: 24,
-        profile: require("../../assets/images/black_interesting.png"),
+        profile: require("../../assets/travel1.jpg"),
     },
     {
         id: "2",
         name: "Jack",
         age: 30,
-        profile: require("../../assets/images/black_interesting1.png"),
+        profile: require("../../assets/travel2.jpg"),
     },
     {
         id: "3",
         name: "Anet",
         age: 21,
-        profile: require("../../assets/images/black_interesting3.png"),
+        profile: require("../../assets/travel3.jpg"),
     },
     {
         id: "4",
-        name: "John",
+        name: "",
         age: 28,
-        profile: require("../../assets/images/black_interesting4.png"),
+        profile: require("../../assets/END.png"),
     },
+
 ];
 
 interface AppProps {
