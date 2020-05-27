@@ -14,6 +14,8 @@ const PhotographerFeedDash = ({ route, navigation }) =>{
         navigation.goBack()
     };
 
+    const { city } = route.params;
+    const { cityDescription } = route.params;
 
     const [gallery, setgallery] =  React.useState([
         {
@@ -43,7 +45,7 @@ const PhotographerFeedDash = ({ route, navigation }) =>{
 
         }]);
 
-
+    {console.log("CITY " + city)}
     return (
         <View style = {styles.container}>
             <View>
@@ -51,7 +53,7 @@ const PhotographerFeedDash = ({ route, navigation }) =>{
                     source={ image }
                     style = {styles.image}>
                     <View style = {styles.imageTextView}>
-                        <Text style = {styles.tagLine}> Photographer name</Text>
+                        <Text style = {styles.tagLine}> {city}</Text>
                         <Text style = {styles.placeName}> Location</Text>
                     </View>
 
@@ -93,7 +95,7 @@ const PhotographerFeedDash = ({ route, navigation }) =>{
                             fontWeight: 'bold',
                             color: Colors.BEJ,
                             }}>
-                        Description
+                        City Description
                     </Text>
                     <Text
                         style={{
@@ -106,10 +108,7 @@ const PhotographerFeedDash = ({ route, navigation }) =>{
                             textAlign: 'justify',
                             lineHeight: 26
                         }}>
-                        Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece
-                        of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock,
-                        a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure
-                        Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the
+                        {cityDescription}
                     </Text>
                         <Text
                         style={{

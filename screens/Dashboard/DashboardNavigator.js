@@ -3,6 +3,7 @@ import {createStackNavigator} from "@react-navigation/stack";
 import Colors from "../../constants/Colors";
 import Home from "./homeHeader/Home";
 import DashboardFeed2 from "./components.photographerFeed/PhotographerFeedDash";
+import {SavedScreen} from "../Saved/SavedScreen";
 
 
 const DashboardStack = createStackNavigator();
@@ -19,6 +20,7 @@ export const DashboardStackScreen = ({ navigation }) => {
         >
             <DashboardStack.Screen name="Home" component={Home} />
             <DashboardStack.Screen name="PhotographerFeedDash" component={DashboardFeed2} />
+            <DashboardStack.Screen name="SavedScreen" component={SavedScreen} />
 
         </DashboardStack.Navigator>
     )

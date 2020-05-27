@@ -15,6 +15,7 @@ const Saved = ({navigation}) => {
         {
             title: 'Cluj-Napoca',
             key: '1',
+            cityDescription: 'Cluj-Napoca, a city in northwestern Romania, is the unofficial capital of the Transylvania region. It\'s home to universities, vibrant nightlife and landmarks dating to Saxon and Hungarian rule. Surrounding its central square, Piața Unirii, is the Gothic-style St. Michael\'s Church and the dramatic Matthias Corvinus Statue of the 15th-century king. The baroque-era Bánffy Palace is now a museum showcasing Romanian art.',
             image:
                 {uri : 'https://images.unsplash.com/photo-1525498128493-380d1990a112?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=675&q=80'}
 
@@ -90,7 +91,7 @@ const Saved = ({navigation}) => {
                             renderItem={({item}) => {
                                 return (
                                     <View style = {{paddingRight: 16, paddingLeft: 16}}>
-                                        <TouchableOpacity onPress={goToPhotographerFeed} style={{marginBottom: 30}}>
+                                        <TouchableOpacity onPress={() =>  navigation.navigate('PhotographerFeedDash', {city: item.title})} style={{marginBottom: 30}}>
                                             <Image
                                                 source={item.image}
                                                 style={styles.imageBig}/>

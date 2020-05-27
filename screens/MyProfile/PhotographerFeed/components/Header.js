@@ -13,7 +13,7 @@ import Colors from "../../../../constants/Colors";
 function Header ({ navigation }) {
     const avatar = useSelector(state => state.user.avatar);
     let [selectedImage, setSelectedImage] = React.useState(null);
-    {console.log(avatar.url)}
+    {console.log("AVATAR: " + avatar)}
     const dispatch = useDispatch();
     let openImagePickerAsync = async () => {
         let permissionResult = await ImagePicker.requestCameraRollPermissionsAsync();
@@ -46,7 +46,7 @@ function Header ({ navigation }) {
 
                 <TouchableOpacity onPress={openImagePickerAsync}>
                     <Image
-                        source={{uri: avatar.url }}
+                        source={{uri: avatar }}
                         style={{ width: "100%", height: 400 }} />
                 </TouchableOpacity>
                 :

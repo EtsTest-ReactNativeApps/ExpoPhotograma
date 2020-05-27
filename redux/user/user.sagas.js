@@ -14,7 +14,7 @@ export function* login({email, password}) {
             const client = response.headers['client'];
             const accessToken = response.headers['access-token'];
             const expiry = response.headers['expiry'];
-            const avatar = response.data.data.avatar.thumb.url;
+            const avatar = response.data.data.avatar.url;
             const name = response.data.data.name;
             const username = response.data.data.username;
             const id = response.data.data.id;

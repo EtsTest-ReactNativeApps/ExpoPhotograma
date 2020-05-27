@@ -11,7 +11,7 @@ export default function Photos({ navigation }) {
     React.useEffect(() => {
         dispatch(PhotosActions.photos());
     }, [dispatch]);
-
+    const avatar = useSelector(state => state.user.avatar);
     const images = useSelector(state => state.photos.objects);
     const photographer = useSelector(state => state.user.photographerInfo);
     {console.log(photographer)}
@@ -22,10 +22,10 @@ export default function Photos({ navigation }) {
             <View style={styles.photosContainer}>
                 {console.log(images)}
                 {images.map((photo, index) => {
-                    {console.log(photo.url)}
+                    {console.log("URL " + photo.url.url)}
                     return (
                         <Image
-                            source={{ uri: photo.url.thumb.url }}
+                            source={{ uri: photo.url.url }}
                             key={index}
                             style={[
                                 styles.photo,
