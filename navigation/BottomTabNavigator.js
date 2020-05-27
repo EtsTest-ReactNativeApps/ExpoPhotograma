@@ -11,6 +11,7 @@ import {MyImagePicker} from "../screens/MyProfile/ImagesUpload/ImageUpload";
 
 import FavoritesFeed from "../screens/Favorites/FavoritesFeed";
 import {DashboardStackScreen} from "../screens/Dashboard/DashboardNavigator";
+import {TestAppModel} from "../screens/TensorFlowModel/components/test";
 
 const BottomTab = createMaterialBottomTabNavigator();
 
@@ -45,8 +46,8 @@ export default function BottomTabNavigator({ navigation, route }) {
         }}
         />
       <BottomTab.Screen
-        name="MyImagePicker"
-        component={MyImagePicker}
+        name="TestApp"
+        component={TestAppModel}
         options={{
             tabBarLabel: 'SEARCH',
             tabBarIcon: ({ focused }) => <TabBarIcon focused={focused} name="ios-search" />,

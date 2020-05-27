@@ -98,7 +98,7 @@ const Saved = ({navigation}) => {
                                                 <View style={{position: 'absolute', bottom: 0, padding: 16}}>
                                                     <View style={{flexDirection: 'row'}}>
                                                         <View style={{flexDirection: 'column'}}>
-                                                            <Feather name='camera' size={22} color='#000'
+                                                            <Feather name='heart' size={22} color='#000'
                                                                      style={styles.imageLocationPinBig}/>
                                                         </View>
 
