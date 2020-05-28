@@ -25,17 +25,17 @@ export function* photos() {
     axios.defaults.headers.common['client'] = client;
 
     try {
-        yield put(PhotosActions.loading(true));
+        yield put(PhotosActions.loadingPhoto(true));
         const response = yield call(axios.get, `/v1/users/2/photographers/3/photos`);
         if (response.status === 200) {
             console.log(response.data);
             const objects = response.data.data.objects;
 
-            yield put(PhotosActions.fetchSuccess( {...response.data.data, objects:objects} ));
+            yield put(PhotosActions.fetchSuccessPhoto( {...response.data.data, objectsPhoto: objects} ));
         }
-        yield put(PhotosActions.loading(false));
+        yield put(PhotosActions.loadingPhoto(false));
     } catch (error) {
-        yield put(PhotosActions.loading(false));
-        yield put(PhotosActions.fetchFailed('BAD'));
+        yield put(PhotosActions.loadingPhoto(false));
+        yield put(PhotosActions.fetchFailedPhoto('BAD'));
     }
 }

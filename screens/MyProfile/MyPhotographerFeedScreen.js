@@ -1,12 +1,13 @@
 import * as React from 'react';
 import { ScrollView, StyleSheet} from "react-native";
-import UserFeed from "./UserFeed/UserFeed";
 
+import PhotographerFeed from "./PhotographerFeed/PhotographerFeed";
 
-export const MyProfileScreen = ({ navigation }) => {
+export const MyPhotographerFeedScreen = ({route, navigation }) => {
+    const { photographer } = route.params;
     return(
         <ScrollView style={styles.container}>
-            <UserFeed navigation={navigation}/>
+            <PhotographerFeed photographer={photographer} navigation={navigation}/>
         </ScrollView>)
 };
 

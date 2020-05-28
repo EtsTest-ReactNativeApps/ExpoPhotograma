@@ -11,9 +11,9 @@ export default function* rootSaga() {
         yield all([takeLatest(UserTypes.REGISTER, register)]);
         yield all([takeLatest(UserTypes.UPDATE, update)]);
         yield all([takeLatest(UserTypes.EDIT, edit)]);
-        yield all([takeLatest(UserTypes.INFO, info)]);
-        yield all([takeLatest(PhotosTypes.PHOTOS, photos)]);
-        yield all([takeLatest(PhotographersTypes.PHOTOGRAPHERS_BY_CITY, photographersByCity)]);
+        yield all([takeEvery(UserTypes.INFO, info)]);
+        yield all([takeEvery(PhotosTypes.PHOTOS, photos)]);
+        yield all([takeEvery(PhotographersTypes.PHOTOGRAPHERS_BY_CITY, photographersByCity)]);
     } catch (err) {
         console.log(err);
     }

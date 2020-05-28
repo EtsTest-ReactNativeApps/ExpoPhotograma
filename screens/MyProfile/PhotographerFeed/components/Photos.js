@@ -7,11 +7,6 @@ import {useDispatch, useSelector} from "react-redux";
 
 export default function Photos({ navigation }) {
 
-    const dispatch = useDispatch();
-    React.useEffect(() => {
-        dispatch(PhotosActions.photos());
-    }, [dispatch]);
-    const avatar = useSelector(state => state.user.avatar);
     const images = useSelector(state => state.photos.objects);
     const photographer = useSelector(state => state.user.photographerInfo);
     {console.log(photographer)}

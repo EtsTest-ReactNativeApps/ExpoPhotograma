@@ -2,7 +2,6 @@ import { call, put, select } from 'redux-saga/effects';
 import axios from 'axios';
 
 import UserActions from './user.redux';
-import PhotographersActions from "../photos/photos.redux";
 
 export function* login({email, password}) {
     try {

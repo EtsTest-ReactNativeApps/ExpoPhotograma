@@ -18,7 +18,7 @@ export default function Address({ navigation }) {
                     <Text style={styles.address}>{`Cluj-Napoca\nCalea Turzii`}</Text>
 
                     <View style={{ marginTop: 16 }}>
-                        <TouchableOpacity style={styles.checkButton}>
+                        <TouchableOpacity style={styles.checkButton} onPress={() => navigation.navigate("MyMapScreen")}>
                             <Text style={gs.smallText}>Check it</Text>
                             <Entypo name="chevron-right" size={12} color="#fff" style={{ marginLeft: 4 }} />
                         </TouchableOpacity>

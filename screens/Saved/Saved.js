@@ -53,11 +53,12 @@ const Saved = ({navigation}) => {
                     style = {{width: '100%', height: 270}}
                     imageStyle = {{borderBottomRightRadius: 100 }}>
                     <View style={styles.darkOverlay}/>
+                    <TouchableOpacity onPress={() =>  navigation.navigate('Home')}>
                     <View style={styles.searchContainer}>
                         <Text style={styles.userGreet}>PHOTOGRAMA</Text>
                         <Text style={styles.userText}>Where do you plan to take the next shoot?</Text>
                     </View>
-
+                    </TouchableOpacity>
                     <View>
                         <TextInput
                             style={{...styles.searchBox}}

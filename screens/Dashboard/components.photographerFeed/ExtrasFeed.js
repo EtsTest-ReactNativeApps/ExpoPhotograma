@@ -1,23 +1,15 @@
 import React from "react";
 import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
-import { gs, colors } from "../styles";
+import { gs, colors } from "/Users/nicoletaungur/ExpoPhotograma/screens/MyProfile/PhotographerFeed/styles.js";
 
-export default function Extras({ navigation }) {
-    const extras = [
-        "Payment at Checkout",
-        "No Refunds"
-    ];
-
-    const goToCalendar  = () => {
-        navigation.navigate("BookingCalendarScreen")};
-
+export default function ExtrasFeed({ navigation, attractions, city }) {
 
     return (
         <View style={styles.container}>
-            <Text style={gs.sectionTitle}>Before you go</Text>
+            <Text style={styles.mySectionTitle}>Attractions in {city}</Text>
 
             <View style={styles.list}>
-                {extras.map((extra, key) => {
+                {attractions.map((extra, key) => {
                     return (
                         <Text style={styles.listItem} key={key}>
                             &mdash; {extra}
@@ -26,11 +18,6 @@ export default function Extras({ navigation }) {
                 })}
             </View>
 
-            <View style={{ marginTop: 32, marginBottom: -40 }}>
-                <TouchableOpacity style={styles.filterButton} onPress={goToCalendar}>
-                    <Text style={{ fontWeight: "700", color: "#fff" }}>Book a photo shooting</Text>
-                </TouchableOpacity>
-            </View>
         </View>
     );
 }
@@ -39,7 +26,7 @@ const styles = StyleSheet.create({
     container: {
         ...gs.sectionContainer,
         marginTop: 8,
-        marginBottom: 64
+        marginBottom: 25
     },
     list: {
         marginTop: 16,
@@ -52,5 +39,11 @@ const styles = StyleSheet.create({
     filterButton: {
         ...gs.button,
         paddingVertical: 16
-    }
+    },
+    mySectionTitle: {
+        fontWeight: "700",
+        color: colors.text,
+        fontSize: 18,
+        marginLeft: -10
+    },
 });

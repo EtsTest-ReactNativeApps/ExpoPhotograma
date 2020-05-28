@@ -22,17 +22,15 @@ export function* photographersByCity({city}) {
     axios.defaults.headers.common['client'] = client;
 
     try {
-        yield put(PhotographersActions.loading(true));
+        yield put(PhotographersActions.loadingPhotogr(true));
         const response = yield call(axios.get, `/v1/demo/get_photographers_for_city?city=${city}`);
         if (response.status === 200) {
             console.log(response.data);
-            const objects = response.data.data.objects;
-
-            yield put(PhotographersActions.fetchSuccess( {...response.data.data, objects:objects} ));
+            yield put(PhotographersActions.fetchSuccessPhotogr( {...response.data.data} ));
         }
-        yield put(PhotographersActions.loading(false));
+        yield put(PhotographersActions.loadingPhotogr(false));
     } catch (error) {
-        yield put(PhotographersActions.loading(false));
-        yield put(PhotographersActions.fetchFailed('BAD'));
+        yield put(PhotographersActions.loadingPhotogr(false));
+        yield put(PhotographersActions.fetchFailedPhotogr('BAD'));
     }
 }

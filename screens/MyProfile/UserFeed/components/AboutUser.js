@@ -13,7 +13,7 @@ const hotel = {
         " Nullam aliquam interdum ipsum et tempor. Phasellus odio felis, scelerisque eu purus quis."
 };
 
-export default function AboutUser( {navigation} ) {
+export default function AboutUser({navigation} ) {
     const dispatch = useDispatch();
 
     React.useEffect(() => {
@@ -23,7 +23,6 @@ export default function AboutUser( {navigation} ) {
     const name = useSelector(state => state.user.data.name);
     const phone = useSelector(state => state.user.data.phone);
     const photographer = useSelector(state => state.user.photographerInfo);
-    const role = useSelector(state => state.user.role);
     const photographerAddress = useSelector(state => state.user.photographerAddress);
 
     {console.log(photographerAddress)}
@@ -31,14 +30,9 @@ export default function AboutUser( {navigation} ) {
         <View style={styles.container}>
             <Text style={gs.title}>{name}</Text>
 
-            <Text style={styles.info}>
-                {photographer.price}$ &#8226; {photographerAddress.city} &#8226; {phone}
-            </Text>
-
             <View style={gs.divider} />
 
-            <Text style={gs.sectionTitle}>About {name}</Text>
-            <Text style={styles.about}>{photographer.description}</Text>
+            <Text style={gs.sectionTitle}>Phone number {phone}</Text>
         </View>
     );
 }

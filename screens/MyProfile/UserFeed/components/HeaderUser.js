@@ -10,8 +10,8 @@ import {UserActions} from "../../../../redux/user";
 import Colors from "../../../../constants/Colors";
 
 
-function Header ({ navigation, photographer }) {
-    const avatar = photographer.attributes.avatar.url;
+function HeaderUser ({ navigation }) {
+    const avatar = useSelector(state => state.user.avatar.url);
     let [selectedImage, setSelectedImage] = React.useState(null);
     {console.log("AVATAR: " + avatar)}
     const dispatch = useDispatch();
@@ -81,7 +81,7 @@ function Header ({ navigation, photographer }) {
     );
 };
 
-export default Header;
+export default HeaderUser;
 
 const styles = StyleSheet.create({
     topButtons: {
