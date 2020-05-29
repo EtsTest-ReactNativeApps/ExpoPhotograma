@@ -3,25 +3,20 @@ import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 import { Ionicons, FontAwesome5 } from "@expo/vector-icons";
 import { gs, colors } from "../styles";
 
-export default function AmenitiesUser({ navigation }) {
+
+export default function AmenitiesUserPhotographer({ photographer, navigation }) {
     return (
         <View style={gs.sectionContainer}>
-            <Text style={gs.sectionTitle}>Edit Information</Text>
+            <Text style={gs.sectionTitlePhotographer}>Edit Information</Text>
 
             <View style={styles.amenitiesContainer}>
                 <View style={styles.amenityContainer}>
-                    <TouchableOpacity style={styles.amenity}>
+                    <TouchableOpacity style={styles.amenity} onPress={()=> navigation.navigate("EditForm", {photographer: photographer})}>
                         <FontAwesome5 name="edit" size={24} color={colors.lightHl} style={{marginLeft: 5}}/>
                     </TouchableOpacity>
-                    <Text style={styles.amenityName}>Edit info</Text>
+                    <Text style={styles.amenityName}>Edit my information</Text>
                 </View>
 
-                <TouchableOpacity style={styles.amenityContainer}>
-                    <View style={styles.amenity}>
-                        <Ionicons name="md-camera" size={24} color={colors.lightHl} />
-                    </View>
-                    <Text style={styles.amenityName}>Preferences</Text>
-                </TouchableOpacity>
 
                 <TouchableOpacity style={styles.amenityContainer}>
                     <View style={styles.amenity}>

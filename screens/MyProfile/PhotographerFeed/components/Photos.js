@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Text, StyleSheet, Image } from "react-native";
+import { View, Text, StyleSheet, Image, ActivityIndicator } from "react-native";
 import { gs } from "../styles";
 import {PhotosActions} from "../../../../redux/photos";
 import {useDispatch, useSelector} from "react-redux";
@@ -8,6 +8,7 @@ import {useDispatch, useSelector} from "react-redux";
 export default function Photos({ navigation, photographer }) {
 
     const images = useSelector(state => state.photos.photosFromPhotographer);
+    {console.log("IMAGES " + images)}
     return (
         <View style={[gs.sectionContainer, { marginTop: 8 }]}>
             <Text style={gs.sectionTitle}>Photos portofolio</Text>
@@ -15,10 +16,10 @@ export default function Photos({ navigation, photographer }) {
             <View style={styles.photosContainer}>
                 {console.log(images)}
                 {images.map((photo, index) => {
-                    {console.log("URL " + photo.url.url)}
+                    {console.log("URL " + photo.url.thumb.url)}
                     return (
                         <Image
-                            source={{ uri: photo.url.url }}
+                            source={{ uri: photo.url.thumb.url }}
                             key={index}
                             style={[
                                 styles.photo,

@@ -7,12 +7,11 @@ import {Asset} from "expo-asset";
 
 import * as ImagePicker from "expo-image-picker";
 import {UserActions} from "../../../../redux/user";
-import Colors from "../../../../constants/Colors";
 
 
 function HeaderUser ({avatar, navigation }) {
 
-        let [selectedImage, setSelectedImage] = React.useState(null);
+    let [selectedImage, setSelectedImage] = React.useState(null);
     const dispatch = useDispatch();
     let openImagePickerAsync = async () => {
         let permissionResult = await ImagePicker.requestCameraRollPermissionsAsync();
@@ -58,11 +57,6 @@ function HeaderUser ({avatar, navigation }) {
                         : <TouchableOpacity style={styles.avatarPlaceholder} onPress={openImagePickerAsync}>
                             <Image source={require('../../../../assets/images/avatar.png')}
                                    style={{ width: "100%", height: 400 }} />
-                            <Ionicons
-                                name="ios-add"
-                                size={40}
-                                color={Colors.BLACK}
-                                style={{marginTop: 100, marginLeft: 2}}/>
                         </TouchableOpacity>
                     }</>
             }

@@ -7,9 +7,8 @@ import {Feather} from "@expo/vector-icons/build/Icons";
 import Colors from "../../../constants/Colors";
 import {useDispatch, useSelector} from "react-redux";
 import {PhotographersActions} from "../../../redux/photographers";
-import Extras from "../../MyProfile/PhotographerFeed/components/Extras";
 import ExtrasFeed from "./ExtrasFeed";
-import {gs} from "../../MyProfile/UserFeed/styles";
+
 
 const PhotographerFeedDash = ({ route, navigation }) =>{
     const goToHome  = () => {
@@ -20,16 +19,16 @@ const PhotographerFeedDash = ({ route, navigation }) =>{
     const { cityDescription } = route.params;
     const { about } = route.params;
     const { image } = route.params;
-    let state = { loaded: false };
+    const { latitude } = route.params;
+    const { longitude } = route.params;
+
     const dispatch = useDispatch();
     React.useEffect(() => {
         dispatch(PhotographersActions.photographersByCity(city));
-        }, [dispatch, state.loaded = true]);
+        }, [dispatch]);
 
     const photographer = useSelector(state => state.photographers.data);
     {console.log(photographer)}
-
-    {console.log(state.loaded)}
 
 
     {console.log("CITY " + city)}
@@ -51,7 +50,8 @@ const PhotographerFeedDash = ({ route, navigation }) =>{
                             left: 20,
                             top: 50,
                             padding: 10,
-                            borderRadius: 40}}>
+                            borderRadius: 40}}
+                        >
                         <Feather name='arrow-left' size={22} color={Colors.WHITE}/>
                     </TouchableOpacity>
 
@@ -62,7 +62,8 @@ const PhotographerFeedDash = ({ route, navigation }) =>{
                             top: 50,
                             padding: 10,
                             backgroundColor:Colors.LIGHT_GREY,
-                            borderRadius: 40}}>
+                            borderRadius: 40}}
+                        onPress={() => navigation.navigate("MyMapScreen", {latitude: latitude, longitude: longitude})}>
                         <Feather name='map-pin' size={30} color={Colors.MY_RED}/>
                     </TouchableOpacity>
                 </ImageBackground>

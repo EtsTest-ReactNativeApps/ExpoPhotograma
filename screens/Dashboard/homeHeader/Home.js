@@ -11,12 +11,7 @@ import {gallery} from "./gallery";
 import {UserActions} from "../../../redux/user";
 
 export default function Home({navigation}) {
-
-
     const dispatch = useDispatch();
-    React.useEffect(() => {
-        dispatch(PhotosActions.photos());
-    }, [dispatch]);
 
     React.useEffect(() => {
         dispatch(UserActions.info());
@@ -81,7 +76,9 @@ export default function Home({navigation}) {
                                                                 cityDescription: item.cityDescription,
                                                                 about: item.about,
                                                                 attractions: item.attractions,
-                                                                image: item.image
+                                                                image: item.image,
+                                                                latitude:item.latitude,
+                                                                longitude: item.longitude
                                                             })}}>
                                     <Image source={item.image}
                                            style={{width: 150, marginRight: 8, height:250, borderRadius: 10}}/>

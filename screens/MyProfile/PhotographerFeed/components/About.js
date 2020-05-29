@@ -18,12 +18,28 @@ function About ({photographer,  navigation }) {
             <Text style={gs.title}>{name}</Text>
 
             <Text style={styles.info}>
-                {photographer.attributes.price}$ &#8226; {photographer.attributes.city} &#8226; {photographer.attributes.cameraDescription}
+                 &#8226; PRICE:  {photographer.attributes.price}$
+            </Text>
+            <Text style={styles.info}>
+                &#8226; LOCATION:  {photographer.attributes.city}
+            </Text>
+
+            <Text style={styles.info}>
+                &#8226; EMAIL: {photographer.attributes.email}
+            </Text>
+
+            <Text style={styles.info}>
+                &#8226; PHONE: {photographer.attributes.phone}
+            </Text>
+
+            <Text style={styles.info}>
+                &#8226; CAMERA DESCRIPTION:  {photographer.attributes.cameraDescription}
             </Text>
 
             <View style={gs.divider} />
 
             <Text style={gs.sectionTitle}>About {name}</Text>
+
             <Text style={styles.about}>{photographer.attributes.description}</Text>
         </View>
     );

@@ -7,7 +7,8 @@ import AboutUser from "./components/AboutUser";
 import BookmarkUser from "./components/BookmarkUser";
 import ExtrasUser from "./components/ExtrasUser";
 import {useDispatch, useSelector} from "react-redux";
-import {PhotosActions} from "../../../redux/photos";
+import AmenitiesUserPhotographer from "./components/AmenitiesUserPhotographer";
+import AboutUserPhotographer from "./components/AboutUserPhotographer";
 
 
 
@@ -18,11 +19,11 @@ export default function UserFeed({navigation}) {
     const avatar = useSelector(state => state.user.avatar);
     {console.log("AVATAR: " + avatar.url)}
     {if (photographerInfo.length === 0)
-
+        //USER
         return (
             <View style={styles.container}>
                 <StatusBar barStyle="light-content" />
-                <HeaderUser avatar={avatar} navigation={navigation}/>
+                <HeaderUser avatar={avatar.url} navigation={navigation}/>
 
                 <View>
                     <AboutUser navigation={navigation}/>
@@ -33,19 +34,16 @@ export default function UserFeed({navigation}) {
         else
     {
 
-        const dispatch = useDispatch();
-        React.useEffect(() => {
-            dispatch(PhotosActions.photosByPhotographer(photographerInfo.id));
-        }, [dispatch]);
 
+        //PHOTOGRAPHER
         return (<View style={styles.container}>
                 <StatusBar barStyle="light-content" />
                 <HeaderUser avatar={avatar.url} navigation={navigation}/>
 
                 <View>
-                    <AboutUser navigation={navigation}/>
-                    <BookmarkUser navigation={navigation}    />
-                    <AmenitiesUser navigation={navigation}/>
+                    <AboutUserPhotographer navigation={navigation} photographer={photographerInfo}/>
+                    <BookmarkUser navigation={navigation} />
+                    <AmenitiesUserPhotographer navigation={navigation} photographer={photographerInfo}/>
                 </View>
             </View>
         );}

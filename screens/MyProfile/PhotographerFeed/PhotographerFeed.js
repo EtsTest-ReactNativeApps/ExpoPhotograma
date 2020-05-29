@@ -8,7 +8,7 @@ import Amenities from "./components/Amenities";
 import Extras from "./components/Extras";
 import Address from "./components/Address";
 import Photos from "./components/Photos";
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {PhotosActions} from "../../../redux/photos";
 import AboutSecond from "./components/AboutSecond";
 
@@ -21,7 +21,6 @@ export const PhotographerFeed = ({route, navigation}) =>{
     React.useEffect(() => {
         dispatch(PhotosActions.photosByPhotographer(photographer.attributes.id));
     }, [dispatch]);
-
 
     return (
         <ScrollView style={styles.container}>

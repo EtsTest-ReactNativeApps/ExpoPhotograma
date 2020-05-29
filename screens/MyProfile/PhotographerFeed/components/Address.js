@@ -18,7 +18,9 @@ export default function Address({ navigation, photographer }) {
                     <Text style={styles.address}>{photographer.attributes.country}, {photographer.attributes.region}</Text>
 
                     <View style={{ marginTop: 16 }}>
-                        <TouchableOpacity style={styles.checkButton} onPress={() => navigation.navigate("MyMapScreen")}>
+                        <TouchableOpacity style={styles.checkButton} onPress={() => navigation.navigate("MyMapScreen",
+                            {latitude: photographer.attributes.latitude, longitude: photographer.attributes.longitude}
+                            )}>
                             <Text style={gs.smallText}>Check it</Text>
                             <Entypo name="chevron-right" size={12} color="#fff" style={{ marginLeft: 4 }} />
                         </TouchableOpacity>

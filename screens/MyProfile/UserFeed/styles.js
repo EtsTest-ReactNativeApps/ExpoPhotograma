@@ -24,6 +24,11 @@ export const gs = StyleSheet.create({
         color: colors.text,
         fontSize: 15,
     },
+    sectionTitlePhotographer: {
+        fontWeight: "700",
+        color: Colors.MY_RED,
+        fontSize: 15,
+    },
     rowCenter: {
         flexDirection: "row",
         alignItems: "center",
@@ -44,6 +49,17 @@ export const gs = StyleSheet.create({
     title: {
         color: colors.text,
         fontSize: 30,
+    },
+    title2: {
+        color: colors.text,
+        fontSize: 24,
+        marginTop: 5
+    },
+
+    title3: {
+        color: Colors.MY_RED,
+        fontSize: 22,
+        marginBottom: 10
     },
     subTitle: {
         fontWeight: "600",

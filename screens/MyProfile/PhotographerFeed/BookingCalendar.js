@@ -32,7 +32,7 @@ function BookingCalendar ({navigation}){
                     }}
                       onPress={() => {
                           // Pass params back to home screen
-                          navigation.navigate('MyProfileScreen', { startDate: startDate });
+                          navigation.goBack()
                       }}>
                         <Text style={{ fontWeight: "700", color: "#fff" }}>Book a photo shooting</Text>
                     </TouchableOpacity>

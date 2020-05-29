@@ -3,6 +3,8 @@ import { all, takeEvery, takeLatest } from 'redux-saga/effects';
 import {edit, info, login, register, update, UserTypes} from '../redux/user';
 import {photos, photosByPhotographer, PhotosTypes} from "../redux/photos";
 import {photographersByCity, PhotographersTypes} from "../redux/photographers";
+import {myImage, MyImageTypes} from "../redux/myImage";
+import {editPhotographer, PhotographerTypes} from "../redux/photographer";
 
 export default function* rootSaga() {
     try {
@@ -15,6 +17,9 @@ export default function* rootSaga() {
         yield all([takeEvery(PhotosTypes.PHOTOS, photos)]);
         yield all([takeEvery(PhotosTypes.PHOTOS_BY_PHOTOGRAPHER, photosByPhotographer)]);
         yield all([takeEvery(PhotographersTypes.PHOTOGRAPHERS_BY_CITY, photographersByCity)]);
+        yield all([takeLatest(MyImageTypes.MY_IMAGE, myImage)]);
+        yield all([takeEvery(PhotographerTypes.EDIT_PHOTOGRAPHER, editPhotographer)]);
+
     } catch (err) {
         console.log(err);
     }

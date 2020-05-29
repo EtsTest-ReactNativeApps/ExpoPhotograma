@@ -1,5 +1,5 @@
 import React from 'react';
-import MapView, { AnimatedRegion, Animated, PROVIDER_GOOGLE} from 'react-native-maps';
+import MapView, { Animated, PROVIDER_GOOGLE, Marker} from 'react-native-maps';
 import {StyleSheet, View, Dimensions, TouchableOpacity} from 'react-native';
 import {AntDesign} from "@expo/vector-icons";
 
@@ -166,27 +166,33 @@ mapStyle = [
 ];
 
 
-function MyMap ({ navigation }) {
+function MyMap ({ navigation, latitude, longitude }) {
     const goToHome  = () => {
         navigation.goBack()
     };
 
     return (
+
             <View style={styles.container}>
                 <TouchableOpacity onPress={goToHome}>
-                    <AntDesign name="close" size={24} color="#fff" />
+                    <AntDesign name="close" size={24} color="#fff" style={{zIndex: 10, marginTop: 50}} />
                 </TouchableOpacity>
                 <MapView style={styles.mapStyle}
                          provider={PROVIDER_GOOGLE}
                          customMapStyle={mapStyle}
                          initialRegion={{
-                             latitude: 46.770439,
-                             longitude: 23.591423,
-                             latitudeDelta: 0.0922,
-                             longitudeDelta: 0.0421,
+                             latitude: parseFloat(latitude),
+                             longitude: parseFloat(longitude),
+                             latitudeDelta: 0.5,
+                             longitudeDelta:  0.5,
 
                          }}
-                />
+                >
+                    <Marker coordinate={{ latitude: parseFloat(latitude),
+                        longitude: parseFloat(longitude) }} />
+
+                </MapView>
+
             </View>
         );
 }
@@ -200,11 +206,14 @@ const styles = StyleSheet.create({
     },
     mapStyle: {
         width: Dimensions.get('window').width,
-        height: Dimensions.get('window').height - 140,
+        height: Dimensions.get('window').height - 180,
         marginTop: 30,
     },
 });
 
-export const MyMapScreen = ({navigation}) =>{
-    return <MyMap navigation={navigation}/>
+export const MyMapScreen = ({route, navigation}) =>{
+    const {latitude} = route.params;
+    const {longitude} = route.params;
+
+    return <MyMap latitude={latitude} longitude={longitude} navigation={navigation}/>
 };
