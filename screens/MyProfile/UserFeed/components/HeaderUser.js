@@ -10,10 +10,9 @@ import {UserActions} from "../../../../redux/user";
 import Colors from "../../../../constants/Colors";
 
 
-function HeaderUser ({ navigation }) {
-    const avatar = useSelector(state => state.user.avatar.url);
-    let [selectedImage, setSelectedImage] = React.useState(null);
-    {console.log("AVATAR: " + avatar)}
+function HeaderUser ({avatar, navigation }) {
+
+        let [selectedImage, setSelectedImage] = React.useState(null);
     const dispatch = useDispatch();
     let openImagePickerAsync = async () => {
         let permissionResult = await ImagePicker.requestCameraRollPermissionsAsync();

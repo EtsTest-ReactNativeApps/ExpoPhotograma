@@ -163,15 +163,13 @@ export function* info({}) {
 
     try {
         yield put(UserActions.infoLoading(true));
-        const response = yield call(axios.get, `/v1/users/${id}`);
+        const response = yield call(axios.get, `/v1/demo/user_photographer`);
         if (response.status === 200) {
             console.log(response.data);
             const photographerInfo = response.data.photographer;
-            const role = response.data.my_roles[0].name;
             const photographerAddress = response.data.my_address;
             yield put(UserActions.infoSuccess({
                 ...response.data.data,
-                role: role,
                 photographerInfo: photographerInfo,
                 photographerAddress: photographerAddress
             }));

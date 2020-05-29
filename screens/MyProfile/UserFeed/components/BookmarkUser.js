@@ -1,12 +1,12 @@
 import React from "react";
-import { View, StyleSheet, Text } from "react-native";
+import { View, StyleSheet } from "react-native";
 import { Feather } from "@expo/vector-icons";
 import { gs, colors } from "../styles";
 
-export default function Bookmark() {
+export default function BookmarkUser() {
     return (
         <View style={styles.bookmark}>
-            <Feather name="bookmark" size={24} color={colors.pink} />
+            <Feather name="camera" size={24} color={colors.pink} />
         </View>
     );
 }

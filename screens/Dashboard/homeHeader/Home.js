@@ -8,6 +8,7 @@ import {styles} from './home.style';
 import {useDispatch} from "react-redux";
 import {PhotosActions} from "../../../redux/photos";
 import {gallery} from "./gallery";
+import {UserActions} from "../../../redux/user";
 
 export default function Home({navigation}) {
 
@@ -15,6 +16,10 @@ export default function Home({navigation}) {
     const dispatch = useDispatch();
     React.useEffect(() => {
         dispatch(PhotosActions.photos());
+    }, [dispatch]);
+
+    React.useEffect(() => {
+        dispatch(UserActions.info());
     }, [dispatch]);
 
 

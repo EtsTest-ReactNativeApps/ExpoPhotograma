@@ -5,14 +5,12 @@ import {PhotosActions} from "../../../../redux/photos";
 import {useDispatch, useSelector} from "react-redux";
 
 
-export default function Photos({ navigation }) {
+export default function Photos({ navigation, photographer }) {
 
-    const images = useSelector(state => state.photos.objects);
-    const photographer = useSelector(state => state.user.photographerInfo);
-    {console.log(photographer)}
+    const images = useSelector(state => state.photos.photosFromPhotographer);
     return (
         <View style={[gs.sectionContainer, { marginTop: 8 }]}>
-            <Text style={gs.sectionTitle}>My Style</Text>
+            <Text style={gs.sectionTitle}>Photos portofolio</Text>
 
             <View style={styles.photosContainer}>
                 {console.log(images)}

@@ -14,12 +14,6 @@ const hotel = {
 };
 
 export default function AboutUser({navigation} ) {
-    const dispatch = useDispatch();
-
-    React.useEffect(() => {
-        dispatch(UserActions.info());
-    }, [dispatch]);
-
     const name = useSelector(state => state.user.data.name);
     const phone = useSelector(state => state.user.data.phone);
     const photographer = useSelector(state => state.user.photographerInfo);

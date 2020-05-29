@@ -6,28 +6,28 @@ import { gs, colors } from "../styles";
 export default function AmenitiesUser({ navigation }) {
     return (
         <View style={gs.sectionContainer}>
-            <Text style={gs.sectionTitle}>Amenities</Text>
+            <Text style={gs.sectionTitle}>Edit Information</Text>
 
             <View style={styles.amenitiesContainer}>
                 <View style={styles.amenityContainer}>
                     <View style={styles.amenity}>
-                        <FontAwesome5 name="tripadvisor" size={24} color={colors.lightHl} />
+                        <FontAwesome5 name="map-pin" size={24} color={colors.lightHl} />
                     </View>
-                    <Text style={styles.amenityName}>3 locations</Text>
+                    <Text style={styles.amenityName}>Address</Text>
                 </View>
 
                 <View style={styles.amenityContainer}>
                     <View style={styles.amenity}>
                         <Ionicons name="md-camera" size={24} color={colors.lightHl} />
                     </View>
-                    <Text style={styles.amenityName}>Digital Photos</Text>
+                    <Text style={styles.amenityName}>Preferences</Text>
                 </View>
 
                 <View style={styles.amenityContainer}>
                     <View style={styles.amenity}>
-                        <FontAwesome5 name="images" size={20} color={colors.lightHl} />
+                        <FontAwesome5 name="heart" size={20} color={colors.lightHl} />
                     </View>
-                    <Text style={styles.amenityName}>10 Physical Photos</Text>
+                    <Text style={styles.amenityName}>Favorites</Text>
                 </View>
             </View>
         </View>

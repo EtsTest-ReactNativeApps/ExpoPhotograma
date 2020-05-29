@@ -3,13 +3,13 @@ import { View, Text, StyleSheet } from "react-native";
 import { Feather, Entypo } from "@expo/vector-icons";
 import { gs, colors } from "../styles";
 
-const starColors = ["#e3ab53", "#e3ab53", "#e3ab53", "#e3ab53", "#8b6f43"];
+const starColors = ["#e3ab53", "#e3ab53", "#e3ab53", "#e3ab53", "#e3ab53"];
 
 const Circle = props => {
     return <View style={[styles.circle, props.styles]} />;
 };
 
-export default function Stats({ navigation }) {
+export default function Stats({ navigation, photographer }) {
     return (
         <View style={styles.container}>
             <View style={styles.weatherContainer}>
@@ -19,8 +19,8 @@ export default function Stats({ navigation }) {
 
             <View>
                 <Text style={styles.title}>
-                    4
-                    <Text style={[styles.subTitle, { paddingLeft: 8 }]}>&nbsp;&nbsp; Rate</Text>
+                    {photographer.attributes.rating}
+                    <Text style={[styles.subTitle, { paddingLeft: 8 }]}>&nbsp;&nbsp; Rating</Text>
                 </Text>
 
                 <View style={gs.rowCenter}>

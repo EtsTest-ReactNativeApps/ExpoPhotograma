@@ -5,7 +5,7 @@ import {useDispatch} from "react-redux";
 import {UserActions} from "../../../../redux/user";
 
 
-function About ({photographer,  navigation }) {
+function AboutSecond ({photographer,  navigation }) {
     const dispatch = useDispatch();
 
     React.useEffect(() => {
@@ -15,21 +15,14 @@ function About ({photographer,  navigation }) {
     const name = photographer.attributes.name;
     return (
         <View style={styles.container}>
-            <Text style={gs.title}>{name}</Text>
 
-            <Text style={styles.info}>
-                {photographer.attributes.price}$ &#8226; {photographer.attributes.city} &#8226; {photographer.attributes.cameraDescription}
-            </Text>
-
-            <View style={gs.divider} />
-
-            <Text style={gs.sectionTitle}>About {name}</Text>
-            <Text style={styles.about}>{photographer.attributes.description}</Text>
+            <Text style={gs.sectionTitle}>My style</Text>
+            <Text style={styles.about}>{photographer.attributes.secondDescription}</Text>
         </View>
     );
 }
 
-export default About;
+export default AboutSecond;
 
 const styles = StyleSheet.create({
     container: {
