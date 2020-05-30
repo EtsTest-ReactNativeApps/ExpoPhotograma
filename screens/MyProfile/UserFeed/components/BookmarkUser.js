@@ -1,15 +1,19 @@
 import React from "react";
-import { StyleSheet, TouchableOpacity } from "react-native";
+import { StyleSheet, TouchableOpacity, View } from "react-native";
 import { Feather } from "@expo/vector-icons";
 import { gs, colors } from "../styles";
 import {useDispatch} from "react-redux";
 import * as ImagePicker from "expo-image-picker";
 import {Asset} from "expo-asset";
 import {MyImageActions} from "../../../../redux/myImage";
+import AwesomeAlert from 'react-native-awesome-alerts';
 
 export default function BookmarkUser() {
     const dispatch = useDispatch();
+
     let [selectedImage, setSelectedImage] = React.useState(null);
+
+
 
     let openImagePickerAsync = async () => {
         let permissionResult = await ImagePicker.requestCameraRollPermissionsAsync();
@@ -28,14 +32,17 @@ export default function BookmarkUser() {
         setSelectedImage({ localUri: pickerResult.uri });
         const { avatar } = { avatar: pickerResult.uri };
         console.log(avatar);
+        alert("The photo will be shown on your profile soon! :)");
         dispatch(MyImageActions.myImage(avatar));
         Asset.loadAsync(avatar)
     };
 
     return (
-        <TouchableOpacity style={styles.bookmark} onPress={openImagePickerAsync}>
-            <Feather name="camera" size={24} color={colors.pink} />
-        </TouchableOpacity>
+            <TouchableOpacity style={styles.bookmark} onPress={openImagePickerAsync}>
+                <Feather name="camera" size={24} color={colors.pink} />
+            </TouchableOpacity>
+
+
     );
 }
 

@@ -11,6 +11,7 @@ import Photos from "./components/Photos";
 import {useDispatch, useSelector} from "react-redux";
 import {PhotosActions} from "../../../redux/photos";
 import AboutSecond from "./components/AboutSecond";
+import Bookmark from "./components/Bookmark";
 
 
 export const PhotographerFeed = ({route, navigation}) =>{
@@ -30,6 +31,7 @@ export const PhotographerFeed = ({route, navigation}) =>{
 
             <View>
                 <About photographer={photographer} navigation={navigation}/>
+                <Bookmark photographer={photographer} navigation={navigation}/>
                 <Stats photographer={photographer} navigation={navigation}/>
                 <AboutSecond photographer={photographer} navigation={navigation}/>
                 <Photos photographer={photographer} navigation={navigation}/>

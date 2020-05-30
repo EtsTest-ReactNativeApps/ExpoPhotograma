@@ -43,7 +43,7 @@ export default function UserFeed({navigation}) {
                 <View>
                     <AboutUserPhotographer navigation={navigation} photographer={photographerInfo}/>
                     <BookmarkUser navigation={navigation} />
-                    <AmenitiesUserPhotographer navigation={navigation} photographer={photographerInfo}/>
+                    <AmenitiesUserPhotographer navigation={navigation} photographer={photographerInfo} />
                 </View>
             </View>
         );}

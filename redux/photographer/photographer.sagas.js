@@ -8,7 +8,7 @@ const getUid = (state) => state.user.uid;
 const getAccessToken = (state) => state.user.accessToken;
 const getExpiry = (state) => state.user.expiry;
 
-export function* editPhotographer({photographer_id, description, secondDescription, cameraDescription}) {
+export function* editPhotographer({ description, secondDescription, cameraDescription}) {
     let client = yield select(getClient);
     let uid = yield select(getUid);
     let accessToken = yield select(getAccessToken);
@@ -23,7 +23,7 @@ export function* editPhotographer({photographer_id, description, secondDescripti
 
     try {
         yield put(PhotographerActions.loadingPhotographer(true));
-        const response = yield call(axios.put, `/v1/photographers/${photographer_id}`,
+        const response = yield call(axios.put, `/v1/photographers/1`,
             { description, secondDescription, cameraDescription});
         if (response.status === 200) {
             console.log(response.data);

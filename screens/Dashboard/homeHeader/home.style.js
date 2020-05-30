@@ -63,7 +63,7 @@ export const styles = StyleSheet.create({
     },
     imageLocationPin:{
         position: 'absolute',
-        marginTop: 5,
+        marginTop: 8,
         left: 5,
         bottom: 8,
         opacity: 1
@@ -80,7 +80,7 @@ export const styles = StyleSheet.create({
         color: Colors.BLACK,
         marginTop: 5,
         fontSize: 15,
-        left: 24,
+        left: 26,
         bottom: 6,
         fontWeight: 'bold',
         opacity: 1
@@ -101,7 +101,7 @@ export const styles = StyleSheet.create({
     imageTextViewBig:{
         width: '92%',
         height: 70,
-        marginTop: 245,
+        marginTop: 250,
         borderBottomRightRadius: 10,
         borderBottomLeftRadius: 10,
         position: 'absolute',

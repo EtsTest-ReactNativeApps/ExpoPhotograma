@@ -21,6 +21,7 @@ const PhotographerFeedDash = ({ route, navigation }) =>{
     const { image } = route.params;
     const { latitude } = route.params;
     const { longitude } = route.params;
+    const { flag } = route.params;
 
     const dispatch = useDispatch();
     React.useEffect(() => {
@@ -40,7 +41,7 @@ const PhotographerFeedDash = ({ route, navigation }) =>{
                     style = {styles.image}>
                     <View style = {styles.imageTextView}>
                         <Text style = {styles.tagLine}> {city}</Text>
-                        <Text style = {styles.placeName}> {about}</Text>
+                        <Text style = {styles.placeName}> {about}  {flag}</Text>
                     </View>
 
                     <TouchableOpacity

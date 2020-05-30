@@ -12,7 +12,7 @@ export default function AboutUser({navigation} ) {
     {console.log(photographerAddress)}
     return (
         <View style={styles.container}>
-            <Text style={gs.title}>My Profile</Text>
+            <Text style={gs.title}>My Profile 👤</Text>
             <Text style={gs.title2}>{name}</Text>
             <View style={gs.divider} />
 

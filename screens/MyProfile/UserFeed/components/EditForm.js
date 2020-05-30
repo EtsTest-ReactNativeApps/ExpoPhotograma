@@ -8,22 +8,22 @@ import {InputFormNormalText} from "../../../../components/InputFormNormalText";
 import {View, Button} from "react-native";
 import {ButtonSignIn} from "../../../../components/ButtonSignIn";
 import { PhotographerActions } from "../../../../redux/photographer";
+import {LinearGradient} from "expo-linear-gradient";
+import {styles} from "../../../styles";
 
 
 // ----FOR REDUX-SAGA-----
 
-const EditForm = ({navigation, photographer}) => {
+const EditForm = ({navigation, avatar}) => {
     const dispatch = useDispatch();
-    const photographer_id = useSelector(state => state.user.photographerInfo.id);
 
-    {console.log(photographer_id)}
     const onSignUp = React.useCallback(
         values => {
             const { description, secondDescription, cameraDescription} = values;
-            dispatch(PhotographerActions.editPhotographer(photographer_id, description, secondDescription, cameraDescription));
+            dispatch(PhotographerActions.editPhotographer(description, secondDescription, cameraDescription));
         },
         [dispatch],
-        () => navigation.navigate("MyProfileScreen")
+
     );
 
     return (
@@ -48,10 +48,14 @@ const EditForm = ({navigation, photographer}) => {
                                          onBlur={handleBlur('cameraDescription')}/>
 
                     <View>
-                        <ButtonSignIn text="EDIT"
-                                      onPress={ handleSubmit }
-                                      style={{fontSize: 20, fontWeight: 'bold', color: Colors.WHITE }}
-                        />
+                        <LinearGradient
+                            colors={[Colors.LIGHT_GREY,Colors.FIRST_RED, Colors.SECOND_RED]}
+                            style={{ ...styles.buttonSignIn, marginTop: 40}}>
+                            <ButtonSignIn text="EDIT"
+                                          onPress={ handleSubmit }
+                                          style={{fontSize: 20, fontWeight: 'bold', color: Colors.WHITE }}
+                            />
+                        </LinearGradient>
                     </View>
                 </Fragment>
             )}

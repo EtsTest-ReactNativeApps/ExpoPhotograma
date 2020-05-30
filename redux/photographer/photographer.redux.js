@@ -4,7 +4,7 @@ const { Types, Creators } = createActions({
     loadingPhotographer: ['value'],
     fetchSuccessPhotographer: ['data'],
     fetchFailedPhotographer: ['error'],
-    editPhotographer: ['photographer_id, description','secondDescription','cameraDescription']
+    editPhotographer: ['description','secondDescription','cameraDescription']
 });
 
 

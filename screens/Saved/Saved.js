@@ -56,7 +56,7 @@ const Saved = ({navigation}) => {
                     <TouchableOpacity onPress={() =>  navigation.navigate('Home')}>
                     <View style={styles.searchContainer}>
                         <Text style={styles.userGreet}>PHOTOGRAMA</Text>
-                        <Text style={styles.userText}>Where do you plan to take the next shoot?</Text>
+                        <Text style={styles.userText}>Where do you plan to take the next shoot? 🌍</Text>
                     </View>
                     </TouchableOpacity>
                     <View>
@@ -83,7 +83,7 @@ const Saved = ({navigation}) => {
                             fontSize: 22,
                             fontWeight: 'bold',
                             color: Colors.LIGHT_GREY}}>
-                            Saved
+                            Saved 📸
                         </Text>
                     </View>
                     <View>

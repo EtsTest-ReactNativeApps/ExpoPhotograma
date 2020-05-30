@@ -37,20 +37,19 @@ export default function Home({navigation}) {
 
                     <View style={styles.searchContainer}>
                         <Text style={styles.userGreet}>PHOTOGRAMA</Text>
-                        <Text style={styles.userText}>Where do you plan to take the next shoot?</Text>
+                        <Text style={styles.userText}>Where do you plan to take the next shoot? 🌍 </Text>
                     </View>
 
                     <View>
                         <TextInput
                         style={styles.searchBox}
-                        placeholder='Search destination'
+                        placeholder='Search photographers form destination list below 🗺️'
                         placeholderTextColor='#666'>
 
                         </TextInput>
 
-                        <Feather name='search' size={22} color='#666'
-                        style={{position: 'absolute', top: 25, right: 60, opacity: 0.6}}/>
                     </View>
+
                     <Feather name='menu' size={22} color='#fff'
                              style={{position: 'absolute', top: 40, left: 30}}/>
                     <Feather name='bell' size={22} color='#fff'
@@ -61,7 +60,7 @@ export default function Home({navigation}) {
 
             <ScrollView>
                 <View style = {{padding: 16}}>
-                    <Text style = {{fontSize: 22, fontWeight: 'bold', color: Colors.LIGHT_GREY}}>Places</Text>
+                    <Text style = {{fontSize: 22, fontWeight: 'bold', color: Colors.LIGHT_GREY}}>Places📍</Text>
                 </View>
                 <View>
                     <FlatList
@@ -78,14 +77,15 @@ export default function Home({navigation}) {
                                                                 attractions: item.attractions,
                                                                 image: item.image,
                                                                 latitude:item.latitude,
-                                                                longitude: item.longitude
+                                                                longitude: item.longitude,
+                                                                flag: item.flag
                                                             })}}>
                                     <Image source={item.image}
                                            style={{width: 150, marginRight: 8, height:250, borderRadius: 10}}/>
                                     <View style={styles.imageOverlay}/>
                                     <View style={styles.imageTextView}>
-                                         <Feather name='map-pin' size={16} color='#000'
-                                             style={styles.imageLocationPin}/>
+
+                                        <Text style={styles.imageLocationPin}>{item.flag}</Text>
                                         <Text style={styles.imageText}>{item.city}</Text>
                                     </View>
                                 </TouchableOpacity>
@@ -98,7 +98,7 @@ export default function Home({navigation}) {
                             fontSize: 22,
                             fontWeight: 'bold',
                             color: Colors.LIGHT_GREY}}>
-                            Saved
+                            Saved 📸
                         </Text>
                         <TouchableOpacity onPress={goToSaved}>
                         <Text style={{

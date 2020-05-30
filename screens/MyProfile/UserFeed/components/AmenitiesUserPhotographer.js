@@ -4,14 +4,14 @@ import { Ionicons, FontAwesome5 } from "@expo/vector-icons";
 import { gs, colors } from "../styles";
 
 
-export default function AmenitiesUserPhotographer({ photographer, navigation }) {
+export default function AmenitiesUserPhotographer({ navigation }) {
     return (
         <View style={gs.sectionContainer}>
-            <Text style={gs.sectionTitlePhotographer}>Edit Information</Text>
+            <Text style={gs.sectionTitlePhotographer}>Edit Information 📷</Text>
 
             <View style={styles.amenitiesContainer}>
                 <View style={styles.amenityContainer}>
-                    <TouchableOpacity style={styles.amenity} onPress={()=> navigation.navigate("EditForm", {photographer: photographer})}>
+                    <TouchableOpacity style={styles.amenity} onPress={()=> navigation.navigate("EditScreen")}>
                         <FontAwesome5 name="edit" size={24} color={colors.lightHl} style={{marginLeft: 5}}/>
                     </TouchableOpacity>
                     <Text style={styles.amenityName}>Edit my information</Text>

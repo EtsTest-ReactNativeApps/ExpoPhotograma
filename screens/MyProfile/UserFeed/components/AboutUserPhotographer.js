@@ -8,7 +8,6 @@ export default function AboutUserPhotographer({photographer, navigation} ) {
     const email = useSelector(state => state.user.data.email);
     const phone = useSelector(state => state.user.data.phone);
     const photographerAddress = useSelector(state => state.user.photographerAddress);
-
     {console.log(photographer)}
     return (
         <View style={styles.container}>

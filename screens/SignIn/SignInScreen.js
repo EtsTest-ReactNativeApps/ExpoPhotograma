@@ -2,9 +2,6 @@ import * as React from 'react';
 import {Asset} from "expo-asset/build/index";
 import AppLoading from "expo/build/launch/AppLoading";
 import SignIn from "./SignIn";
-import {useSelector} from "react-redux";
-import {View} from "react-native";
-import {MonoText} from "../../components/StyledText";
 
 function cacheImages(images) {
     return images.map(image => {
@@ -28,7 +25,7 @@ class SignInScreen extends React.Component {
     }
 
      _loadAssetsAsync = async () => {
-        const imageAssets = cacheImages([require('../../assets/images/black_interesting.png')]);
+        const imageAssets = cacheImages([require('../../assets/images/black_interesting.png'), require('../../assets/images/black_interesting3.png')]);
 
         await Promise.all([...imageAssets]);
     };

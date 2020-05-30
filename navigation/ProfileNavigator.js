@@ -4,8 +4,7 @@ import * as React from "react";
 import {MyProfileScreen} from "../screens/MyProfile/MyProfileScreen";
 import {MyMapScreen} from "../screens/MyProfile/PhotographerFeed/components/MapView";
 import {BookingCalendarScreen} from "../screens/MyProfile/PhotographerFeed/BookingCalendar";
-import {MyPhotographerFeedScreen} from "../screens/MyProfile/MyPhotographerFeedScreen";
-import EditForm from "../screens/MyProfile/UserFeed/components/EditPhotographerInfo";
+import {EditScreen} from "../screens/MyProfile/UserFeed/components/EditScreen";
 
 
 const ProfileStack = createStackNavigator();
@@ -20,7 +19,7 @@ export const ProfileStackScreen = ({ navigation}) => {
             <ProfileStack.Screen name="MyProfileScreen" component={MyProfileScreen} />
             <ProfileStack.Screen name="MyMapScreen" component={MyMapScreen} />
             <ProfileStack.Screen name="BookingCalendarScreen" component={BookingCalendarScreen} />
-            <ProfileStack.Screen name="EditForm" component={EditForm} />
+            <ProfileStack.Screen name="EditScreen" component={EditScreen} />
         </ProfileStack.Navigator>
     )
 };
