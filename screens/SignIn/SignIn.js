@@ -128,9 +128,6 @@ export default class SignIn extends React.Component {
             const {
                 type,
                 token,
-                expires,
-                permissions,
-                declinedPermissions,
             } = await Facebook.logInWithReadPermissionsAsync({
                 permissions: ['public_profile'],
             });
@@ -228,7 +225,7 @@ export default class SignIn extends React.Component {
                         </Animated.View>
                     </TapGestureHandler>
                     <View style={styles.form_SignIn}>
-                        <SignInForm/>
+                        <SignIn6g5  Form/>
                     </View>
                 </Animated.View>
 

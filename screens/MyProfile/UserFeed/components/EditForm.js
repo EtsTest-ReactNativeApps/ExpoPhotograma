@@ -10,6 +10,7 @@ import {ButtonSignIn} from "../../../../components/ButtonSignIn";
 import { PhotographerActions } from "../../../../redux/photographer";
 import {LinearGradient} from "expo-linear-gradient";
 import {styles} from "../../../styles";
+import {InputFormTextArea} from "../../../../components/InputFormTextArea";
 
 
 // ----FOR REDUX-SAGA-----
@@ -32,17 +33,17 @@ const EditForm = ({navigation, avatar}) => {
             {({ handleChange, values, handleSubmit, handleBlur}) => (
                 <Fragment>
 
-                    <InputFormNormalText name="description"
+                    <InputFormTextArea name="description"
                                          value={values.description}
                                          onChangeText={handleChange('description')}
                                          onBlur={handleBlur('description')}/>
 
-                    <InputFormNormalText name="secondDescription"
+                    <InputFormTextArea name="secondDescription"
                                          value={values.secondDescription}
                                          onChangeText={handleChange('secondDescription')}
                                          onBlur={handleBlur('secondDescription')}/>
 
-                    <InputFormNormalText name="cameraDescription"
+                    <InputFormTextArea name="cameraDescription"
                                          value={values.cameraDescription}
                                          onChangeText={handleChange('cameraDescription')}
                                          onBlur={handleBlur('cameraDescription')}/>
