@@ -6,8 +6,13 @@ import Colors from "../../../../constants/Colors";
 import Animated from "react-native-reanimated";
 import {styles} from "../../../SignIn/styles";
 import { TapGestureHandler, State } from "react-native-gesture-handler";
+import {useDispatch, useSelector} from "react-redux";
+import {Formik} from "formik";
+import {InputFormTextArea} from "../../../../components/InputFormTextArea";
+import {LinearGradient} from "expo-linear-gradient";
+import {ButtonSignIn} from "../../../../components/ButtonSignIn";
+import {PhotographerActions} from "../../../../redux/photographer";
 import EditForm from "./EditForm";
-import {useSelector} from "react-redux";
 
 const { width, height } = Dimensions.get('window');
 
@@ -15,9 +20,10 @@ const {
 } =  Animated;
 
 
-export const EditPhotographerScreen =({navigation})=> {
+export const EditScreen =({navigation})=> {
     const avatar = useSelector(state => state.user.avatar);
     console.log(avatar.url);
+
     return (
             <View style={myStyles.container}>
                 <View
@@ -44,15 +50,12 @@ export const EditPhotographerScreen =({navigation})=> {
                     </TapGestureHandler>
                     <ScrollView style={myStyles.form_SignUp}>
                         <EditForm navigation={navigation}/>
+
                     </ScrollView>
                 </View>
             </View>
         )
     };
-
-export const EditScreen = ({navigation}) => {
-    return <EditPhotographerScreen navigation={navigation}/>
-};
 
 
 

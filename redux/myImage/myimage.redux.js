@@ -21,5 +21,4 @@ export const myImageReducer = createReducer(INITIAL_STATE, {
     [Types.IMAGE_SUCCESS]: (state, { data }) => ({ ...state, ...data }),
     [Types.IMAGE_FAILURE]: (state, { data }) => ({ ...state, error: data }),
 
-
 });

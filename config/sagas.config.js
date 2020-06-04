@@ -5,6 +5,7 @@ import {photos, photosByPhotographer, PhotosTypes} from "../redux/photos";
 import {photographersByCity, PhotographersTypes} from "../redux/photographers";
 import {myImage, MyImageTypes} from "../redux/myImage";
 import {editPhotographer, PhotographerTypes} from "../redux/photographer";
+import {createAppointment, AppointmentTypes} from "../redux/appointments";
 
 export default function* rootSaga() {
     try {
@@ -19,6 +20,7 @@ export default function* rootSaga() {
         yield all([takeEvery(PhotographersTypes.PHOTOGRAPHERS_BY_CITY, photographersByCity)]);
         yield all([takeLatest(MyImageTypes.MY_IMAGE, myImage)]);
         yield all([takeEvery(PhotographerTypes.EDIT_PHOTOGRAPHER, editPhotographer)]);
+        yield all([takeEvery(AppointmentTypes.CREATE_APPOINTMENT, createAppointment)]);
 
     } catch (err) {
         console.log(err);

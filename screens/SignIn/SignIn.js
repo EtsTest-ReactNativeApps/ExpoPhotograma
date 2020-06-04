@@ -225,7 +225,7 @@ export default class SignIn extends React.Component {
                         </Animated.View>
                     </TapGestureHandler>
                     <View style={styles.form_SignIn}>
-                        <SignIn6g5  Form/>
+                        <SignInForm/>
                     </View>
                 </Animated.View>
 

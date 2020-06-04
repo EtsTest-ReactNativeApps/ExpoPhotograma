@@ -77,11 +77,17 @@ type ProfilesState = {
     profiles: Profile[],
 };
 
+
+
+
 export default class Profiles extends React.PureComponent<ProfilesProps, ProfilesState> {
     constructor(props: ProfilesProps) {
         super(props);
         const { profiles } = props;
-        this.state = { profiles };
+
+        this.state = { profiles,
+            myLikes: []
+        };
         this.translationX = new Value(0);
         this.translationY = new Value(0);
         this.velocityX = new Value(0);
@@ -149,8 +155,9 @@ export default class Profiles extends React.PureComponent<ProfilesProps, Profile
     };
 
     swipped = ([translationX]) => {
-        console.log({ likes: translationX > 0 });
+        console.log({ my_likes: translationX > 0 });
         const { profiles: [lastProfile, ...profiles] } = this.state;
+
         this.setState({ profiles }, this.init);
     };
 

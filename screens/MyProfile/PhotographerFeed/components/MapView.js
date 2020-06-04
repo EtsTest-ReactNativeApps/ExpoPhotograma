@@ -184,13 +184,9 @@ function MyMap ({ navigation, latitude, longitude }) {
                              latitude: parseFloat(latitude),
                              longitude: parseFloat(longitude),
                              latitudeDelta: 0.5,
-                             longitudeDelta:  0.5,
-
-                         }}
-                >
+                             longitudeDelta:  0.5,}}>
                     <Marker coordinate={{ latitude: parseFloat(latitude),
                         longitude: parseFloat(longitude) }} />
-
                 </MapView>
 
             </View>

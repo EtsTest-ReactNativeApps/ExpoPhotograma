@@ -5,7 +5,7 @@ import {Formik} from "formik";
 import { Fragment } from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {InputFormNormalText} from "../../../../components/InputFormNormalText";
-import {View, Button} from "react-native";
+import {View, Button, Alert} from "react-native";
 import {ButtonSignIn} from "../../../../components/ButtonSignIn";
 import { PhotographerActions } from "../../../../redux/photographer";
 import {LinearGradient} from "expo-linear-gradient";
@@ -15,15 +15,16 @@ import {InputFormTextArea} from "../../../../components/InputFormTextArea";
 
 // ----FOR REDUX-SAGA-----
 
-const EditForm = ({navigation, avatar}) => {
+const EditForm = ({navigation}) => {
     const dispatch = useDispatch();
 
     const onSignUp = React.useCallback(
         values => {
             const { description, secondDescription, cameraDescription} = values;
             dispatch(PhotographerActions.editPhotographer(description, secondDescription, cameraDescription));
+            navigation.goBack();
         },
-        [dispatch],
+        [dispatch, navigation]
 
     );
 
