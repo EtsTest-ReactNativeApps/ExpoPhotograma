@@ -77,12 +77,18 @@ function MyApp() {
         setIndex((index + 1) % data.length);
     };
 
+    const onSwipedRight = () => {
+        console.log("My preferences " + data[index].name)
+    };
+
+
     return (
         <SafeAreaView style={styles.container}>
 
             <StatusBar hidden={true} />
             <View style={styles.swiperContainer}>
                 <Swiper
+                    useViewOverflow={Platform.OS === 'ios'}
                     ref={swiperRef}
                     cards={data}
                     cardIndex={index}
@@ -90,6 +96,7 @@ function MyApp() {
                     infinite
                     backgroundColor={'transparent'}
                     onSwiped={onSwiped}
+                    onSwipedRight= {index => onSwipedRight(index)}
                     onTapCard={() => swiperRef.current.swipeLeft()}
                     cardVerticalMargin={50}
                     stackSize={stackSize}

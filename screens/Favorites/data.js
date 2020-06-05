@@ -117,7 +117,7 @@ export default [
         price: '$429.00',
         name: 'Nude',
         image:
-            'https://images.unsplash.com/photo-1519668752166-ebdbfe986afd?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=600&q=80'
+            'https://images.unsplash.com/photo-1539368104013-087a0d70f196?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=600&q=80'
     },
     {
         id: '89297187',

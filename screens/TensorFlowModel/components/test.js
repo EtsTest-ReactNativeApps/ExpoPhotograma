@@ -6,25 +6,31 @@ import {
     ActivityIndicator,
     StatusBar,
     Image,
-    TouchableOpacity
+    TouchableOpacity,
 } from 'react-native'
 import * as tf from '@tensorflow/tfjs'
-import { fetch } from '@tensorflow/tfjs-react-native'
-import * as mobilenet from '@tensorflow-models/mobilenet'
-import * as jpeg from 'jpeg-js'
+
 import * as ImagePicker from 'expo-image-picker'
-import Constants from 'expo-constants'
 import * as Permissions from 'expo-permissions'
+import Constants from 'expo-constants'
 
-const image = {uri : 'https://images.unsplash.com/photo-1519817914152-22d216bb9170?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=701&q=80'};
+import Colors from "../../../constants/Colors";
+import { bundleResourceIO} from '@tensorflow/tfjs-react-native'
+import * as cvstfjs from '@microsoft/customvision-tfjs';
 
+import * as FileSystem from 'expo-file-system'
+import * as axios from "axios";
+
+const modelJson = require('/Users/nicoletaungur/ExpoPhotograma/assets/model/model.json');
+const modelWeights = require('/Users/nicoletaungur/ExpoPhotograma/assets/model/weights.bin');
 
 class TestApp extends React.Component {
     state = {
         isTfReady: false,
         isModelReady: false,
         predictions: null,
-        image: null
+        image: null,
+        getMyPredictions: null
     };
 
     async componentDidMount() {
@@ -32,46 +38,53 @@ class TestApp extends React.Component {
         this.setState({
             isTfReady: true
         });
-        this.model = await mobilenet.load();
+
+        this.model = new cvstfjs.ClassificationModel();
+        await this.model.loadModelAsync(bundleResourceIO(modelJson, modelWeights));
+
         this.setState({ isModelReady: true });
         this.getPermissionAsync()
     }
 
     getPermissionAsync = async () => {
         if (Constants.platform.ios) {
-            const { status } = await Permissions.askAsync(Permissions.CAMERA_ROLL)
+            const { status } = await Permissions.askAsync(Permissions.CAMERA_ROLL);
             if (status !== 'granted') {
                 alert('Sorry, we need camera roll permissions to make this work!')
             }
         }
     };
 
-    imageToTensor(rawImageData) {
-        const TO_UINT8ARRAY = true;
-        const { width, height, data } = jpeg.decode(rawImageData, TO_UINT8ARRAY)
-        // Drop the alpha channel info for mobilenet
-        const buffer = new Uint8Array(width * height * 3)
-        let offset = 0; // offset into original data
-        for (let i = 0; i < buffer.length; i += 3) {
-            buffer[i] = data[offset];
-            buffer[i + 1] = data[offset + 1];
-            buffer[i + 2] = data[offset + 2];
 
-            offset += 4
-        }
-
-        return tf.tensor3d(buffer, [height, width, 3])
-    }
+     getPredictions = (imgBuffer) => {
+        const url = `https://eastus.api.cognitive.microsoft.com/customvision/v3.0/Prediction/95aef491-d60c-49e9-9089-994da68378be/classify/iterations/Iteration2/image`;
+        return  fetch(url, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/octet-stream',
+                'Prediction-Key': '0b638c044a64458092852adcf4ac84ea'
+            },
+            body: imgBuffer
+        })
+            .then(res => res.json())
+            .then(data => {
+                return data.predictions;
+            })
+    };
 
     classifyImage = async () => {
         try {
             const imageAssetPath = Image.resolveAssetSource(this.state.image);
-            const response = await fetch(imageAssetPath.uri, {}, { isBinary: true });
-            const rawImageData = await response.arrayBuffer();
-            const imageTensor = this.imageToTensor(rawImageData);
-            const predictions = await this.model.classify(imageTensor);
-            this.setState({ predictions });
-            console.log(predictions)
+            console.log("imageAssetPath.uri ==> " + imageAssetPath.uri);
+            const response = await FileSystem.readAsStringAsync(imageAssetPath.uri,
+                { encoding: FileSystem.EncodingType.Base64 });
+            const imgBuffer = tf.util.encodeString(response, 'base64');
+            let predictions = await this.getPredictions(imgBuffer);
+            predictions = predictions
+            this.setState({ predictions: predictions });
+
+            console.log("CEAU IMI PLACE SA LUCREZ AICIA\n" + this.state.predictions)
+
         } catch (error) {
             console.log(error)
         }
@@ -87,8 +100,11 @@ class TestApp extends React.Component {
 
             if (!response.cancelled) {
                 const source = { uri: response.uri };
-                this.setState({ image: image });
+                console.log(source);
+                this.setState({ image: source });
+                console.log(this.state.image);
                 this.classifyImage()
+
             }
         } catch (error) {
             console.log(error)
@@ -98,7 +114,7 @@ class TestApp extends React.Component {
     renderPrediction = prediction => {
         return (
             <Text key={prediction.className} style={styles.text}>
-                {prediction.className}
+                {prediction}
             </Text>
         )
     };
@@ -110,14 +126,15 @@ class TestApp extends React.Component {
             <View style={styles.container}>
                 <StatusBar barStyle='light-content' />
                 <View style={styles.loadingContainer}>
+                    <Text style = {styles.text}>We are trying to give you the best prediction.</Text>
                     <Text style={styles.text}>
-                        TFJS ready? {isTfReady ? <Text>✅</Text> : ''}
+                        Wait for TensorFlow {isTfReady ? <Text>✔️</Text> : ''}
                     </Text>
 
                     <View style={styles.loadingModelContainer}>
                         <Text style={styles.text}>Model ready? </Text>
                         {isModelReady ? (
-                            <Text style={styles.text}>✅</Text>
+                            <Text style={styles.text}>🔥</Text>
                         ) : (
                             <ActivityIndicator size='small' />
                         )}
@@ -129,7 +146,7 @@ class TestApp extends React.Component {
                     {image && <Image source={image} style={styles.imageContainer} />}
 
                     {isModelReady && !image && (
-                        <Text style={styles.transparentText}>Tap to choose image</Text>
+                        <Text style={styles.transparentText}>Choose image 📸</Text>
                     )}
                 </TouchableOpacity>
                 <View style={styles.predictionWrapper}>
@@ -140,7 +157,7 @@ class TestApp extends React.Component {
                     )}
                     {isModelReady &&
                     predictions &&
-                    predictions.map(p => this.renderPrediction(p))}
+                    predictions.slice(0, 3).map(p => this.renderPrediction(p.tagName))}
                 </View>
 
             </View>
@@ -151,28 +168,37 @@ class TestApp extends React.Component {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#171f24',
+        backgroundColor: Colors.DARK,
         alignItems: 'center'
     },
     loadingContainer: {
+        marginLeft: 20,
+        marginRight: 20,
         marginTop: 80,
         justifyContent: 'center'
     },
     text: {
-        color: '#ffffff',
-        fontSize: 16
+        color: Colors.LIGHT_GREY,
+        fontSize: 18,
+        alignSelf: 'center'
     },
     loadingModelContainer: {
         flexDirection: 'row',
-        marginTop: 10
+        marginTop: 10,
+        justifyContent: 'center'
     },
     imageWrapper: {
-        width: 280,
-        height: 280,
+        width: 300,
+        height: 450,
         padding: 10,
-        borderColor: '#cf667f',
-        borderWidth: 5,
-        borderStyle: 'dashed',
+        backgroundColor: Colors.BLUE_GREY,
+        borderColor: Colors.LIGHT_GREY,
+        borderWidth: 2,
+        borderRadius: 15,
+        shadowRadius: 15,
+        shadowColor: Colors.MY_RED,
+        shadowOpacity: 1,
+        shadowOffset: { width: 0.5, height: 0.5 },
         marginTop: 40,
         marginBottom: 10,
         position: 'relative',
@@ -180,19 +206,22 @@ const styles = StyleSheet.create({
         alignItems: 'center'
     },
     imageContainer: {
-        width: 250,
-        height: 250,
+        width: 280,
+        height: 420,
         position: 'absolute',
         top: 10,
-        left: 10,
-        bottom: 10,
-        right: 10
+        left: 8,
+        bottom: 8,
+        right: 10,
+        borderRadius: 15,
+
     },
     predictionWrapper: {
         height: 100,
         width: '100%',
         flexDirection: 'column',
-        alignItems: 'center'
+        alignItems: 'center',
+        marginTop: 20
     },
     transparentText: {
         color: '#ffffff',
@@ -201,15 +230,7 @@ const styles = StyleSheet.create({
     footer: {
         marginTop: 40
     },
-    poweredBy: {
-        fontSize: 20,
-        color: '#e69e34',
-        marginBottom: 6
-    },
-    tfLogo: {
-        width: 125,
-        height: 70
-    }
+
 });
 
 export const TestAppModel = () => {

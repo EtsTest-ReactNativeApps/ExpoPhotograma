@@ -12,7 +12,7 @@ const profiles: Profile[] = [
         id: "1",
         name: "First",
         age: 24,
-        profile: require("../../assets/travel1.jpg"),
+        profile: require("../../assets/travel1.jpeg"),
     },
     {
         id: "2",
