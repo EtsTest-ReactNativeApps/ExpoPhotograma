@@ -1,13 +1,11 @@
 import * as React from 'react';
 import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
 import TabBarIcon from '../components/TabBarIcon';
-import LinksScreen from '../screens/LinksScreen';
 import { useSelector } from "react-redux";
 import Colors from "../constants/Colors";
 import {SavedScreen} from "../screens/Saved/SavedScreen";
 
 import {ProfileStackScreen} from "./ProfileNavigator";
-import {MyImagePicker} from "../screens/MyProfile/ImagesUpload/ImageUpload";
 
 import FavoritesFeed from "../screens/Favorites/FavoritesFeed";
 import {DashboardStackScreen} from "../screens/Dashboard/DashboardNavigator";

@@ -1,6 +1,7 @@
 import { call, put, select } from 'redux-saga/effects';
 import axios from 'axios';
-import AppointmentActions from './appointments.redux';
+import HashtagActions from './hashtags.redux';
+import PhotographersActions from "../photographers/photographers.redux";
 
 
 const getClient = (state) => state.user.client;
@@ -8,7 +9,7 @@ const getUid = (state) => state.user.uid;
 const getAccessToken = (state) => state.user.accessToken;
 const getExpiry = (state) => state.user.expiry;
 
-export function* createAppointment({ photographer_id, owner_id, starting_time, appointment_status}) {
+export function* createHashtag({ style_id }) {
     let client = yield select(getClient);
     let uid = yield select(getUid);
     let accessToken = yield select(getAccessToken);
@@ -22,23 +23,23 @@ export function* createAppointment({ photographer_id, owner_id, starting_time, a
     axios.defaults.headers.common['client'] = client;
 
     try {
-        yield put(AppointmentActions.loadingAppointment(true));
-        const response = yield call(axios.post, `/v1/appointments`,
-            {  photographer_id, owner_id, starting_time, appointment_status});
+        yield put(HashtagActions.loadingHashtag(true));
+        const response = yield call(axios.post, `/v1/hashtags`,
+            { style_id });
         if (response.status === 200) {
             console.log(response.data);
-            yield put(AppointmentActions.fetchSuccessAppointment( {...response.data.data} ));
+            yield put(HashtagActions.fetchSuccessHashtag( {...response.data.data} ));
         }
-        yield put(AppointmentActions.loadingAppointment(false));
+        yield put(HashtagActions.loadingHashtag(false));
     } catch (error) {
-        yield put(AppointmentActions.loadingAppointment(false));
-        yield put(AppointmentActions.fetchFailedAppointment('BAD'));
+        yield put(HashtagActions.loadingHashtag(false));
+        yield put(HashtagActions.fetchFailedHashtag('BAD'));
     }
 }
 
 
 
-export function* getAppointmentsForCurrentUser({ photographer_id }) {
+export function* getHashtagsForPhotographer({photographer_id}) {
     let client = yield select(getClient);
     let uid = yield select(getUid);
     let accessToken = yield select(getAccessToken);
@@ -52,17 +53,18 @@ export function* getAppointmentsForCurrentUser({ photographer_id }) {
     axios.defaults.headers.common['client'] = client;
 
     try {
-        yield put(AppointmentActions.loadingAppointment(true));
-        const response = yield call(axios.get, `/v1/appointments?photographer_id=${photographer_id}`);
+        yield put(HashtagActions.loadingHashtagsForPhotographer(true));
+        const response = yield call(axios.get, `/v1/hashtags?photographer_id=${photographer_id}`);
         if (response.status === 200) {
             console.log(response.data);
-            const myAppointments = response.data.data;
-            console.log("MY APPOINTMENTS" + myAppointments);
-            yield put(AppointmentActions.fetchSuccessAppointmentsForCurrentUser( {...response.data.data, myAppointments: myAppointments} ));
+            const objects = response.data.data;
+            console.log("MY DATA" + objects);
+
+            yield put(HashtagActions.fetchSuccessHashtagsForPhotographer( {...response.data.data, objectsHashtags: objects} ));
         }
-        yield put(AppointmentActions.loadingAppointmentsForCurrentUser(false));
+        yield put(HashtagActions.loadingHashtagsForPhotographer(false));
     } catch (error) {
-        yield put(AppointmentActions.loadingAppointmentsForCurrentUser(false));
-        yield put(AppointmentActions.fetchFailedAppointmentsForCurrentUser('BAD'));
+        yield put(HashtagActions.loadingHashtagsForPhotographer(false));
+        yield put(HashtagActions.fetchFailedHashtagsForPhotographer('BAD'));
     }
 }

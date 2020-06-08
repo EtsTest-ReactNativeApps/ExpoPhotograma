@@ -5,19 +5,14 @@ import {StyleSheet} from "react-native";
 import Colors from "../../../../constants/Colors";
 import Animated from "react-native-reanimated";
 import {styles} from "../../../SignIn/styles";
-import { TapGestureHandler, State } from "react-native-gesture-handler";
-import {useDispatch, useSelector} from "react-redux";
-import {Formik} from "formik";
-import {InputFormTextArea} from "../../../../components/InputFormTextArea";
-import {LinearGradient} from "expo-linear-gradient";
-import {ButtonSignIn} from "../../../../components/ButtonSignIn";
-import {PhotographerActions} from "../../../../redux/photographer";
+import { TapGestureHandler} from "react-native-gesture-handler";
+import {useSelector} from "react-redux";
+
 import EditForm from "./EditForm";
 
-const { width, height } = Dimensions.get('window');
+const { height } = Dimensions.get('window');
 
-const {
-} =  Animated;
+const {} =  Animated;
 
 
 export const EditScreen =({navigation})=> {
@@ -50,7 +45,6 @@ export const EditScreen =({navigation})=> {
                     </TapGestureHandler>
                     <ScrollView style={myStyles.form_SignUp}>
                         <EditForm navigation={navigation}/>
-
                     </ScrollView>
                 </View>
             </View>

@@ -9,6 +9,8 @@ import ExtrasUser from "./components/ExtrasUser";
 import {useDispatch, useSelector} from "react-redux";
 import AmenitiesUserPhotographer from "./components/AmenitiesUserPhotographer";
 import AboutUserPhotographer from "./components/AboutUserPhotographer";
+import {HashtagActions} from "../../../redux/hashtags";
+import {AppointmentActions} from "../../../redux/appointments";
 
 
 
@@ -36,6 +38,19 @@ export default function UserFeed({navigation}) {
 
 
         //PHOTOGRAPHER
+        const photographer_id = useSelector(state => state.user.photographerInfo.id);
+
+        const dispatch = useDispatch();
+        React.useEffect(() => {
+            dispatch(HashtagActions.getHashtagsForPhotographer(photographer_id));
+        }, [dispatch]);
+
+        React.useEffect(() => {
+            dispatch(AppointmentActions.getAppointmentsForCurrentUser(photographer_id));
+        }, [dispatch]);
+
+
+
         return (<View style={styles.container}>
                 <StatusBar barStyle="light-content" />
                 <HeaderUser avatar={avatar.url} navigation={navigation}/>

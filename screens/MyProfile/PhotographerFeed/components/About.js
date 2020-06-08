@@ -3,6 +3,7 @@ import { View, Text, StyleSheet } from "react-native";
 import { gs, colors } from "../styles";
 import {useDispatch} from "react-redux";
 import {UserActions} from "../../../../redux/user";
+import Colors from "../../../../constants/Colors";
 
 
 function About ({photographer,  navigation }) {
@@ -38,7 +39,9 @@ function About ({photographer,  navigation }) {
 
             <View style={gs.divider} />
 
-            <Text style={gs.sectionTitle}>About {name}</Text>
+            <Text style={{fontWeight: "700", color: Colors.MY_RED, fontSize: 18, marginTop: 10, marginBottom: 10}}>
+                About {name}
+            </Text>
 
             <Text style={styles.about}>{photographer.attributes.description}</Text>
         </View>
@@ -58,10 +61,11 @@ const styles = StyleSheet.create({
         marginTop: 4
     },
     about: {
-        fontSize: 13,
+        fontSize: 15,
         fontWeight: "600",
-        color: colors.textSec,
+        color: Colors.WHITE,
         marginTop: 6,
+        marginBottom: 10,
         lineHeight: 20
     }
 });

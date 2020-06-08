@@ -6,7 +6,7 @@ import {
     Text,
     View,
     SafeAreaView,
-    Dimensions
+    Dimensions, Alert
 } from 'react-native';
 
 import data from './data';
@@ -14,6 +14,8 @@ import Swiper from 'react-native-deck-swiper';
 import { Transitioning, Transition } from 'react-native-reanimated';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import Colors from "../../constants/Colors";
+import {useDispatch} from "react-redux";
+import {HashtagActions} from "../../redux/hashtags";
 
 const { width } = Dimensions.get('window');
 
@@ -70,6 +72,8 @@ const CardDetails = ({ index }) => (
     </View>
 );
 
+
+
 function MyApp() {
     const [index, setIndex] = React.useState(0);
     const onSwiped = () => {
@@ -77,8 +81,11 @@ function MyApp() {
         setIndex((index + 1) % data.length);
     };
 
+    const dispatch = useDispatch();
     const onSwipedRight = () => {
-        console.log("My preferences " + data[index].name)
+        const style_id = data[index].id;
+        dispatch(HashtagActions.createHashtag(style_id));
+        console.log("My preferences " + data[index].name + " id: " + data[index].id)
     };
 
 

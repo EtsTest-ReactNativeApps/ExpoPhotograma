@@ -1,5 +1,5 @@
 
 import AppointmentActions, { AppointmentTypes, appointmentReducer } from './appointments.redux';
-import { createAppointment } from './appointments.sagas';
+import { createAppointment, getAppointmentsForCurrentUser } from './appointments.sagas';
 
-export { appointmentReducer, AppointmentTypes, AppointmentActions, createAppointment };
+export { appointmentReducer, AppointmentTypes, AppointmentActions, createAppointment, getAppointmentsForCurrentUser};

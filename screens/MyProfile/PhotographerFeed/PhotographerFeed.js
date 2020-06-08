@@ -12,6 +12,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {PhotosActions} from "../../../redux/photos";
 import AboutSecond from "./components/AboutSecond";
 import Bookmark from "./components/Bookmark";
+import {HashtagActions} from "../../../redux/hashtags";
 
 
 export const PhotographerFeed = ({route, navigation}) =>{
@@ -21,6 +22,11 @@ export const PhotographerFeed = ({route, navigation}) =>{
     const dispatch = useDispatch();
     React.useEffect(() => {
         dispatch(PhotosActions.photosByPhotographer(photographer.attributes.id));
+    }, [dispatch]);
+
+
+    React.useEffect(() => {
+        dispatch(HashtagActions.getHashtagsForPhotographer(photographer.attributes.id));
     }, [dispatch]);
 
     return (

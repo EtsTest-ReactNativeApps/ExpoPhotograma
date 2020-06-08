@@ -18,7 +18,7 @@ export default function AmenitiesUserPhotographer({ navigation }) {
                 </View>
 
 
-                <TouchableOpacity style={styles.amenityContainer}>
+                <TouchableOpacity style={styles.amenityContainer} onPress={()=> navigation.navigate("FutureAppointmentsScreen")}>
                     <View style={styles.amenity}>
                         <FontAwesome5 name="bookmark" size={20} color={colors.lightHl} />
                     </View>

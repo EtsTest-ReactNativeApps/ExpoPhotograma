@@ -5,6 +5,7 @@ import {MyProfileScreen} from "../screens/MyProfile/MyProfileScreen";
 import {MyMapScreen} from "../screens/MyProfile/PhotographerFeed/components/MapView";
 import {BookingCalendarScreen} from "../screens/MyProfile/PhotographerFeed/BookingCalendar";
 import {EditScreen} from "../screens/MyProfile/UserFeed/components/EditScreen";
+import {FutureAppointmentsScreen} from "../screens/MyProfile/UserFeed/components/FutureAppointmentsScreen";
 
 
 const ProfileStack = createStackNavigator();
@@ -20,6 +21,7 @@ export const ProfileStackScreen = ({ navigation}) => {
             <ProfileStack.Screen name="MyMapScreen" component={MyMapScreen} />
             <ProfileStack.Screen name="BookingCalendarScreen" component={BookingCalendarScreen} />
             <ProfileStack.Screen name="EditScreen" component={EditScreen} />
+            <ProfileStack.Screen name="FutureAppointmentsScreen" component={FutureAppointmentsScreen} />
         </ProfileStack.Navigator>
     )
 };

@@ -1,13 +1,18 @@
 import React from "react";
-import { View, StyleSheet, Text } from "react-native";
-import { Feather } from "@expo/vector-icons";
+import { View, StyleSheet, Text, TouchableOpacity} from "react-native";
+import {Feather, Ionicons} from "@expo/vector-icons";
 import { gs, colors } from "../styles";
 
 export default function Bookmark({navigation , photographer}) {
+    const [liked, setLiked] = React.useState(false);
+
     return (
-        <View style={styles.bookmark}>
-            <Feather name="heart" size={24} color={colors.pink} />
-        </View>
+        <TouchableOpacity onPress={() => setLiked(!liked)} style={styles.bookmark}>
+            {liked ? <Ionicons name="ios-heart" size={32} color={colors.pink} style={{marginTop: 5}}/>
+            :
+                <Ionicons name="ios-heart-empty" size={32} color={colors.pink} style={{marginTop: 5}}/>
+            }
+        </TouchableOpacity>
     );
 }
 

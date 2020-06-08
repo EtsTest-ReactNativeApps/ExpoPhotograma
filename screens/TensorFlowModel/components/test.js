@@ -19,7 +19,6 @@ import { bundleResourceIO} from '@tensorflow/tfjs-react-native'
 import * as cvstfjs from '@microsoft/customvision-tfjs';
 
 import * as FileSystem from 'expo-file-system'
-import * as axios from "axios";
 
 const modelJson = require('/Users/nicoletaungur/ExpoPhotograma/assets/model/model.json');
 const modelWeights = require('/Users/nicoletaungur/ExpoPhotograma/assets/model/weights.bin');
