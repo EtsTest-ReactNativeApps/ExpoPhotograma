@@ -1,16 +1,15 @@
 import * as React from 'react';
 import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
 import TabBarIcon from '../components/TabBarIcon';
-import LinksScreen from '../screens/LinksScreen';
 import { useSelector } from "react-redux";
 import Colors from "../constants/Colors";
 import {SavedScreen} from "../screens/Saved/SavedScreen";
 
 import {ProfileStackScreen} from "./ProfileNavigator";
-import {MyImagePicker} from "../screens/MyProfile/ImagesUpload/ImageUpload";
 
 import FavoritesFeed from "../screens/Favorites/FavoritesFeed";
 import {DashboardStackScreen} from "../screens/Dashboard/DashboardNavigator";
+import {TestAppModel} from "../screens/TensorFlowModel/components/test";
 
 const BottomTab = createMaterialBottomTabNavigator();
 
@@ -32,7 +31,7 @@ export default function BottomTabNavigator({ navigation, route }) {
         name="Dashboard"
         component={ DashboardStackScreen }
         options={{
-            tabBarLabel: 'FEED',
+            tabBarLabel: 'HOME',
             tabBarIcon: ({ focused }) => <TabBarIcon focused={focused} name="md-code-working" />,
         }}
       />
@@ -40,15 +39,15 @@ export default function BottomTabNavigator({ navigation, route }) {
         name="AnimatedSignInScreen"
         component={ FavoritesFeed }
         options={{
-            tabBarLabel: 'FAVORITES',
+            tabBarLabel: 'PREFERENCES',
             tabBarIcon: ({ focused }) => <TabBarIcon focused={focused} name="ios-star-outline" />,
         }}
         />
       <BottomTab.Screen
-        name="MyImagePicker"
-        component={MyImagePicker}
+        name="TestApp"
+        component={TestAppModel}
         options={{
-            tabBarLabel: 'SEARCH',
+            tabBarLabel: 'MY STYLE',
             tabBarIcon: ({ focused }) => <TabBarIcon focused={focused} name="ios-search" />,
         }}
         />

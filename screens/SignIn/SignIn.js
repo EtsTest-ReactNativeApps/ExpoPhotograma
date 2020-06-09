@@ -128,9 +128,6 @@ export default class SignIn extends React.Component {
             const {
                 type,
                 token,
-                expires,
-                permissions,
-                declinedPermissions,
             } = await Facebook.logInWithReadPermissionsAsync({
                 permissions: ['public_profile'],
             });
@@ -182,26 +179,30 @@ export default class SignIn extends React.Component {
                             </View>
                         </Animated.View>
                     </TapGestureHandler>
-                    <TouchableWithoutFeedback onPress={this.logIn.bind(this) }>
+
+
+                    <TouchableWithoutFeedback onPress={() => this.props.navigation.push("SignUpScreen") }>
                         <Animated.View
                             style={{ ...styles.button,
                                     backgroundColor: Colors.LIGHT_GREY,
                                     opacity: this.buttonOpacity,
                                     transform: [{ translateY: this.buttonY }]
                             }}>
-                            <MonoText style={{fontSize: 20, fontWeight: 'bold', color: Colors.WHITE}}>SIGN IN WITH FACEBOOK</MonoText>
+                            <MonoText style={{fontSize: 20, fontWeight: 'bold', color: Colors.WHITE}}>SIGN UP</MonoText>
                         </Animated.View>
                     </TouchableWithoutFeedback>
 
-                    <TouchableWithoutFeedback onPress={() => this.props.navigation.push("SignUpScreen") }>
+
+                    <TouchableWithoutFeedback>
                     <Animated.View
                         style={{ ...styles.signUp_btn,
                             opacity: this.buttonOpacity,
                             transform: [{ translateY: this.buttonY }]
                         }}>
 
-                            <MonoText style={{fontSize: 14, fontWeight: 'bold', color: Colors.WHITE }}>New to photograma? Sign Up</MonoText>
-
+                            <MonoText style={{fontSize: 16, fontWeight: 'bold', color: Colors.WHITE, flex: 1, alignSelf: 'center' }}>
+                                Are you ready for a photography?
+                            </MonoText>
                     </Animated.View>
                     </TouchableWithoutFeedback>
 

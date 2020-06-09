@@ -4,7 +4,7 @@ import axios from 'axios';
 import {Provider} from 'react-redux';
 import {store} from "./config/store.config";
 import AppNavigation from "./navigation/AppNavigation";
-
+console.disableYellowBox = true;
 //AXIOS HEADERS
 
 

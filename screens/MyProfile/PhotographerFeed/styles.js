@@ -44,6 +44,7 @@ export const gs = StyleSheet.create({
     title: {
         color: colors.text,
         fontSize: 30,
+        marginBottom: 10
     },
     subTitle: {
         fontWeight: "600",

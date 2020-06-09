@@ -2,7 +2,6 @@ import { call, put, select } from 'redux-saga/effects';
 import axios from 'axios';
 
 import UserActions from './user.redux';
-import PhotographersActions from "../photos/photos.redux";
 
 export function* login({email, password}) {
     try {
@@ -14,7 +13,7 @@ export function* login({email, password}) {
             const client = response.headers['client'];
             const accessToken = response.headers['access-token'];
             const expiry = response.headers['expiry'];
-            const avatar = response.data.data.avatar.thumb.url;
+            const avatar = response.data.data.avatar.url;
             const name = response.data.data.name;
             const username = response.data.data.username;
             const id = response.data.data.id;
@@ -164,15 +163,13 @@ export function* info({}) {
 
     try {
         yield put(UserActions.infoLoading(true));
-        const response = yield call(axios.get, `/v1/users/${id}`);
+        const response = yield call(axios.get, `/v1/demo/user_photographer`);
         if (response.status === 200) {
             console.log(response.data);
             const photographerInfo = response.data.photographer;
-            const role = response.data.my_roles[0].name;
             const photographerAddress = response.data.my_address;
             yield put(UserActions.infoSuccess({
                 ...response.data.data,
-                role: role,
                 photographerInfo: photographerInfo,
                 photographerAddress: photographerAddress
             }));

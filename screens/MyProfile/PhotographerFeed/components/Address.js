@@ -3,7 +3,7 @@ import { View, Text, StyleSheet, TouchableOpacity, Image } from "react-native";
 import { Entypo } from "@expo/vector-icons";
 import { gs, colors } from "../styles";
 
-export default function Address({ navigation }) {
+export default function Address({ navigation, photographer }) {
     return (
         <View>
             <View style={{ backgroundColor: "#000" }}>
@@ -15,10 +15,12 @@ export default function Address({ navigation }) {
 
                 <View style={{ marginLeft: 8, marginTop: 24 }}>
                     <Text style={gs.sectionTitle}>Address</Text>
-                    <Text style={styles.address}>{`Cluj-Napoca\nCalea Turzii`}</Text>
+                    <Text style={styles.address}>{photographer.attributes.country}, {photographer.attributes.region}</Text>
 
                     <View style={{ marginTop: 16 }}>
-                        <TouchableOpacity style={styles.checkButton}>
+                        <TouchableOpacity style={styles.checkButton} onPress={() => navigation.navigate("MyMapScreen",
+                            {latitude: photographer.attributes.latitude, longitude: photographer.attributes.longitude}
+                            )}>
                             <Text style={gs.smallText}>Check it</Text>
                             <Entypo name="chevron-right" size={12} color="#fff" style={{ marginLeft: 4 }} />
                         </TouchableOpacity>
