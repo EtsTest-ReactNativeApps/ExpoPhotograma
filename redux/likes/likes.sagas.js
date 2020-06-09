@@ -1,6 +1,6 @@
 import { call, put, select } from 'redux-saga/effects';
 import axios from 'axios';
-import HashtagActions from './hashtags.redux';
+import LikeActions from './likes.redux';
 
 
 const getClient = (state) => state.user.client;
@@ -8,7 +8,8 @@ const getUid = (state) => state.user.uid;
 const getAccessToken = (state) => state.user.accessToken;
 const getExpiry = (state) => state.user.expiry;
 
-export function* createHashtag({ style_id }) {
+
+export function* createLike({ user_id }) {
     let client = yield select(getClient);
     let uid = yield select(getUid);
     let accessToken = yield select(getAccessToken);
@@ -22,23 +23,22 @@ export function* createHashtag({ style_id }) {
     axios.defaults.headers.common['client'] = client;
 
     try {
-        yield put(HashtagActions.loadingHashtag(true));
-        const response = yield call(axios.post, `/v1/hashtags`,
-            { style_id });
+        yield put(LikeActions.loadingLike(true));
+        const response = yield call(axios.post, `/v1/likes`,
+            { user_id });
         if (response.status === 200) {
             console.log(response.data);
-            yield put(HashtagActions.fetchSuccessHashtag( {...response.data.data} ));
+            yield put(LikeActions.fetchSuccessLike( {...response.data.data} ));
         }
-        yield put(HashtagActions.loadingHashtag(false));
+        yield put(LikeActions.loadingLike(false));
     } catch (error) {
-        yield put(HashtagActions.loadingHashtag(false));
-        yield put(HashtagActions.fetchFailedHashtag('BAD'));
+        yield put(LikeActions.loadingLike(false));
+        yield put(LikeActions.fetchFailedLike('BAD'));
     }
 }
 
 
-
-export function* getHashtagsForPhotographer({photographer_id}) {
+export function* deleteLike({ like_id }) {
     let client = yield select(getClient);
     let uid = yield select(getUid);
     let accessToken = yield select(getAccessToken);
@@ -52,18 +52,18 @@ export function* getHashtagsForPhotographer({photographer_id}) {
     axios.defaults.headers.common['client'] = client;
 
     try {
-        yield put(HashtagActions.loadingHashtagsForPhotographer(true));
-        const response = yield call(axios.get, `/v1/hashtags?photographer_id=${photographer_id}`);
+        yield put(LikeActions.loadingDeleteLike(true));
+        const response = yield call(axios.delete, `/v1/likes/${like_id}`,
+            { user_id });
         if (response.status === 200) {
             console.log(response.data);
-            const objects = response.data.data;
-            console.log("MY DATA" + objects);
-
-            yield put(HashtagActions.fetchSuccessHashtagsForPhotographer( {...response.data.data, objectsHashtags: objects} ));
+            yield put(LikeActions.fetchSuccessDeleteLike( {...response.data.data} ));
         }
-        yield put(HashtagActions.loadingHashtagsForPhotographer(false));
+        yield put(LikeActions.loadingDeleteLike(false));
     } catch (error) {
-        yield put(HashtagActions.loadingHashtagsForPhotographer(false));
-        yield put(HashtagActions.fetchFailedHashtagsForPhotographer('BAD'));
+        yield put(LikeActions.loadingDeleteLike(false));
+        yield put(LikeActions.fetchFailedDeleteLike('BAD'));
     }
 }
+
+

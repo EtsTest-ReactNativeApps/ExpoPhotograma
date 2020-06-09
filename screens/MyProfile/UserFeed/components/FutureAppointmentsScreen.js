@@ -24,7 +24,6 @@ export const FutureAppointmentsScreen =({navigation})=> {
     const renderHashtags = (item, key) => {
         return (
             <View >
-
                 <Text style={{
                     marginLeft: 5,
                     marginTop: 5,

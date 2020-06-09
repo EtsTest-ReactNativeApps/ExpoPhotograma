@@ -7,6 +7,8 @@ import {myImageReducer} from "../redux/myImage/myimage.redux";
 import {photographerReducer} from "../redux/photographer/photographer.redux";
 import {appointmentReducer} from "../redux/appointments";
 import {hashtagReducer} from "../redux/hashtags";
+import {likeReducer} from "../redux/likes";
+import {savedReducer} from "../redux/saved";
 
 export default combineReducers({
     user: userReducer,
@@ -16,4 +18,6 @@ export default combineReducers({
     myImage: myImageReducer,
     appointment: appointmentReducer,
     hashtag: hashtagReducer,
+    like: likeReducer,
+    saved: savedReducer
 });

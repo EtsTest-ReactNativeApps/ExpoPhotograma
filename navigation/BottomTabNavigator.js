@@ -31,7 +31,7 @@ export default function BottomTabNavigator({ navigation, route }) {
         name="Dashboard"
         component={ DashboardStackScreen }
         options={{
-            tabBarLabel: 'FEED',
+            tabBarLabel: 'HOME',
             tabBarIcon: ({ focused }) => <TabBarIcon focused={focused} name="md-code-working" />,
         }}
       />
@@ -39,7 +39,7 @@ export default function BottomTabNavigator({ navigation, route }) {
         name="AnimatedSignInScreen"
         component={ FavoritesFeed }
         options={{
-            tabBarLabel: 'FAVORITES',
+            tabBarLabel: 'PREFERENCES',
             tabBarIcon: ({ focused }) => <TabBarIcon focused={focused} name="ios-star-outline" />,
         }}
         />
@@ -47,7 +47,7 @@ export default function BottomTabNavigator({ navigation, route }) {
         name="TestApp"
         component={TestAppModel}
         options={{
-            tabBarLabel: 'SEARCH',
+            tabBarLabel: 'MY STYLE',
             tabBarIcon: ({ focused }) => <TabBarIcon focused={focused} name="ios-search" />,
         }}
         />

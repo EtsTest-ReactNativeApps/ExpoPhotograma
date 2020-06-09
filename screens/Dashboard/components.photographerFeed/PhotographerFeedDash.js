@@ -8,6 +8,7 @@ import Colors from "../../../constants/Colors";
 import {useDispatch, useSelector} from "react-redux";
 import {PhotographersActions} from "../../../redux/photographers";
 import ExtrasFeed from "./ExtrasFeed";
+import {PhotographerActions} from "../../../redux/photographer";
 
 
 const PhotographerFeedDash = ({ route, navigation }) =>{

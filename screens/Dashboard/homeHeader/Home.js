@@ -6,15 +6,20 @@ import Colors from "../../../constants/Colors";
 import { Feather } from '@expo/vector-icons/build/Icons';
 import {styles} from './home.style';
 import {useDispatch} from "react-redux";
-import {PhotosActions} from "../../../redux/photos";
 import {gallery} from "./gallery";
 import {UserActions} from "../../../redux/user";
+import {SavedActions} from "../../../redux/saved";
 
 export default function Home({navigation}) {
     const dispatch = useDispatch();
 
     React.useEffect(() => {
         dispatch(UserActions.info());
+    }, [dispatch]);
+
+
+    React.useEffect(() => {
+        dispatch(SavedActions.getSavedForUser());
     }, [dispatch]);
 
 
