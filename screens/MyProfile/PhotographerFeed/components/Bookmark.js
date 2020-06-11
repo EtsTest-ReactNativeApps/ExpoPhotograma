@@ -16,7 +16,6 @@ export default function Bookmark({navigation , photographer}) {
         () => {
             setLiked(!liked);
             dispatch(LikeActions.createLike(photographer.attributes.user_id));
-            dispatch(SavedActions.getSavedForUser());
         },
         [dispatch]
     );

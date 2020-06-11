@@ -8,7 +8,7 @@ const getUid = (state) => state.user.uid;
 const getAccessToken = (state) => state.user.accessToken;
 const getExpiry = (state) => state.user.expiry;
 
-export function* createAppointment({ photographer_id, owner_id, starting_time, appointment_status}) {
+export function* createAppointment({ photographer_id, user_id, starting_time, appointment_status}) {
     let client = yield select(getClient);
     let uid = yield select(getUid);
     let accessToken = yield select(getAccessToken);
@@ -24,7 +24,7 @@ export function* createAppointment({ photographer_id, owner_id, starting_time, a
     try {
         yield put(AppointmentActions.loadingAppointment(true));
         const response = yield call(axios.post, `/v1/appointments`,
-            {  photographer_id, owner_id, starting_time, appointment_status});
+            {  photographer_id, user_id, starting_time, appointment_status});
         if (response.status === 200) {
             console.log(response.data);
             yield put(AppointmentActions.fetchSuccessAppointment( {...response.data.data} ));

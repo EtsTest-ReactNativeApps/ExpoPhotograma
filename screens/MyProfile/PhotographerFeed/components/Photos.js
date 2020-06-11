@@ -10,7 +10,6 @@ export default function Photos({ navigation, photographer }) {
     const [activity, setActivity] = React.useState(false);
 
     const images = useSelector(state => state.photos.photosFromPhotographer);
-    {console.log("IMAGES " + images)}
 
     setTimeout(()=>{
         setActivity(true);
@@ -26,7 +25,6 @@ export default function Photos({ navigation, photographer }) {
             <View style={styles.photosContainer}>
                 {console.log(images)}
                 {images.map((photo, index) => {
-                    {console.log("URL " + photo.url.thumb.url)}
                     return (
                         <Image
                             source={{ uri: photo.url.thumb.url }}

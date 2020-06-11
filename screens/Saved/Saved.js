@@ -1,20 +1,18 @@
 import React from "react";
 
 import {
-    View, Button, StyleSheet, Image, ImageBackground,
-    ScrollView, TouchableOpacity, FlatList, TextInput, Text, ActivityIndicator
+    View, Image, ImageBackground,
+    ScrollView, TouchableOpacity, TextInput, Text, ActivityIndicator
 } from "react-native";
 import { Feather } from '@expo/vector-icons/build/Icons';
 import {styles} from './saved.style';
 import Colors from "../../constants/Colors";
-import {useDispatch, useSelector} from "react-redux";
-import {SavedActions} from "../../redux/saved";
+import { useSelector} from "react-redux";
 
 const Saved = ({navigation}) => {
     const image = {uri : 'https://images.unsplash.com/photo-1590076082844-9cbfcef747d7?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=700&q=80'}
 
-
-    const likes = useSelector(state => state.saved.objectsSaved);
+    const likes = useSelector(state => state.like.data.data);
     {console.log("From Saved screen" + likes)}
 
     let newArr = [];

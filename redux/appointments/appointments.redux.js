@@ -4,7 +4,7 @@ const { Types, Creators } = createActions({
     loadingAppointment: ['value'],
     fetchSuccessAppointment: ['data'],
     fetchFailedAppointment: ['error'],
-    createAppointment: ['photographer_id','owner_id','starting_time', 'appointment_status'],
+    createAppointment: ['photographer_id','user_id','starting_time', 'appointment_status'],
 
     loadingAppointmentsForCurrentUser: ['value'],
     fetchSuccessAppointmentsForCurrentUser: ['data'],

@@ -8,7 +8,7 @@ import {styles} from './home.style';
 import {useDispatch} from "react-redux";
 import {gallery} from "./gallery";
 import {UserActions} from "../../../redux/user";
-import {SavedActions} from "../../../redux/saved";
+import {LikeActions} from "../../../redux/likes";
 
 export default function Home({navigation}) {
     const dispatch = useDispatch();
@@ -19,7 +19,7 @@ export default function Home({navigation}) {
 
 
     React.useEffect(() => {
-        dispatch(SavedActions.getSavedForUser());
+        dispatch(LikeActions.fetchLikes());
     }, [dispatch]);
 
 

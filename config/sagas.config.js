@@ -8,7 +8,7 @@ import {editPhotographer, PhotographerTypes} from "../redux/photographer";
 import {createAppointment, AppointmentTypes} from "../redux/appointments";
 import {createHashtag, getHashtagsForPhotographer, HashtagTypes} from "../redux/hashtags";
 import {getAppointmentsForCurrentUser} from "../redux/appointments/appointments.sagas";
-import {createLike,deleteLike, LikeTypes} from "../redux/likes";
+import {createLike, deleteLike, fetchLikes, LikeTypes} from "../redux/likes";
 import {getSavedForUser, SavedTypes} from "../redux/saved";
 
 export default function* rootSaga() {
@@ -26,11 +26,16 @@ export default function* rootSaga() {
         yield all([takeEvery(PhotographerTypes.EDIT_PHOTOGRAPHER, editPhotographer)]);
         yield all([takeEvery(AppointmentTypes.CREATE_APPOINTMENT, createAppointment)]);
         yield all([takeEvery(AppointmentTypes.GET_APPOINTMENTS_FOR_CURRENT_USER, getAppointmentsForCurrentUser)]);
+
+        //HASHTAGS
         yield all([takeEvery(HashtagTypes.CREATE_HASHTAG, createHashtag)]);
         yield all([takeLatest(HashtagTypes.GET_HASHTAGS_FOR_PHOTOGRAPHER, getHashtagsForPhotographer)]);
-        yield all([takeLatest(SavedTypes.GET_SAVED_FOR_USER, getSavedForUser)]);
-        yield all([takeEvery(LikeTypes.CREATE_LIKE, createLike)]);
-        yield all([takeEvery(LikeTypes.DELETE_LIKE, deleteLike)]);
+
+        //LIKES
+        yield all([takeLatest(LikeTypes.FETCH_LIKES, fetchLikes)]);
+        yield all([takeLatest(LikeTypes.CREATE_LIKE, createLike)]);
+        yield all([takeLatest(LikeTypes.DELETE_LIKE, deleteLike)]);
+
 
     } catch (err) {
         console.log(err);
