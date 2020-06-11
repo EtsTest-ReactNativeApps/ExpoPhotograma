@@ -1,7 +1,9 @@
 import React from "react";
 
-import {View, Button, StyleSheet, Image, ImageBackground,
-    ScrollView, TouchableOpacity, FlatList, TextInput, Text} from "react-native";
+import {
+    View, Button, StyleSheet, Image, ImageBackground,
+    ScrollView, TouchableOpacity, FlatList, TextInput, Text, ActivityIndicator
+} from "react-native";
 import { Feather } from '@expo/vector-icons/build/Icons';
 import {styles} from './saved.style';
 import Colors from "../../constants/Colors";
@@ -13,12 +15,16 @@ const Saved = ({navigation}) => {
 
 
     const likes = useSelector(state => state.saved.objectsSaved);
-    {console.log(likes)}
+    {console.log("From Saved screen" + likes)}
 
     let newArr = [];
     likes.map( item => newArr.push(item));
     let uniqueArray = Array.from(new Set(newArr));
 
+    const [activity, setActivity] = React.useState(false);
+    setTimeout(()=>{
+        setActivity(true);
+    },2000);
 
     const renderHashtags = (item, key) => {
         return (
@@ -92,10 +98,14 @@ const Saved = ({navigation}) => {
                         </Text>
                 </View>
                 </View>
-            <View style = {{paddingRight: 16, paddingLeft: 16}}>
-                {likes && uniqueArray.map(item => renderHashtags(item))}
-            </View>
 
+                {activity === false ?
+                    <ActivityIndicator color={Colors.MY_RED} style={{marginBottom: 20, marginTop: 20}}/>
+                    :
+                    <View style={{paddingRight: 16, paddingLeft: 16}}>
+                        {likes && uniqueArray.map(item => renderHashtags(item))}
+                    </View>
+                }
             </ScrollView>
         </View>
     );

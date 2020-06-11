@@ -30,10 +30,12 @@ const PhotographerFeedDash = ({ route, navigation }) =>{
         }, [dispatch]);
 
     const photographer = useSelector(state => state.photographers.data);
-    {console.log(photographer)}
 
+    const [activity, setActivity] = React.useState(false);
+    setTimeout(()=>{
+        setActivity(true);
+    },3000);
 
-    {console.log("CITY " + city)}
     return (
         <View style = {styles.container}>
             <View>
@@ -113,6 +115,10 @@ const PhotographerFeedDash = ({ route, navigation }) =>{
                         </Text>
 
                         <View>
+
+                            {activity === false?
+                                <ActivityIndicator color={Colors.MY_RED} style={{marginBottom: 20, marginTop:20}}/>
+                                :
                             <FlatList
                                 horizontal={true}
                                 data={photographer}
@@ -133,7 +139,7 @@ const PhotographerFeedDash = ({ route, navigation }) =>{
                                                 </View>
                                             </TouchableOpacity>
                                         </View>)
-                                }}/>
+                                }}/>}
                         </View>
                     </View>
 

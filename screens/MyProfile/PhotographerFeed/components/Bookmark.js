@@ -3,7 +3,7 @@ import { View, StyleSheet, Text, TouchableOpacity} from "react-native";
 import {Feather, Ionicons} from "@expo/vector-icons";
 import { gs, colors } from "../styles";
 import {LikeActions} from "../../../../redux/likes";
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {SavedActions} from "../../../../redux/saved";
 
 
@@ -16,14 +16,15 @@ export default function Bookmark({navigation , photographer}) {
         () => {
             setLiked(!liked);
             dispatch(LikeActions.createLike(photographer.attributes.user_id));
+            dispatch(SavedActions.getSavedForUser());
         },
         [dispatch]
     );
-
-    React.useEffect(() => {
-        dispatch(SavedActions.getSavedForUser());
-    }, [dispatch]);
-
+    //
+    // React.useEffect(() => {
+    //     dispatch(SavedActions.getSavedForUser());
+    // }, [dispatch]);
+    //
 
     return (
         <TouchableOpacity onPress={() => onSave()} style={styles.bookmark}>

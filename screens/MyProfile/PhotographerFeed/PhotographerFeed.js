@@ -1,5 +1,5 @@
 import React from "react";
-import { View, StyleSheet, StatusBar, ScrollView } from "react-native";
+import { View, StyleSheet, StatusBar, ScrollView, ActivityIndicator } from "react-native";
 import { colors } from "./styles";
 import Header from "./components/Header";
 import About from "./components/About";
@@ -18,7 +18,6 @@ import {HashtagActions} from "../../../redux/hashtags";
 export const PhotographerFeed = ({route, navigation}) =>{
 
     const { photographer } = route.params;
-
     const dispatch = useDispatch();
     React.useEffect(() => {
         dispatch(PhotosActions.photosByPhotographer(photographer.attributes.id));
@@ -30,6 +29,7 @@ export const PhotographerFeed = ({route, navigation}) =>{
     }, [dispatch]);
 
     return (
+
         <ScrollView style={styles.container}>
             <StatusBar barStyle="light-content" />
 
