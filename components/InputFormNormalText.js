@@ -3,7 +3,7 @@ import {MonoText} from "./StyledText";
 import { TextInput, View} from "react-native";
 import { styles } from './globalStyle'
 
-export const InputFormNormalText = ({ name, value, ...rest}) => (
+export const InputFormNormalText = ({ name, value, placeholder,placeholderTextColor, ...rest}) => (
             <View style={{ marginTop: 32 }}>
                 <MonoText style={styles.inputTitle}>{ name }</MonoText>
                 <TextInput
@@ -12,6 +12,8 @@ export const InputFormNormalText = ({ name, value, ...rest}) => (
                     autoCapitalize="none"
                     name= { name }
                     value= { value }
+                    placeholder= {placeholder}
+                    placeholderTextColor= {placeholderTextColor}
                 />
             </View>
         );

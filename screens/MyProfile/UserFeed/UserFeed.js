@@ -11,15 +11,20 @@ import AmenitiesUserPhotographer from "./components/AmenitiesUserPhotographer";
 import AboutUserPhotographer from "./components/AboutUserPhotographer";
 import {HashtagActions} from "../../../redux/hashtags";
 import {AppointmentActions} from "../../../redux/appointments";
+import {UserActions} from "../../../redux/user";
+import ExtrasPhotographer from "./components/ExtrasPhotographer";
 
 
 
 export default function UserFeed({navigation}) {
     const photographerInfo = useSelector(state => state.user.photographerInfo);
-    {console.log(photographerInfo.length)}
-
     const avatar = useSelector(state => state.user.avatar);
-    {console.log("AVATAR: " + avatar.url)}
+    const dispatch = useDispatch();
+
+    React.useEffect(() => {
+        dispatch(UserActions.info());
+    }, [dispatch]);
+
     {if (photographerInfo.length === 0)
         //USER
         return (
@@ -40,7 +45,6 @@ export default function UserFeed({navigation}) {
         //PHOTOGRAPHER
         const photographer_id = useSelector(state => state.user.photographerInfo.id);
 
-        const dispatch = useDispatch();
         React.useEffect(() => {
             dispatch(HashtagActions.getHashtagsForPhotographer(photographer_id));
         }, [dispatch]);
@@ -59,6 +63,7 @@ export default function UserFeed({navigation}) {
                     <AboutUserPhotographer navigation={navigation} photographer={photographerInfo}/>
                     <BookmarkUser navigation={navigation} />
                     <AmenitiesUserPhotographer navigation={navigation} photographer={photographerInfo} />
+                    <ExtrasPhotographer navigation={navigation} />
                 </View>
             </View>
         );}

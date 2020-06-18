@@ -1,5 +1,5 @@
 
 import PhotographerActions, { PhotographerTypes, photographerReducer } from './photographer.redux';
-import { editPhotographer } from './photographer.sagas';
+import { editPhotographer, createPhotographer } from './photographer.sagas';
 
-export { photographerReducer, PhotographerTypes, PhotographerActions, editPhotographer };
+export { photographerReducer, PhotographerTypes, PhotographerActions, editPhotographer, createPhotographer };

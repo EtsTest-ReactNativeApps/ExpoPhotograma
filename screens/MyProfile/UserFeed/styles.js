@@ -24,6 +24,11 @@ export const gs = StyleSheet.create({
         color: colors.text,
         fontSize: 15,
     },
+    sectionTitle2: {
+        fontWeight: "700",
+        color: colors.text,
+        fontSize: 16
+    },
     sectionTitlePhotographer: {
         fontWeight: "700",
         color: Colors.MY_RED,

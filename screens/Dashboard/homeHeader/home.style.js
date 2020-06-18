@@ -101,7 +101,7 @@ export const styles = StyleSheet.create({
     imageTextViewBig:{
         width: '92%',
         height: 70,
-        marginTop: 250,
+        marginTop: 180,
         borderBottomRightRadius: 10,
         borderBottomLeftRadius: 10,
         position: 'absolute',
