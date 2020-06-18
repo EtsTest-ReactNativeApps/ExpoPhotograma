@@ -4,19 +4,18 @@ import { gs, colors } from "../styles";
 import {useDispatch, useSelector} from "react-redux";
 
 export default function AboutUser({navigation} ) {
-    const name = useSelector(state => state.user.data.name);
-    const phone = useSelector(state => state.user.data.phone);
-    const photographer = useSelector(state => state.user.photographerInfo);
-    const photographerAddress = useSelector(state => state.user.photographerAddress);
+    const name = useSelector(state => state.user.name);
+    const phone = useSelector(state => state.user.phone);
+    const email = useSelector(state => state.user.email);
 
-    {console.log(photographerAddress)}
     return (
         <View style={styles.container}>
-            <Text style={gs.title}>My Profile 👤</Text>
-            <Text style={gs.title2}>{name}</Text>
-            <View style={gs.divider} />
+            <Text style={gs.title}>👤 {name}</Text>
 
-            <Text style={gs.sectionTitle}>Phone number {phone}</Text>
+            <View style={gs.divider} />
+            <Text style={gs.title3}>My info:</Text>
+            <Text style={{...gs.sectionTitle2, padding: 5}}>✉️ Email: {email}</Text>
+            <Text style={{...gs.sectionTitle2, padding: 5}}>📱 Phone number: {phone}</Text>
         </View>
     );
 }

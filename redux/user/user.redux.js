@@ -19,12 +19,18 @@ const { Types, Creators } = createActions({
     editLoading: ['value'],
     editSuccess: ['data'],
     editFailure: ['data'],
-    edit: ['name', 'username', 'phone', 'role_ids'],
+    edit: ['name', 'phone'],
 
     infoLoading: ['value'],
     infoSuccess: ['data'],
     infoFailure: ['error'],
-    info: []
+    info: [],
+
+
+    logoutLoading: ['value'],
+    logoutSuccess: [],
+    logoutFailure: [],
+    logout: [],
 
 });
 
@@ -76,4 +82,8 @@ export const userReducer = createReducer(INITIAL_STATE, {
     [Types.INFO_LOADING]: (state, { value }) => ({ ...state, loading: value }),
     [Types.INFO_SUCCESS]: (state, { data }) => ({ ...state, ...data }),
     [Types.INFO_FAILURE]: (state, { data }) => ({ ...state, error: data }),
+
+    [Types.LOGOUT_LOADING]: (state, { value }) => ({ ...state, loading: value }),
+    [Types.LOGOUT_SUCCESS]: state => ({...state, loggedIn: false }),
+    [Types.LOGOUT_FAILURE]: (state, { data }) => ({ ...state, error: data }),
 });

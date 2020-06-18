@@ -1,30 +1,44 @@
 import * as React from 'react';
 import Colors from "../../../../constants/Colors";
 
-import {Formik} from "formik";
+import {default as formik, Formik} from "formik";
 import { Fragment } from "react";
 import {useDispatch, useSelector} from "react-redux";
-import {InputFormNormalText} from "../../../../components/InputFormNormalText";
-import {View, Button, Alert} from "react-native";
+import {Alert, Picker, TextInput, View} from "react-native";
 import {ButtonSignIn} from "../../../../components/ButtonSignIn";
 import { PhotographerActions } from "../../../../redux/photographer";
 import {LinearGradient} from "expo-linear-gradient";
 import {styles} from "../../../styles";
+import {InputFormNormalText} from "../../../../components/InputFormNormalText";
 import {InputFormTextArea} from "../../../../components/InputFormTextArea";
 
 
 // ----FOR REDUX-SAGA-----
 
-const EditForm = ({navigation}) => {
+const BecomePhotographerForm = ({navigation}) => {
     const dispatch = useDispatch();
-    const myDescription = useSelector(state => state.user.photographerInfo.description);
-    const myCameraDescription = useSelector(state => state.user.photographerInfo.cameraDescription);
-    const mySecondDescription = useSelector(state => state.user.photographerInfo.secondDescription);
+
 
     const onSignUp = React.useCallback(
         values => {
-            const { description, secondDescription, cameraDescription} = values;
-            dispatch(PhotographerActions.editPhotographer(description, secondDescription, cameraDescription));
+            const { description, secondDescription, cameraDescription, rating, price, city} = values;
+            dispatch(PhotographerActions.createPhotographer(
+                description,
+                secondDescription,
+                cameraDescription,
+                rating,
+                price,
+                city));
+
+            Alert.alert(
+                "Welcome to the photographers' world 📷️",
+                "Please log in again or reload the application to have everything set" ,
+                [
+
+                    { text: "Thank you ❤️", onPress: () => {console.log("OK Pressed")} }
+                ],
+                { cancelable: false }
+            );
             navigation.goBack();
         },
         [dispatch, navigation]
@@ -32,10 +46,11 @@ const EditForm = ({navigation}) => {
     );
 
     return (
-        <Formik initialValues={{description: myDescription, secondDescription: mySecondDescription, cameraDescription: myCameraDescription}}
+        <Formik initialValues={{description: '', secondDescription: '', cameraDescription: '', rating: '', price: '', city: ''}}
                 onSubmit={ onSignUp }>
             {({ handleChange, values, handleSubmit, handleBlur}) => (
                 <Fragment>
+
 
                     <InputFormTextArea name="description"
                                        value={values.description}
@@ -52,11 +67,26 @@ const EditForm = ({navigation}) => {
                                        onChangeText={handleChange('cameraDescription')}
                                        onBlur={handleBlur('cameraDescription')}/>
 
+                    <InputFormNormalText name="rating"
+                                         value={values.rating}
+                                         onChangeText={handleChange('rating')}
+                                         onBlur={handleBlur('rating')}/>
+
+                    <InputFormNormalText name="price"
+                                         value={values.price}
+                                         onChangeText={handleChange('price')}
+                                         onBlur={handleBlur('price')}/>
+
+                    <InputFormNormalText name="city"
+                                         value={values.city}
+                                         onChangeText={handleChange('city')}
+                                         onBlur={handleBlur('city')}/>
+
                     <View>
                         <LinearGradient
                             colors={[Colors.LIGHT_GREY,Colors.FIRST_RED, Colors.SECOND_RED]}
                             style={{ ...styles.buttonSignIn, marginTop: 40}}>
-                            <ButtonSignIn text="EDIT"
+                            <ButtonSignIn text="Become photographer"
                                           onPress={ handleSubmit }
                                           style={{fontSize: 20, fontWeight: 'bold', color: Colors.WHITE }}
                             />
@@ -68,4 +98,4 @@ const EditForm = ({navigation}) => {
     )
 };
 
-export default EditForm;
+export default BecomePhotographerForm;

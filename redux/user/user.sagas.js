@@ -113,7 +113,7 @@ export function* update({nameUrl}) {
 }
 
 
-export function* edit({name, username, phone, role_ids}) {
+export function* edit({name, phone}) {
 
     let client = yield select(getClient);
     let uid = yield select(getUid);
@@ -130,17 +130,17 @@ export function* edit({name, username, phone, role_ids}) {
     axios.defaults.headers.common['client'] = client;
 
     try {
-        yield put(UserActions.updateLoading(true));
-        const response = yield call(axios.put, `/v1/users/${id}`, {name, username, phone, role_ids});
+        yield put(UserActions.editLoading(true));
+        const response = yield call(axios.put, `/v1/users/${id}`, {name, phone});
         if (response.status === 200) {
             console.log(response.data);
-            yield put(UserActions.updateSuccess({
+            yield put(UserActions.editSuccess({
                 ...response.data.data,
             }));
         }
-        yield put(UserActions.updateLoading(false));
+        yield put(UserActions.editLoading(false));
     } catch (error) {
-        yield put(UserActions.updateFailure('Something went wrong!'));
+        yield put(UserActions.editFailure('Something went wrong!'));
     }
 }
 
@@ -177,5 +177,23 @@ export function* info({}) {
         yield put(UserActions.infoLoading(false));
     } catch (error) {
         yield put(UserActions.infoFailure('Something went wrong!'));
+    }
+}
+
+
+export function* logout() {
+    try {
+        yield put(UserActions.logoutLoading(true));
+        const response = yield call(axios.delete, '/v1/auth/sign_out.json');
+        if (response.status === 200) {
+            console.log(response.data);
+            delete axios.defaults.headers.common.Authorization;
+
+            yield put(UserActions.logoutSuccess());
+
+        }
+        yield put(UserActions.logoutLoading(false));
+    } catch (error) {
+        yield put(UserActions.logoutFailure('Could not log out!'));
     }
 }

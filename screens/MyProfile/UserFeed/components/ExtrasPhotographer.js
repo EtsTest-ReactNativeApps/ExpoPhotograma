@@ -1,17 +1,23 @@
 import React from "react";
 import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 import { gs, colors } from "../styles";
+import {useDispatch} from "react-redux";
+import {UserActions} from "../../../../redux/user";
 
-export default function ExtrasUser({ navigation }) {
-    const goToBecomePhotographerScreen  = () => {
-        navigation.navigate("BecomePhotographerScreen")};
+export default function ExtrasPhotographer({ navigation }) {
 
-
+    const dispatch = useDispatch();
+    const onLogOut = React.useCallback(
+        () => {
+            dispatch(UserActions.logout());
+        },
+        [dispatch],
+    );
     return (
         <View style={styles.container}>
             <View style={{ marginBottom: -40 }}>
-                <TouchableOpacity style={styles.filterButton} onPress={goToBecomePhotographerScreen}>
-                    <Text style={{ fontWeight: "700", color: "#fff" }}>Become a photographer</Text>
+                <TouchableOpacity style={styles.filterButton} onPress={onLogOut}>
+                    <Text style={{ fontWeight: "700", color: "#fff" }}>Log out</Text>
                 </TouchableOpacity>
             </View>
         </View>

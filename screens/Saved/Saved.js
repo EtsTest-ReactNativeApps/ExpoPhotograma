@@ -1,24 +1,28 @@
 import React from "react";
 
-import {View, Button, StyleSheet, Image, ImageBackground,
-    ScrollView, TouchableOpacity, FlatList, TextInput, Text} from "react-native";
+import {
+    View, Image, ImageBackground,
+    ScrollView, TouchableOpacity, TextInput, Text, ActivityIndicator
+} from "react-native";
 import { Feather } from '@expo/vector-icons/build/Icons';
 import {styles} from './saved.style';
 import Colors from "../../constants/Colors";
-import {useDispatch, useSelector} from "react-redux";
-import {SavedActions} from "../../redux/saved";
+import { useSelector} from "react-redux";
 
 const Saved = ({navigation}) => {
     const image = {uri : 'https://images.unsplash.com/photo-1590076082844-9cbfcef747d7?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=700&q=80'}
 
-
-    const likes = useSelector(state => state.saved.objectsSaved);
-    {console.log(likes)}
+    const likes = useSelector(state => state.like.data.data);
+    {console.log("From Saved screen" + likes)}
 
     let newArr = [];
     likes.map( item => newArr.push(item));
     let uniqueArray = Array.from(new Set(newArr));
 
+    const [activity, setActivity] = React.useState(false);
+    setTimeout(()=>{
+        setActivity(true);
+    },2000);
 
     const renderHashtags = (item, key) => {
         return (
@@ -92,10 +96,14 @@ const Saved = ({navigation}) => {
                         </Text>
                 </View>
                 </View>
-            <View style = {{paddingRight: 16, paddingLeft: 16}}>
-                {likes && uniqueArray.map(item => renderHashtags(item))}
-            </View>
 
+                {activity === false ?
+                    <ActivityIndicator color={Colors.MY_RED} style={{marginBottom: 20, marginTop: 20}}/>
+                    :
+                    <View style={{paddingRight: 16, paddingLeft: 16}}>
+                        {likes && uniqueArray.map(item => renderHashtags(item))}
+                    </View>
+                }
             </ScrollView>
         </View>
     );

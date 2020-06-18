@@ -14,8 +14,7 @@ import {AppointmentActions} from "../../../redux/appointments";
 
 
 export const BookingCalendarScreen = ({route, navigation}) =>{
-    const owner_id = useSelector(state => state.user.data.id);
-
+    const user_id = useSelector(state => state.user.data.id);
 
     const { photographer } = route.params;
     const appointment_status  = "ACTIVE";
@@ -46,7 +45,7 @@ export const BookingCalendarScreen = ({route, navigation}) =>{
             { cancelable: false }
         );
 
-        dispatch(AppointmentActions.createAppointment(photographer, owner_id, new Date(selectedStartDate) , appointment_status));
+        dispatch(AppointmentActions.createAppointment(photographer, user_id, new Date(selectedStartDate) , appointment_status));
             navigation.goBack();
         };
 

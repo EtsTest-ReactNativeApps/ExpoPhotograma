@@ -2,33 +2,40 @@ import React from "react";
 import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 import { Ionicons, FontAwesome5 } from "@expo/vector-icons";
 import { gs, colors } from "../styles";
+import {useDispatch} from "react-redux";
+import {UserActions} from "../../../../redux/user";
+
+
 
 export default function AmenitiesUser({ navigation }) {
+
+    const dispatch = useDispatch();
+    const onLogOut = React.useCallback(
+        () => {
+            dispatch(UserActions.logout());
+        },
+        [dispatch],
+    );
+
     return (
         <View style={gs.sectionContainer}>
             <Text style={gs.sectionTitle}>Edit Information</Text>
 
             <View style={styles.amenitiesContainer}>
                 <View style={styles.amenityContainer}>
-                    <TouchableOpacity style={styles.amenity}>
+                    <TouchableOpacity style={styles.amenity} onPress={()=> navigation.navigate("EditUserScreen")}>
                         <FontAwesome5 name="edit" size={24} color={colors.lightHl} style={{marginLeft: 5}}/>
                     </TouchableOpacity>
                     <Text style={styles.amenityName}>Edit info</Text>
                 </View>
 
-                <TouchableOpacity style={styles.amenityContainer}>
+                <TouchableOpacity style={styles.amenityContainer} onPress={onLogOut}>
                     <View style={styles.amenity}>
-                        <Ionicons name="md-camera" size={24} color={colors.lightHl} />
+                        <Ionicons name="md-log-out" size={24} color={colors.lightHl} />
                     </View>
-                    <Text style={styles.amenityName}>Preferences</Text>
+                    <Text style={styles.amenityName}>Log out</Text>
                 </TouchableOpacity>
 
-                <TouchableOpacity style={styles.amenityContainer}>
-                    <View style={styles.amenity}>
-                        <FontAwesome5 name="bookmark" size={20} color={colors.lightHl} />
-                    </View>
-                    <Text style={styles.amenityName}>Future appointments</Text>
-                </TouchableOpacity>
             </View>
         </View>
     );

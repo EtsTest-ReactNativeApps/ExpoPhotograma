@@ -2,9 +2,12 @@ import React from "react";
 import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 import { Ionicons, FontAwesome5 } from "@expo/vector-icons";
 import { gs, colors } from "../styles";
+import {useDispatch} from "react-redux";
+import {UserActions} from "../../../../redux/user";
 
 
 export default function AmenitiesUserPhotographer({ navigation }) {
+
     return (
         <View style={gs.sectionContainer}>
             <Text style={gs.sectionTitlePhotographer}>Edit Information 📷</Text>
@@ -12,9 +15,9 @@ export default function AmenitiesUserPhotographer({ navigation }) {
             <View style={styles.amenitiesContainer}>
                 <View style={styles.amenityContainer}>
                     <TouchableOpacity style={styles.amenity} onPress={()=> navigation.navigate("EditScreen")}>
-                        <FontAwesome5 name="edit" size={24} color={colors.lightHl} style={{marginLeft: 5}}/>
+                        <FontAwesome5 name="camera" size={24} color={colors.lightHl} />
                     </TouchableOpacity>
-                    <Text style={styles.amenityName}>Edit my information</Text>
+                    <Text style={styles.amenityName}>Edit photographer</Text>
                 </View>
 
 
@@ -22,8 +25,16 @@ export default function AmenitiesUserPhotographer({ navigation }) {
                     <View style={styles.amenity}>
                         <FontAwesome5 name="bookmark" size={20} color={colors.lightHl} />
                     </View>
-                    <Text style={styles.amenityName}>Future appointments</Text>
+                    <Text style={styles.amenityName}>{`Future \n Appointments`}</Text>
                 </TouchableOpacity>
+
+                <TouchableOpacity style={styles.amenityContainer} onPress={()=> navigation.navigate("EditUserScreen")}>
+                    <View style={styles.amenity}>
+                        <Ionicons name="md-create" size={24} color={colors.lightHl} />
+                    </View>
+                    <Text style={styles.amenityName}>{`Edit \n Information`}</Text>
+                </TouchableOpacity>
+
             </View>
         </View>
     );
