@@ -1,7 +1,7 @@
 import React from "react";
 
 import {
-    View, Button, StyleSheet, Image, ImageBackground,
+    View, Image, ImageBackground,
     ScrollView, TouchableOpacity, FlatList, TextInput, Text, ActivityIndicator
 } from "react-native";
 import Colors from "../../../constants/Colors";
@@ -23,48 +23,6 @@ export default function Home({navigation}) {
         dispatch(LikeActions.fetchLikes());
     }, [dispatch]);
 
-
-    const [activity, setActivity] = React.useState(false);
-    const myLikes = useSelector(state => state.like.data.data);
-    const [weHaveLikes, setWeHaveLikes] = React.useState(false);
-
-
-    setTimeout(()=>{
-        console.log("GET MY LIKES" + myLikes);
-        if (myLikes === undefined)
-            setWeHaveLikes(false);
-        else setWeHaveLikes(true);
-        console.log("WE HAVE LIKES?" + weHaveLikes);
-        setActivity(true);
-
-    },4000);
-
-    const renderHashtags = (myLikes) => {
-        const item = myLikes[0];
-        return (
-            <TouchableOpacity style={{marginBottom: 30}} >
-                <Image
-                    source={{uri: item.attributes.avatar.url}}
-                    style={styles.imageBig}/>
-                <View style={styles.imageTextViewBig}>
-                    <View style={{position: 'absolute', bottom: 0, padding: 16}}>
-                        <View style={{flexDirection: 'row'}}>
-                            <View style={{flexDirection: 'column'}}>
-                                <Feather name='camera' size={22} color='#000'
-                                         style={styles.imageLocationPinBig}/>
-                            </View>
-
-                            <View style={{flexDirection: 'column', marginBottom: -8}}>
-                                <Text style={{...styles.imageTextBig, fontWeight: 'bold'}}>{item.attributes.name}</Text>
-                                <Text style={{...styles.imageTextBig, fontWeight: 'normal'}}>{item.attributes.photographer[0].city}</Text>
-                            </View>
-
-                        </View>
-                    </View>
-                </View>
-            </TouchableOpacity>
-        );
-    };
 
     const image = {uri : 'https://images.unsplash.com/photo-1590076082844-9cbfcef747d7?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=700&q=80'};
     const recentImage = {uri : 'https://images.unsplash.com/photo-1502602898657-3e91760cbb34?ixlib=rb-1.2.1&auto=format&fit=crop&w=1352&q=80}'};
@@ -158,39 +116,30 @@ export default function Home({navigation}) {
                         </TouchableOpacity>
                     </View>
 
-
-                    {activity === false ?
-                        <ActivityIndicator color={Colors.MY_RED} style={{marginBottom: 20, marginTop: 20}}/>
-                        :
-
                         <View>
-                            {
-                                weHaveLikes ? renderHashtags(myLikes)
-                            :
-                                  <View>
-                                      <Image
-                                          source={recentImage}
-                                          style={styles.imageBig}/>
-                                      <View style={styles.imageTextViewBig}>
-                                          <View style={{position: 'absolute', bottom: 0, padding: 16}}>
-                                              <View style={{flexDirection: 'row'}}>
-                                                  <View style={{flexDirection: 'column'}}>
-                                                      <Feather name='camera' size={22} color='#000'
-                                                               style={styles.imageLocationPinBig}/>
-                                                  </View>
 
-                                                  <View style={{flexDirection: 'column', marginBottom: -4}}>
-                                                      <Text style={{...styles.imageTextBig, fontWeight: 'bold'}}>Photographer name</Text>
-                                                      <Text style={{...styles.imageTextBig, fontWeight: 'normal'}}>Location</Text>
-                                                  </View>
-
-                                              </View>
+                          <View>
+                              <Image
+                                  source={recentImage}
+                                  style={styles.imageBig}/>
+                              <View style={styles.imageTextViewBig}>
+                                  <View style={{position: 'absolute', bottom: 0, padding: 16}}>
+                                      <View style={{flexDirection: 'row'}}>
+                                          <View style={{flexDirection: 'column'}}>
+                                              <Feather name='camera' size={22} color='#000'
+                                                       style={styles.imageLocationPinBig}/>
                                           </View>
+
+                                          <View style={{flexDirection: 'column', marginBottom: -4}}>
+                                              <Text style={{...styles.imageTextBig, fontWeight: 'bold'}}>Nicu N.</Text>
+                                              <Text style={{...styles.imageTextBig, fontWeight: 'normal'}}>Cluj-Napoca</Text>
+                                          </View>
+
                                       </View>
                                   </View>
-                            }
+                              </View>
+                              </View>
                         </View>
-                    }
                 </View>
             </ScrollView>
         </View>

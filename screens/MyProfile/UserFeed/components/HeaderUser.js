@@ -9,7 +9,8 @@ import * as ImagePicker from "expo-image-picker";
 import {UserActions} from "../../../../redux/user";
 
 
-function HeaderUser ({avatar, navigation }) {
+function HeaderUser ({navigation }) {
+    const avatar = useSelector(state => state.user.avatar.url);
 
     let [selectedImage, setSelectedImage] = React.useState(null);
     const dispatch = useDispatch();
@@ -60,7 +61,6 @@ function HeaderUser ({avatar, navigation }) {
                         </TouchableOpacity>
                     }</>
             }
-            {/*<Image source={require("../../../../assets/hotel.jpg")} style={{ width: "100%", height: 400 }} />*/}
 
             <View style={styles.topButtons}>
                 <TouchableOpacity onPress={goToHome}>

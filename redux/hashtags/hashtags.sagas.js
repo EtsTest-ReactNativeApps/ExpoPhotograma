@@ -67,3 +67,33 @@ export function* getHashtagsForPhotographer({photographer_id}) {
         yield put(HashtagActions.fetchFailedHashtagsForPhotographer('BAD'));
     }
 }
+
+export function* getHashtagsForMyProfile({photographer_id}) {
+    let client = yield select(getClient);
+    let uid = yield select(getUid);
+    let accessToken = yield select(getAccessToken);
+    let expiry = yield select(getExpiry);
+
+    const token = 'Bearer';
+    axios.defaults.headers.common['expiry'] = expiry;
+    axios.defaults.headers.common['token-type'] = token;
+    axios.defaults.headers.common['access-token'] = accessToken;
+    axios.defaults.headers.common['uid'] = uid;
+    axios.defaults.headers.common['client'] = client;
+
+    try {
+        yield put(HashtagActions.loadingHashtagsForMyProfile(true));
+        const response = yield call(axios.get, `/v1/hashtags?photographer_id=${photographer_id}`);
+        if (response.status === 200) {
+            console.log(response.data);
+            const objects = response.data.data;
+            console.log("MY DATA" + objects);
+
+            yield put(HashtagActions.fetchSuccessHashtagsForMyProfile( {...response.data.data, myHashtags: objects} ));
+        }
+        yield put(HashtagActions.loadingHashtagsForMyProfile(false));
+    } catch (error) {
+        yield put(HashtagActions.loadingHashtagsForMyProfile(false));
+        yield put(HashtagActions.fetchFailedHashtagsForMyProfile('BAD'));
+    }
+}

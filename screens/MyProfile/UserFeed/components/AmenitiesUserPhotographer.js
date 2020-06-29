@@ -2,11 +2,18 @@ import React from "react";
 import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 import { Ionicons, FontAwesome5 } from "@expo/vector-icons";
 import { gs, colors } from "../styles";
-import {useDispatch} from "react-redux";
-import {UserActions} from "../../../../redux/user";
+import {useDispatch, useSelector} from "react-redux";
+import {AppointmentActions} from "../../../../redux/appointments";
 
 
 export default function AmenitiesUserPhotographer({ navigation }) {
+    const dispatch = useDispatch();
+
+    const photographerInfo = useSelector(state => state.user.photographerInfo);
+
+    React.useEffect(() => {
+        dispatch(AppointmentActions.getAppointmentsForCurrentUser(photographerInfo.id));
+    }, [dispatch]);
 
     return (
         <View style={gs.sectionContainer}>

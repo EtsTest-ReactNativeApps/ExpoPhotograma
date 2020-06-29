@@ -3,14 +3,22 @@ import {View, Text, StyleSheet} from "react-native";
 import { gs, colors } from "../styles";
 import {useDispatch, useSelector} from "react-redux";
 import Colors from "../../../../constants/Colors";
+import {HashtagActions} from "../../../../redux/hashtags";
 
 
 export default function AboutUserPhotographer({photographer, navigation} ) {
+    const photographerInfo = useSelector(state => state.user.photographerInfo);
+    const dispatch = useDispatch();
+
+    React.useEffect(() => {
+        dispatch(HashtagActions.getHashtagsForMyProfile(photographerInfo.id));
+    }, [dispatch]);
+
     const name = useSelector(state => state.user.data.name);
     const email = useSelector(state => state.user.data.email);
     const phone = useSelector(state => state.user.data.phone);
     const photographerAddress = useSelector(state => state.user.photographerAddress);
-    const hashtags = useSelector(state => state.hashtag.objectsHashtags);
+    const hashtags = useSelector(state => state.hashtag.myHashtags);
 
     let newArr = [];
     hashtags.map( item => newArr.push(item.attributes.name));
