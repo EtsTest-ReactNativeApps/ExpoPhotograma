@@ -182,12 +182,24 @@ export function* info({}) {
 
 
 export function* logout() {
+    let client = yield select(getClient);
+    let uid = yield select(getUid);
+    let accessToken = yield select(getAccessToken);
+    let expiry = yield select(getExpiry);
+
+
+    const token = 'Bearer';
+    axios.defaults.headers.common['expiry'] = expiry;
+    axios.defaults.headers.common['token-type'] = token;
+    axios.defaults.headers.common['access-token'] = accessToken;
+    axios.defaults.headers.common['uid'] = uid;
+    axios.defaults.headers.common['client'] = client;
+
     try {
         yield put(UserActions.logoutLoading(true));
         const response = yield call(axios.delete, '/v1/auth/sign_out.json');
         if (response.status === 200) {
-            console.log(response.data);
-            delete axios.defaults.headers.common.Authorization;
+            console.log("DELETE" + response.data.success);
 
             yield put(UserActions.logoutSuccess());
 

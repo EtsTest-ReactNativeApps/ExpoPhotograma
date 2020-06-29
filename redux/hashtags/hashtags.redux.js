@@ -9,8 +9,12 @@ const { Types, Creators } = createActions({
     loadingHashtagsForPhotographer: ['value'],
     fetchSuccessHashtagsForPhotographer: ['data'],
     fetchFailedHashtagsForPhotographer: ['error'],
-    getHashtagsForPhotographer: ['photographer_id']
+    getHashtagsForPhotographer: ['photographer_id'],
 
+    loadingHashtagsForMyProfile: ['value'],
+    fetchSuccessHashtagsForMyProfile: ['data'],
+    fetchFailedHashtagsForMyProfile: ['error'],
+    getHashtagsForMyProfile: ['photographer_id']
 });
 
 
@@ -20,6 +24,7 @@ export default Creators;
 const INITIAL_STATE = {
     loading: false,
     objectsHashtags: [],
+    myHashtags: []
 };
 
 export const hashtagReducer = createReducer(INITIAL_STATE, {
@@ -29,5 +34,9 @@ export const hashtagReducer = createReducer(INITIAL_STATE, {
 
     [Types.LOADING_HASHTAGS_FOR_PHOTOGRAPHER]: (state, { value }) => ({ ...state, loading: value }),
     [Types.FETCH_SUCCESS_HASHTAGS_FOR_PHOTOGRAPHER]: (state, { data }) => ({ ...state, ...data }),
-    [Types.FETCH_FAILED_HASHTAGS_FOR_PHOTOGRAPHER]: (state, { data }) => ({ ...state, error: data })
+    [Types.FETCH_FAILED_HASHTAGS_FOR_PHOTOGRAPHER]: (state, { data }) => ({ ...state, error: data }),
+
+    [Types.LOADING_HASHTAGS_FOR_MY_PROFILE]: (state, { value }) => ({ ...state, loading: value }),
+    [Types.FETCH_SUCCESS_HASHTAGS_FOR_MY_PROFILE]: (state, { data }) => ({ ...state, ...data }),
+    [Types.FETCH_FAILED_HASHTAGS_FOR_MY_PROFILE]: (state, { data }) => ({ ...state, error: data })
 });

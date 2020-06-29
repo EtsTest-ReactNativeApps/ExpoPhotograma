@@ -1,7 +1,6 @@
 import { call, put, select } from 'redux-saga/effects';
 import axios from 'axios';
 import PhotosActions from './photos.redux';
-import PhotographersActions from "../photographers/photographers.redux";
 
 
 const getClient = (state) => state.user.client;

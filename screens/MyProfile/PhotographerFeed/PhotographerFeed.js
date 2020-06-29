@@ -18,10 +18,10 @@ import {HashtagActions} from "../../../redux/hashtags";
 export const PhotographerFeed = ({route, navigation}) =>{
 
     const { photographer } = route.params;
+    const photos = photographer.attributes.photos;
+    const hashtags = photographer.attributes.hashtags;
+
     const dispatch = useDispatch();
-    React.useEffect(() => {
-        dispatch(PhotosActions.photosByPhotographer(photographer.attributes.id));
-    }, [dispatch]);
 
 
     React.useEffect(() => {
@@ -40,14 +40,14 @@ export const PhotographerFeed = ({route, navigation}) =>{
                 <Bookmark photographer={photographer} navigation={navigation}/>
                 <Stats photographer={photographer} navigation={navigation}/>
                 <AboutSecond photographer={photographer} navigation={navigation}/>
-                <Photos photographer={photographer} navigation={navigation}/>
+                <Photos photos={photos} photographer={photographer} navigation={navigation}/>
                 <Address photographer={photographer} navigation={navigation}/>
                 <Amenities photographer={photographer} navigation={navigation}/>
                 <Extras photographer={photographer} navigation={navigation}/>
             </View>
         </ScrollView>
     );
-}
+};
 
 const styles = StyleSheet.create({
     container: {
