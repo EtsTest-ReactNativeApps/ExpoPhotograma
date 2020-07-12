@@ -33,4 +33,24 @@ $ yarn start
   ```sh
 Install EXPO application from GooglePlay or IOS Store(or open the Simulator) and scan the QR code.
 ```
-**In art we trust!**
+
+---
+
+## `SCREENSHOTS` - website example
+<p align="center">
+  <img width="460" height="300" src="https://github.com/ungurnicoleta/ExpoPhotograma/blob/master/assets/Screenshots/signInScreen1.jpg">
+</p>
+
+<p align="center">
+  <img width="460" height="300" src="https://github.com/ungurnicoleta/ExpoPhotograma/blob/master/assets/Screenshots/signInScreen2.jpg">
+</p>
+
+<p align="center">
+  <img width="460" height="300" src="https://github.com/ungurnicoleta/ExpoPhotograma/blob/master/assets/Screenshots/signUpScreen.jpg">
+</p>
+
+<p align="center">
+  <img width="460" height="300" src="https://github.com/ungurnicoleta/ExpoPhotograma/blob/master/assets/Screenshots/Dashbord.png">
+</p>
+
+
