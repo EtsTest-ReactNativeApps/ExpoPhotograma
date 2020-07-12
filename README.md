@@ -36,21 +36,21 @@ Install EXPO application from GooglePlay or IOS Store(or open the Simulator) and
 
 ---
 
+
 ## `SCREENSHOTS` - website example
-<p align="center">
-  <img width="460" height="300" src="https://github.com/ungurnicoleta/ExpoPhotograma/blob/master/assets/Screenshots/signInScreen1.jpg">
-</p>
-
-<p align="center">
-  <img width="460" height="300" src="https://github.com/ungurnicoleta/ExpoPhotograma/blob/master/assets/Screenshots/signInScreen2.jpg">
-</p>
-
-<p align="center">
-  <img width="460" height="300" src="https://github.com/ungurnicoleta/ExpoPhotograma/blob/master/assets/Screenshots/signUpScreen.jpg">
-</p>
-
-<p align="center">
-  <img width="460" height="300" src="https://github.com/ungurnicoleta/ExpoPhotograma/blob/master/assets/Screenshots/Dashbord.png">
+<p float="left">
+  <img src="https://github.com/ungurnicoleta/ExpoPhotograma/blob/master/assets/Screenshots/signInScreen1.jpg" width="250" height="500"/>
+  <img src="https://github.com/ungurnicoleta/ExpoPhotograma/blob/master/assets/Screenshots/signInScreen2.jpg" width="250" height="500" /> 
+  <img src="https://github.com/ungurnicoleta/ExpoPhotograma/blob/master/assets/Screenshots/signUpScreen.jpg" width="250" height="500" />
+  <img src="https://github.com/ungurnicoleta/ExpoPhotograma/blob/master/assets/Screenshots/Dashbord.png" width="250" height="500" />
+  <img src="https://github.com/ungurnicoleta/ExpoPhotograma/blob/master/assets/Screenshots/Simulator%20Screen%20Shot%20-%20iPhone%2011%20Pro%20Max%20-%202020-06-10%20at%2015.08.25.png" width="250" height="500" />
+  <img src="https://github.com/ungurnicoleta/ExpoPhotograma/blob/master/assets/Screenshots/Saved.png" width="250" height="500" />
+  <img src="https://github.com/ungurnicoleta/ExpoPhotograma/blob/master/assets/Screenshots/imgClassif2.png" width="250" height="500" />
+  <img src="https://github.com/ungurnicoleta/ExpoPhotograma/blob/master/assets/Screenshots/imgClassif.png" width="250" height="500" />
+  <img src="https://github.com/ungurnicoleta/ExpoPhotograma/blob/master/assets/Screenshots/imgClassif3.png" width="250" height="500" />
+  <img src="https://github.com/ungurnicoleta/ExpoPhotograma/blob/master/assets/Screenshots/mapScreenForCluj.png" width="250" height="500" />
+  <img src="https://github.com/ungurnicoleta/ExpoPhotograma/blob/master/assets/Screenshots/LikePhoto.png" width="250" height="500" />
+  <img src="https://github.com/ungurnicoleta/ExpoPhotograma/blob/master/assets/Screenshots/NopePhoto.png" width="250" height="500" />
 </p>
 
 
